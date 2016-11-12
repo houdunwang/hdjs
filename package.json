@@ -1,0 +1,23 @@
+{
+  "name": "hdjs",
+  "version": "1.1.11",
+  "description": "hdjs framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/houdunwang/hdjs.git"
+  },
+  "keywords": [
+    "hdjs",
+    "houdunwang"
+  ],
+  "author": "hdxj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/houdunwang/hdjs/issues"
+  },
+  "homepage": "https://github.com/houdunwang/hdjs#readme"
+}
