@@ -46,7 +46,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                     $.get(url, {extensions: options.extensions}, function (res) {
                                         var html = '<ul class="clearfix image-list-box">';
                                         $(res.data).each(function (i) {
-                                            html += '<li style="background-image: url(' + res.data[i].path + ');" path="' + res.data[i].path + '"></li>';
+                                            html += '<li style="background-image: url(' + res.data[i].url + ');" path="' + res.data[i].path + '"></li>';
                                         });
                                         html += "</ul>";
                                         html += res.page;
@@ -54,7 +54,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                     }, 'json');
                                 }
 
-                                getImageList('?s=system/component/filesLists');
+                                getImageList(hdjs.filesLists+'&type=image');
                                 //分页处理
                                 modalobj.delegate('#imagelists .pagination a', 'click', function () {
                                     var url = $(this).attr('href');
@@ -148,7 +148,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                     }, 'json');
                                 }
 
-                                getImageList('?s=system/component/filesLists');
+                                getImageList(hdjs.filesLists);
                                 //分页处理
                                 modalobj.delegate('#imagelists .pagination a', 'click', function () {
                                     var url = $(this).attr('href');
@@ -250,7 +250,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                     }, 'json');
                                 }
 
-                                getImageList('?s=system/component/filesLists&type=file');
+                                getImageList(hdjs.filesLists+'&type=file');
                                 //分页处理
                                 modalobj.delegate('#imagelists .pagination a', 'click', function () {
                                     var url = $(this).attr('href');
@@ -461,7 +461,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                 swf: 'resource/hdjs/component/webuploader/Uploader.swf',
                 chunked: false,
                 chunkSize: 512 * 1024,
-                server: '?s=system/component/uploader',
+                server: hdjs.uploader,
                 // runtimeOrder: 'flash',
                 accept: opt.accept,//允许上传的文件类型
                 // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。

@@ -324,8 +324,8 @@
             require(['ueditor', 'ZeroClipboard'], function (ueditor, ZeroClipboard) {
                 window.ZeroClipboard = ZeroClipboard;
                 var options = $.extend({
-                    UEDITOR_HOME_URL: 'resource/hdjs/component/ueditor/',
-                    serverUrl: '?s=system/component/ueditor',
+                    UEDITOR_HOME_URL: hdjs.base+'/component/ueditor/',
+                    serverUrl: hdjs.ueditor,
                     'elementPathEnabled': false,
                     'initialFrameHeight': 200,
                     'focus': false,
