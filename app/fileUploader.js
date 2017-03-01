@@ -1,7 +1,17 @@
-define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, underscore, WebUploader, util) {
+define(["jquery", "underscore", "webuploader", "util"], function ($, underscore, WebUploader, util) {
     var modalobj = null;
     var obj = {
         show: function (callback, options) {
+            //初始化POST数据
+            options.data = options.data ? options.data : {};
+            //后台管理时添加
+            if (window.system) {
+                options.data.user_type = window.system.user_type
+            }
+            //针对HDCMS的表单令牌处理
+            if ($('meta[name="csrf-token"]').length > 0) {
+                options.data.csrf_token = $('meta[name="csrf-token"]').attr('content');
+            }
             //成功上传的图片
             var images = [];
             switch (options.type) {
@@ -43,7 +53,13 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                 }
                                 //加载远程文件
                                 function getImageList(url) {
-                                    $.get(url, {extensions: options.extensions}, function (res) {
+                                    //添加获取的类型是后台用户还是前台用户
+                                    var post={extensions: options.extensions};
+                                    if(window.system){
+                                        post.user_type = window.system.user_type
+                                    }
+                                    post.csrf_token = options.data.csrf_token;
+                                    $.post(url, post, function (res) {
                                         var html = '<ul class="clearfix image-list-box">';
                                         $(res.data).each(function (i) {
                                             html += '<li style="background-image: url(' + res.data[i].url + ');" path="' + res.data[i].path + '"></li>';
@@ -53,8 +69,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                         modalobj.find('#imagelists').html(html);
                                     }, 'json');
                                 }
-
-                                getImageList(hdjs.filesLists+'&type=image');
+                                getImageList(hdjs.filesLists + '&type=image');
                                 //分页处理
                                 modalobj.delegate('#imagelists .pagination a', 'click', function () {
                                     var url = $(this).attr('href');
@@ -77,28 +92,36 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                 modalobj.delegate('.uploadSelectFiles', 'click', function () {
                                     modalobj.modal('hide');
                                 });
+
                                 //显示上传控件
                                 var uploader = obj.initImageUploader({
                                     accept: {
                                         title: 'Images',
                                         extensions: options.extensions,//允许上传的文件类型
-                                        mimeTypes: 'image/*'
+                                        mimeTypes: 'image/jpg,image/jpeg,image/png,image/gif'
                                     },
+                                    formData: options.data,
                                     multiple: options.multiple,
                                     fileNumLimit: 100,//允许上传的文件数量
                                     fileSizeLimit: 200 * 1024 * 1024,    // 200 M 允许上传文件大小
                                     fileSingleSizeLimit: 2 * 1024 * 1024    // 2 M 单个文件上传大小
                                 });
                                 uploader.on('uploadAccept', function (file, response) {
-                                    if (response.valid) {
-                                        images.push(response.message);
-                                        return true;
-                                    } else {
-                                        //上传失败
-                                        alert('上传失败, ' + response.message);
-                                        uploader.removeFile(file.file);
-                                        return false;
-                                    }
+                                        if (response.valid!==undefined) {
+                                            if (response.valid) {
+                                                images.push(response.message);
+                                                return true;
+                                            } else {
+                                                //上传失败
+                                                alert('上传失败, ' + response.message);
+                                                uploader.removeFile(file.file);
+                                                return false;
+                                            }
+                                        }else{
+                                            require(['util'],function(){
+                                                 util.message(response._raw,'','info',5);
+                                            })
+                                        }
                                 });
                             },
                             'hide.bs.modal': function () {
@@ -137,7 +160,13 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                             'shown.bs.modal': function () {
                                 //加载远程文件
                                 function getImageList(url) {
-                                    $.get(url, function (res) {
+                                    //添加获取的类型是后台用户还是前台用户
+                                    var post={extensions: options.extensions};
+                                    if(window.system){
+                                        post.user_type = window.system.user_type
+                                    }
+                                    post.csrf_token = options.data.csrf_token;
+                                    $.post(url,post, function (res) {
                                         var html = '<ul class="clearfix">';
                                         $(res.data).each(function (i) {
                                             html += '<li><img src="' + res.data[i].path + '"></li>';
@@ -167,8 +196,9 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                     accept: {
                                         title: 'Images',
                                         extensions: options.extensions,//允许上传的文件类型
-                                        mimeTypes: 'image/*'
+                                        mimeTypes: 'image/jpg,image/jpeg,image/png,image/gif'
                                     },
+                                    formData: options.data,
                                     compress: {
                                         width: 1600,
                                         height: 1600,
@@ -177,7 +207,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                     multiple: false,
                                     fileNumLimit: 1,//允许上传的文件数量
                                     fileSizeLimit: 200 * 1024 * 1024,    // 200 M 允许上传文件大小
-                                    fileSingleSizeLimit: 5 * 1024 * 1024    // 2 M 单个文件上传大小
+                                    fileSingleSizeLimit: 20 * 1024 * 1024    // 2 M 单个文件上传大小
                                 });
                                 uploader.on('uploadAccept', function (file, response) {
                                     if (response.valid) {
@@ -236,7 +266,13 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                             'shown.bs.modal': function () {
                                 //加载远程文件
                                 function getImageList(url) {
-                                    $.get(url, {extensions: options.extensions}, function (res) {
+                                    //添加获取的类型是后台用户还是前台用户
+                                    var post={extensions: options.extensions};
+                                    if(window.system){
+                                        post.user_type = window.system.user_type
+                                    }
+                                    post.csrf_token = options.data.csrf_token;
+                                    $.post(url, post, function (res) {
                                         var html = '<table class="table table-hover">' +
                                             '<tr><th>文件名</th><th>大小</th><th>创建时间</th></tr>';
                                         $(res.data).each(function (i) {
@@ -250,7 +286,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                     }, 'json');
                                 }
 
-                                getImageList(hdjs.filesLists+'&type=file');
+                                getImageList(hdjs.filesLists + '&type=file');
                                 //分页处理
                                 modalobj.delegate('#imagelists .pagination a', 'click', function () {
                                     var url = $(this).attr('href');
@@ -263,15 +299,17 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                                     images.push(url);
                                     modalobj.modal('hide');
                                 });
-
+                                // alert('.' + options.extensions.replace(/,/g, ',.'));
                                 //显示上传控件
                                 var uploader = obj.initImageUploader({
                                     accept: {
                                         title: 'file',
                                         extensions: options.extensions,//允许上传的文件类型
-                                        mimeTypes: '.' + options.extensions.replace(/,/g, ',.'),
+                                        // mimeTypes: 'image/jpg,image/jpeg,image/png,image/gif'
+                                        // mimeTypes: '.' + options.extensions.replace(/,/g, ',.'),
+                                        // mimeTypes: 'application/zip' ',.'),
                                     },
-                                    formData: {data: options.data},
+                                    formData: options.data,
                                     multiple: options.multiple,
                                     fileNumLimit: 100,//允许上传的文件数量
                                     fileSizeLimit: 200 * 1024 * 1024,    // 200 M 允许上传文件大小
@@ -304,9 +342,10 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
             var opt = $.extend({
                 accept: {
                     title: 'Images',
-                    extensions: 'gif,jpg,jpeg,bmp,png',
-                    mimeTypes: 'image/*'
+                    extensions: 'jpg,jpeg,png',
+                    mimeTypes: 'image/jpg,image/jpeg,image/png'
                 },
+                // method: 'GET',
                 multiple: false,//同时可以选多个文件
                 fileNumLimit: 300,//允许上传的文件数量
                 fileSizeLimit: 200 * 1024 * 1024,    // 200 M 允许上传文件大小
@@ -314,43 +353,43 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
             }, options);
 
             var $wrap = $('#uploader'),
-            // 图片容器
+                // 图片容器
                 $queue = $('<ul class="filelist"></ul>')
                     .appendTo($wrap.find('.queueList')),
 
-            // 状态栏，包括进度和控制按钮
+                // 状态栏，包括进度和控制按钮
                 $statusBar = $wrap.find('.statusBar'),
 
-            // 文件总体选择信息。
+                // 文件总体选择信息。
                 $info = $statusBar.find('.info'),
 
-            // 上传按钮
+                // 上传按钮
                 $upload = $wrap.find('.uploadBtn'),
 
-            // 没选择文件之前的内容。
+                // 没选择文件之前的内容。
                 $placeHolder = $wrap.find('.placeholder'),
 
                 $progress = $statusBar.find('.progress').hide(),
 
-            // 添加的文件数量
+                // 添加的文件数量
                 fileCount = 0,
 
-            // 添加的文件总大小
+                // 添加的文件总大小
                 fileSize = 0,
 
-            // 优化retina, 在retina下这个值是2
+                // 优化retina, 在retina下这个值是2
                 ratio = window.devicePixelRatio || 1,
 
-            // 缩略图大小
+                // 缩略图大小
                 thumbnailWidth = 110 * ratio,
                 thumbnailHeight = 110 * ratio,
 
-            // 可能有pedding, ready, uploading, confirm, done.
+                // 可能有pedding, ready, uploading, confirm, done.
                 state = 'pedding',
 
-            // 所有文件的进度信息，key为file id
+                // 所有文件的进度信息，key为file id
                 percentages = {},
-            // 判断浏览器是否支持图片的base64
+                // 判断浏览器是否支持图片的base64
                 isSupportBase64 = (function () {
                     var data = new Image();
                     var support = true;
@@ -363,7 +402,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                     return support;
                 })(),
 
-            // 检测是否已经安装flash，检测flash的版本
+                // 检测是否已经安装flash，检测flash的版本
                 flashVersion = (function () {
                     var version;
 
@@ -393,7 +432,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                     return r;
                 })(),
 
-            // WebUploader实例
+                // WebUploader实例
                 uploader;
             if (!WebUploader.Uploader.support('flash') && WebUploader.browser.ie) {
                 // flash 安装了但是版本过低。
@@ -453,12 +492,10 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                     label: '点击选择文件',
                     multiple: opt.multiple,
                 },
-                formData: {
-                    uid: 123
-                },
+                formData: {},
                 dnd: '#dndArea',
                 paste: '#uploader',
-                swf: 'resource/hdjs/component/webuploader/Uploader.swf',
+                swf: hdjs.base + '/component/webuploader/Uploader.swf',
                 chunked: false,
                 chunkSize: 512 * 1024,
                 server: hdjs.uploader,
@@ -471,13 +508,12 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                 fileSingleSizeLimit: opt.fileSingleSizeLimit    // 50 M 单个文件上传大小
             }, opt);
             uploader = WebUploader.create(_options);
-
             // 拖拽时不接受 js, txt 文件。
             uploader.on('dndAccept', function (items) {
                 var denied = false,
                     len = items.length,
                     i = 0,
-                // 修改js类型
+                    // 修改js类型
                     unAllowed = 'text/plain;application/javascript ';
 
                 for (; i < len; i++) {
@@ -516,7 +552,7 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
                 var $li = $('<li id="' + file.id + '">' +
                         '<p class="title">' + file.name + '</p>' +
                         '<p class="imgWrap"></p>' +
-                            //'<p class="progress"><span></span></p>' +
+                        //'<p class="progress"><span></span></p>' +
                         '</li>'),
 
                     $btns = $('<div class="file-panel">' +
@@ -843,7 +879,8 @@ define(["jquery", "underscore", "webuploader", "util"], function (bootstrap, und
             });
 
             uploader.onError = function (code) {
-                alert('Eroor: ' + code);
+                alert('上传错误,请检测文件类型与大小');
+                // alert('Eroor: ' + code);
             };
 
             $upload.on('click', function () {

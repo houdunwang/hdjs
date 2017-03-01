@@ -2,14 +2,12 @@
  * 前端模块配置
  * @author 向军 <2300071698@qq.com>
  */
-
 require.config({
     baseUrl: hdjs.base + '/app',
     paths: {
         //'async': '../js/async',
         'require.css': '../js/require.css.min',
         'swiper': '../js/swiper-3.3.1.min',
-        'wapeditor': '../../js/wapeditor',
         'angular.drag': '../js/angular-drag-and-drop-lists.min',
         'domReady': '../js/domReady',
         'jquery-ui': '../js/jquery-ui.min',
@@ -63,9 +61,19 @@ require.config({
         'clockpicker': '../component/clockpicker/bootstrap-clockpicker.min',
         'filestyle': '../js/bootstrap-filestyle.min',
         'json2': '../js/json2.min',
+        //右键菜单
+        'bootstrapContextmenu': '../js/bootstrap-contextmenu.min',
         'map': 'http://api.map.baidu.com/getscript?v=2.0&ak=WcqLYXBH2tHLhYNfPNpZCD4s&services=&t=20160708193109',
+
+
+        //HDCMS
+        'wapeditor':'../../../module/ucenter/template/js/wapeditor'
     },
     shim: {
+        'bootstrapContextmenu': {
+            exports: '$',
+            deps: ['bootstrap']
+        },
         'map': {
             exports: 'BMap'
         },
@@ -98,7 +106,7 @@ require.config({
         },
         'swiper': {
             exports: '$',
-            deps: ['bootstrap', 'css!../css/swiper-3.3.1.min.css']
+            deps: ['jquery','css!../css/swiper-3.3.1.min.css']
         },
         'bootstrap': {
             exports: '$',
@@ -130,7 +138,7 @@ require.config({
             deps: ['jquery']
         },
         'webuploader': {
-            deps: ['css!../component/webuploader/webuploader.css', 'css!../component/webuploader/style.css']
+            deps: ['css!../component/webuploader/webuploader.css', 'css!../component/webuploader/style.css','css!../css/app.css']
         },
         'qrcode': {
             exports: '$',

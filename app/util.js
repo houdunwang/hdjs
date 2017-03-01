@@ -28,23 +28,28 @@
                 return oUrl + '&' + paramName + '=' + replaceWith;
             }
         },
-        zclip: function (elem, content) {
+        zclip: function (elem, content, callback) {
             if (elem.clip) {
                 return;
             }
             require(['jquery.zclip'], function () {
                 $(elem).zclip({
-                    path: 'resource/hdjs/component/zclip/ZeroClipboard.swf',
-                    copy: content,
+                    path: hdjs.base + '/component/zclip/ZeroClipboard.swf',
+                    copy: $.trim(content),
                     afterCopy: function () {
-                        var obj = $('<em> &nbsp; <span class="label label-success"><i class="fa fa-check-circle"></i> 复制成功</span></em>');
-                        var enext = $(elem).next().html();
-                        if (!enext || enext.indexOf('&nbsp; <span class="label label-success"><i class="fa fa-check-circle"></i> 复制成功</span>') < 0) {
-                            $(elem).after(obj);
+                        if ($.isFunction(callback)) {
+                            return callback(elem, content);
+                        } else {
+                            obj = $(elem).next('.hdJsCopyElem');
+                            if (obj.length == 0) {
+                                obj = $('<em class="hdJsCopyElem">&nbsp;<span class="label label-success"><i class="fa fa-check-circle"></i> 复制成功</span></em>');
+                                var enext = $(elem).next().html();
+                                $(elem).after(obj);
+                            }
+                            setTimeout(function () {
+                                obj.remove();
+                            }, 2000);
                         }
-                        setTimeout(function () {
-                            obj.remove();
-                        }, 2000);
                     }
                 });
                 elem.clip = true;
@@ -321,10 +326,10 @@
         },
         //百度编辑器
         ueditor: function (id, opt, callback) {
-            require(['ueditor', 'ZeroClipboard'], function (ueditor, ZeroClipboard) {
+            require(['ueditor', 'ZeroClipboard', 'jquery'], function (ueditor, ZeroClipboard, $) {
                 window.ZeroClipboard = ZeroClipboard;
                 var options = $.extend({
-                    UEDITOR_HOME_URL: hdjs.base+'/component/ueditor/',
+                    UEDITOR_HOME_URL: hdjs.base + '/component/ueditor/',
                     serverUrl: hdjs.ueditor,
                     'elementPathEnabled': false,
                     'initialFrameHeight': 200,
@@ -335,7 +340,7 @@
                         'justifyleft', 'justifycenter', 'justifyright', '|', 'insertorderedlist', 'insertunorderedlist', 'blockquote', 'emotion',
                         'link', 'removeformat', '|', 'rowspacingtop', 'rowspacingbottom', 'lineheight', 'indent', 'paragraph', 'fontsize', '|',
                         'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol',
-                        'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',  'map', 'print', 'drafts']],
+                        'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|', 'map', 'print', 'drafts']],
                     autoHeightEnabled: false,//自动增高
                     autoFloatEnabled: false,
                 }, opt);
@@ -409,7 +414,8 @@
                 html =
                     '<div class="modal-dialog">' +
                     '	<div style="text-align:center; background-color: transparent;">' +
-                    '		<img style="width:48px; height:48px; margin-top:100px;" src="../images/loading.gif" title="正在努力加载...">' +
+                    '		<img style="width:48px; height:48px; margin-top:100px;" ' +
+                    'src="' + hdjs.base + '/images/loading.gif" title="正在努力加载...">' +
                     '	</div>' +
                     '</div>';
                 modalobj.html(html);
@@ -417,64 +423,6 @@
             modalobj.modal('show');
             modalobj.next().css('z-index', 999999);
             return modalobj;
-        },
-        //提交form表单
-        sendForm: function (url, formId, btnId, goUrl) {
-            $('#' + formId).submit(function () {
-                $('#' + btnId).attr('disabled', true);
-
-                $.post(url, $('#' + formId).serialize(), function (response) {
-                    require(['../lib/dialog'], function (dialog) {
-                        if (response.valid) {
-                            dialog.message({
-                                message: response.message,
-                                ico: 'fa-info-circle',
-                                timeout: 2000,
-                                callback: function () {
-                                    $('#' + btnId).removeAttr('disabled');
-                                    if (response.valid) {
-                                        if (goUrl) {
-                                            location.href = goUrl;
-                                        }
-                                        else {
-                                            location.href = location.href;
-                                        }
-                                    }
-                                }
-                            });
-                        } else {
-                            dialog.message({
-                                message: response.message,
-                                ico: 'fa-times-circle',
-                                callback: function () {
-                                    $('#' + btnId).removeAttr('disabled');
-                                }
-                            });
-                        }
-                    });
-                })
-                return false;
-            })
-        },
-        //根据id删除数据
-        del: function (message, url, data, callback) {
-            require(['../lib/dialog', 'util'], function (dialog, util) {
-                dialog.confirm({
-                    title: '温馨提示',
-                    message: message,
-                    callback: function (state) {
-                        if (state) {
-                            util.post({
-                                url: url,
-                                data: data,//post数据
-                                success: function () {
-                                    callback();
-                                }
-                            });
-                        }
-                    }
-                });
-            });
         },
         //提交post数据
         post: function (opt) {
@@ -486,22 +434,46 @@
                 error: function () {
                 }
             }, opt);
-            $.post(options.url, options.data, function (response) {
-                require(['../lib/dialog'], function (dialog) {
-                    dialog.message({
-                        timeout: 2000,//自动关闭时间
-                        message: response.message,
-                        callback: function () {
-                            if (response.valid) {
-                                options.success();
+            $.post(options.url, options.data, function (json) {
+                if ($.isFunction(options.callback)) {
+                    options.callback(json);
+                }
+            }, 'json')
+        },
+        /**
+         * 异步发送表单
+         * @param options
+         */
+        submit: function (options) {
+            var options = $.extend({
+                url: location.href,
+                data: '',
+                successUrl: 'back',
+                //前置执行函数,函数执行结果返回true才会提交
+                before: function () {
+                    return true;
+                }
+            }, options)
+            require(['util', 'jquery', 'underscore'], function (util, $, _) {
+                $('form').attr('onsubmit', 'return false;');
+                $('form').submit(function () {
+                    var status = options.before();
+                    if (status) {
+                        var data = options.data == '' ? $('form').serialize() : options.data;
+                        $.post(options.url, data, function (json) {
+                            if (_.isObject(json)) {
+                                if (json.valid == 1) {
+                                    util.message(json.message, options.successUrl, 'success');
+                                } else {
+                                    util.message(json.message, '', 'info');
+                                }
                             } else {
-                                options.error();
+                                util.message(json, '', 'error');
                             }
-
-                        }
-                    });
+                        }, 'json');
+                        return false;
+                    }
                 });
-
             })
         },
         //字休文件模态
@@ -518,7 +490,11 @@
             };
         },
         //消息提示
-        message: function (msg, redirect, type, options) {
+        message: function (msg, redirect, type, timeout, options) {
+            if ($.isArray(msg)) {
+                msg = msg.join('<br/>');
+            }
+            timeout = timeout ? timeout : 3;
             if (!redirect && !type) {
                 type = 'info';
             }
@@ -551,13 +527,13 @@
             var h = '';
             if (redirect && redirect.length > 0) {
                 if (redirect == 'back') {
-                    h = '<p>[<a href="javascript:;" onclick="history.go(-1)">返回上一页</a>] &nbsp; [<a href="../../../?refresh">回首页</a>]</p>';
-                    redirect = '';
+                    h = '<p><a href="javascript:;" onclick="history.go(-1)" target="main" data-dismiss="modal" aria-hidden="true">如果你的浏览器在 <span id="timeout">' + timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
+                    redirect = document.referrer;
                 } else if (redirect == 'refresh') {
                     redirect = location.href;
-                    h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">如果你的浏览器在 <span id="timeout"></span> 秒后没有自动跳转，请点击此链接</a></p>';
+                    h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">系统将在 <span id="timeout"></span> 秒后刷新页面</a></p>';
                 } else {
-                    h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">如果你的浏览器在 <span id="timeout"></span> 秒后没有自动跳转，请点击此链接</a></p>';
+                    h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">如果你的浏览器在 <span id="timeout">' + timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
                 }
             }
             var content =
@@ -577,7 +553,6 @@
             modalobj.find('.modal-content').addClass('alert alert-' + type);
             if (redirect) {
                 var timer = '';
-                timeout = 3;
                 modalobj.find("#timeout").html(timeout);
                 modalobj.on('show.bs.modal', function () {
                     doredirect();
@@ -617,8 +592,8 @@
             var modalobj = util.modal($.extend({
                 title: '系统提示',
                 content: content,
-                footer: '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>\
-                            <button type="button" class="btn btn-primary confirm">确定</button>',
+                footer: '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' +
+                '<button type="button" class="btn btn-primary confirm">确定</button>',
                 events: {
                     confirm: function () {
                         if ($.isFunction(callback)) {
@@ -639,6 +614,7 @@
                 footer: '',//底部
                 id: 'hdMessage',//模态框id
                 width: 600,//宽度
+                class: '',//样式
                 option: {},//bootstrap模态框选项
                 events: {},//事件,参考bootstrap
             }, options);
@@ -647,8 +623,8 @@
                 $(document.body).append('<div class="modal fade" id="' + opt.id + '"role="dialog" tabindex="-1" role="dialog" aria-hidden="true"></div>');
                 modalObj = $("#" + opt.id);
             }
-
-            var html = '<div class="modal-dialog" role="document"><div class="modal-content">';
+            var html = '<div class="modal-dialog" role="document">' +
+                '<div class="modal-content ' + opt.class + '">';
             if (opt.title) {
                 html += '<div class="modal-header">'
                     + '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
@@ -694,9 +670,21 @@
             if (typeof opt.events['confirm'] == 'function') {
                 modalObj.find('.confirm', modalObj).on('click', function () {
                     options.events['confirm'](modalObj);
+                    //隐藏模态框
+                    modalObj.modal('hide');
                 });
             }
-
+            //关闭模态框时删除他
+            modalObj.on('hidden.bs.modal', function () {
+                modalObj.remove();
+            });
+            /**
+             * 有确定按钮时添加事件
+             * 当点击确定时删除模态框
+             */
+            modalObj.on('hidden.bs.modal', function () {
+                modalObj.remove();
+            });
             //点击取消按钮事件
             if (typeof opt.events['cancel'] == 'function') {
                 modalObj.find('.cancel', modalObj).on('click', function () {
@@ -735,16 +723,19 @@
         },
         //上传图片
         image: function (callback, options) {
+            //初始化参数数据
+            options = options ? options : {};
+            //初始化POST数据
+            options.data = options.data ? options.data : {};
             var opts = $.extend({
                 type: 'image',
-                extensions: 'gif,jpg,jpeg,bmp,png',
+                extensions: 'gif,jpg,jpeg,png',
                 multiple: false,
-                data: ''
+                data: {}
             }, options);
-
             require(['bootstrap', 'fileUploader'], function ($, fileUploader) {
                 fileUploader.show(function (images) {
-                    if (images) {
+                    if (images.length > 0) {
                         if ($.isFunction(callback)) {
                             callback(images);
                         }
@@ -754,12 +745,16 @@
         },
         //上传文件
         file: function (callback, options) {
+            //初始化参数数据
+            options = options ? options : {};
+            //初始化POST数据
+            options.data = options.data ? options.data : {};
             var opts = $.extend({
                 type: 'file',
                 extensions: 'doc,ppt,wps,zip,txt',
                 multiple: false,
                 fileSizeLimit: 200 * 1024 * 1024,
-                fileSingleSizeLimit: 2 * 1024 * 1024,
+                fileSingleSizeLimit: 5 * 1024 * 1024,
                 data: ''
             }, options);
             require(['bootstrap', 'fileUploader'], function ($, fileUploader) {
@@ -774,12 +769,15 @@
         },
         //上传图片
         mobileImage: function (callback, options) {
+            //初始化参数数据
+            options = options ? options : {};
+            //初始化POST数据
+            options.data = options.data ? options.data : {};
             var opts = $.extend({
                 type: 'mobileImage',
                 extensions: 'gif,jpg,jpeg,bmp,png',
                 multiple: false,
             }, options);
-
             require(['bootstrap', 'fileUploader'], function ($, fileUploader) {
                 fileUploader.show(function (images) {
                     if (images) {
@@ -863,18 +861,19 @@
                 }
             });
         },
-        //修改会员积分/余额
-        tradeCredit: function (obj) {
-            //会员编号
-            var uid = $(obj).data('uid');
-            //积分类型 credit1积分  credit2余额
-            var type = $(obj).data('type');
-            this.modal({
-                content: ['?a=site/trade&t=site&m=member&uid=' + uid + "&type=" + type],//加载的远程地址
-                title: '会员积分操作',
-                width: 800,
-                show: true,//直接显示
-            });
+        /**
+         * 预览图片
+         * @param url 图片URL地址
+         */
+        preview: function (url) {
+            require(['util'], function (util) {
+                util.modal({
+                    title: '图片预览',
+                    width: 700,
+                    height: 500,
+                    content: '<div style="text-align: center"><img style="max-width: 650px;max-height: 500px;" src="' + url + '"/></div>'
+                })
+            })
         },
         //百度地图
         map: function (val, callback) {
@@ -960,11 +959,11 @@
                         return document.getElementById(id);
                     }
 
-                    var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
-                        {
-                            "input": "suggestId"
-                            , "location": map
-                        });
+                    //建立一个自动完成的对象
+                    var ac = new BMap.Autocomplete({
+                        "input": "suggestId"
+                        , "location": map
+                    });
 
                     ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
                         var str = "";
