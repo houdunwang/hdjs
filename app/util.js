@@ -324,6 +324,36 @@
                 }
             );
         },
+        //ueditor.md 编辑器
+        editormd: function (opt) {
+            var options = $.extend({
+                id: '',
+                width: "100%",
+                height: 300,
+                syncScrolling: "single",
+                path: hdjs.base + "/component/editormd/lib/"
+            }, opt);
+            var deps = [
+                "editormd",
+                "../component/editormd/languages/en",
+                "../component/editormd/plugins/link-dialog/link-dialog",
+                "../component/editormd/plugins/reference-link-dialog/reference-link-dialog",
+                "../component/editormd/plugins/image-dialog/image-dialog",
+                "../component/editormd/plugins/code-block-dialog/code-block-dialog",
+                "../component/editormd/plugins/table-dialog/table-dialog",
+                "../component/editormd/plugins/emoji-dialog/emoji-dialog",
+                "../component/editormd/plugins/goto-line-dialog/goto-line-dialog",
+                "../component/editormd/plugins/help-dialog/help-dialog",
+                "../component/editormd/plugins/html-entities-dialog/html-entities-dialog",
+                "../component/editormd/plugins/preformatted-text-dialog/preformatted-text-dialog"
+            ];
+            var testEditor;
+            require(deps, function (editormd) {
+                editormd.loadCSS(hdjs.base + "/component/editormd/lib/codemirror/addon/fold/foldgutter");
+                testEditor = editormd(options.id, options);
+
+            });
+        },
         //百度编辑器
         ueditor: function (id, opt, callback) {
             require(['ueditor', 'ZeroClipboard', 'jquery'], function (ueditor, ZeroClipboard, $) {
@@ -444,44 +474,47 @@
          * 异步发送表单
          * @param options
          */
-        submit: function (options) {
+        submit: function (opt) {
             var options = $.extend({
-                url: location.href,
+                el: 'form',
+                url: window.system ? window.system.url : '',
                 data: '',
                 successUrl: 'back',
-                //前置执行函数,函数执行结果返回true才会提交
-                before: function () {
-                    return true;
-                }
-            }, options)
+                callback: '',
+            }, opt);
             require(['util', 'jquery', 'underscore'], function (util, $, _) {
-                $('form').attr('onsubmit', 'return false;');
-                $('form').submit(function () {
-                    var status = options.before();
-                    if (status) {
-                        var data = options.data == '' ? $('form').serialize() : options.data;
-                        $.post(options.url, data, function (json) {
-                            if (_.isObject(json)) {
+                var data = options.data == '' ? $(options.el).serialize() : options.data;
+                $.ajax({
+                    url: options.url,
+                    type: 'post',
+                    cache: false,
+                    data: data,
+                    dataType: "json",
+                    success: function (json) {
+                        if (_.isObject(json)) {
+                            if ($.isFunction(options.callback)) {
+                                options.callback(json);
+                            } else {
                                 if (json.valid == 1) {
                                     util.message(json.message, options.successUrl, 'success');
                                 } else {
                                     util.message(json.message, '', 'info');
                                 }
-                            } else {
-                                util.message(json, '', 'error');
                             }
-                        }, 'json');
-                        return false;
+                        } else {
+                            util.message(json, '', 'error');
+                        }
                     }
                 });
-            })
+                return false;
+            });
         },
         //字休文件模态
         font: function (callback) {
             var modalobj = util.modal({
                 title: '选择图标',
                 width: 700,
-                content: ['?s=system/component/font'],
+                content: ['?s=component/font/lists',{user_type:window.system.user_type}],
                 footer: '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>'
             })
             window.selectIconComplete = function (ico) {
@@ -875,6 +908,58 @@
                 })
             })
         },
+        //发送短信或邮箱验证码
+        validCode: function (option) {
+            require(['jquery', 'util'], function ($, util) {
+                //上次发送的时间
+                var obj = {
+                    //按钮
+                    el: '',
+                    //验证码等待发送时间
+                    timeout: 0,
+                    //定时器编号
+                    intervalId: 0,
+                    //初始化
+                    init: function () {
+                        var This = this;
+                        this.el = $(option.el);
+                        this.el.on('click', function () {
+                            This.send();
+                        })
+                        this.timeout = option.timeout * 1;
+                        this.update();
+                    },
+                    //更改状态
+                    update: function () {
+                        var This = this;
+                        This.intervalId = setInterval(function () {
+                            if (This.timeout > 0) {
+                                This.el.text(--This.timeout + "秒后再发送")
+                                    .attr('disabled', 'disabled');
+                            } else {
+                                clearInterval(This.intervalId);
+                                This.el.removeAttr('disabled').text('发送验证码');
+                            }
+                        }, 1000);
+                    },
+                    //发送验证码
+                    send: function () {
+                        var This = this;
+                        var username = $.trim($(option.input).val());
+                        if (!/^\d{11}$/.test(username) && !/^.+@.+$/.test(username)) {
+                            util.message('帐号格式错误', '', 'info');
+                            return;
+                        }
+                        $.post(option.url, {username: username}, function (response) {
+                            util.message(response.message);
+                            This.timeout = response.timeout;
+                            This.update();
+                        }, 'json');
+                    }
+                }
+                obj.init();
+            })
+        },
         //百度地图
         map: function (val, callback) {
             require(['map', 'util'], function (BMap, util) {
@@ -908,7 +993,12 @@
                     var footer =
                         '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' +
                         '<button type="button" class="btn btn-primary">确认</button>';
-                    modalobj = util.modal({title: '请选择地点', content: content, footer: footer, id: 'map-dialog'});
+                    modalobj = util.modal({
+                        title: '请选择地点',
+                        content: content,
+                        footer: footer,
+                        id: 'map-dialog'
+                    });
                     modalobj.find('.modal-dialog').css('width', '80%');
                     modalobj.modal({'keyboard': false});
 

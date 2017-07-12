@@ -8,6 +8,8 @@ require.config({
         //'async': '../js/async',
         'require.css': '../js/require.css.min',
         'swiper': '../js/swiper-3.3.1.min',
+        //阿里云oss
+        'oss': '../component/oss/oss',
         'angular.drag': '../js/angular-drag-and-drop-lists.min',
         'domReady': '../js/domReady',
         'jquery-ui': '../js/jquery-ui.min',
@@ -21,6 +23,7 @@ require.config({
         'cookie': '../js/js.cookie.min',
         'bootstrap': '../js/bootstrap.min',
         'bootstrap.switch': '../js/bootstrap-switch.min',
+        'vue': '../js/vue.min',
         //音乐、视频播放
         'jquery.jplayer': '../js/jquery.jplayer.min',
         //复制内容
@@ -64,10 +67,22 @@ require.config({
         //右键菜单
         'bootstrapContextmenu': '../js/bootstrap-contextmenu.min',
         'map': 'http://api.map.baidu.com/getscript?v=2.0&ak=WcqLYXBH2tHLhYNfPNpZCD4s&services=&t=20160708193109',
-
-
         //HDCMS
-        'wapeditor':'../../../module/ucenter/template/js/wapeditor'
+        'wapeditor': '../../../module/ucenter/template/js/wapeditor',
+        //vue.js
+        'vue': '../js/vue',
+        //http请求库
+        'axios': '../js/axios.min',
+        //markdown编辑器edit.md设置
+        marked: "../component/editormd/lib/marked.min",
+        prettify: "../component/editormd/lib/prettify.min",
+        raphael: "../component/editormd/lib/raphael.min",
+        flowchart: "../component/editormd/lib/flowchart.min",
+        jqueryflowchart: "../component/editormd/lib/jquery.flowchart.min",
+        sequenceDiagram: "../component/editormd/lib/sequence-diagram.min",
+        katex: "http://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min",
+        editormd: "../component/editormd/editormd.amd"
+
     },
     shim: {
         'bootstrapContextmenu': {
@@ -79,6 +94,29 @@ require.config({
         },
         'ngSortable': {
             deps: ['Sortable']
+        },
+        'editormd': {
+            deps: [
+                "css!../component/editormd/css/editormd.min.css",
+                "css!../component/editormd/lib/codemirror/codemirror.min.css",
+                "css!../component/editormd/lib/codemirror/codemirror.min.css",
+                // "jquery",
+                // "../component/editormd/languages/en",
+                // "../component/editormd/plugins/link-dialog/link-dialog",
+                // "../component/editormd/plugins/reference-link-dialog/reference-link-dialog",
+                // "../component/editormd/plugins/image-dialog/image-dialog",
+                // "../component/editormd/plugins/code-block-dialog/code-block-dialog",
+                // "../component/editormd/plugins/table-dialog/table-dialog",
+                // "../component/editormd/plugins/emoji-dialog/emoji-dialog",
+                // "../component/editormd/plugins/goto-line-dialog/goto-line-dialog",
+                // "../component/editormd/plugins/help-dialog/help-dialog",
+                // "../component/editormd/plugins/html-entities-dialog/html-entities-dialog",
+                // "../component/editormd/plugins/preformatted-text-dialog/preformatted-text-dialog",
+                // 'css!../component/editormd/lib/codemirror/addon/fold/foldgutter.css'
+            ]
+        },
+        'oss': {
+            deps: ['../component/oss/plupload-2.1.2/js/plupload.full.min']
         },
         'jquery': {
             exports: '$',
@@ -106,7 +144,7 @@ require.config({
         },
         'swiper': {
             exports: '$',
-            deps: ['jquery','css!../css/swiper-3.3.1.min.css']
+            deps: ['jquery', 'css!../css/swiper-3.3.1.min.css']
         },
         'bootstrap': {
             exports: '$',
@@ -138,7 +176,7 @@ require.config({
             deps: ['jquery']
         },
         'webuploader': {
-            deps: ['css!../component/webuploader/webuploader.css', 'css!../component/webuploader/style.css','css!../css/app.css']
+            deps: ['css!../component/webuploader/webuploader.css', 'css!../component/webuploader/style.css', 'css!../css/app.css']
         },
         'qrcode': {
             exports: '$',
@@ -176,7 +214,8 @@ require.config({
         'json2': {
             exports: 'JSON'
         }
-    }
+    },
+    // waitSeconds: 30
 });
 
 

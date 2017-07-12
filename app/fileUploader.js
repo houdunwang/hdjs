@@ -54,21 +54,27 @@ define(["jquery", "underscore", "webuploader", "util"], function ($, underscore,
                                 //加载远程文件
                                 function getImageList(url) {
                                     //添加获取的类型是后台用户还是前台用户
-                                    var post={extensions: options.extensions};
-                                    if(window.system){
+                                    var post = {extensions: options.extensions};
+                                    if (window.system) {
                                         post.user_type = window.system.user_type
                                     }
                                     post.csrf_token = options.data.csrf_token;
                                     $.post(url, post, function (res) {
-                                        var html = '<ul class="clearfix image-list-box">';
-                                        $(res.data).each(function (i) {
-                                            html += '<li style="background-image: url(' + res.data[i].url + ');" path="' + res.data[i].path + '"></li>';
-                                        });
-                                        html += "</ul>";
-                                        html += res.page;
-                                        modalobj.find('#imagelists').html(html);
+                                        if (res.valid == 0) {
+                                            modalobj.modal('hide');
+                                            util.message(res.message, '', 'warning');
+                                        } else {
+                                            var html = '<ul class="clearfix image-list-box">';
+                                            $(res.data).each(function (i) {
+                                                html += '<li style="background-image: url(' + res.data[i].url + ');" path="' + res.data[i].path + '"></li>';
+                                            });
+                                            html += "</ul>";
+                                            html += res.page;
+                                            modalobj.find('#imagelists').html(html);
+                                        }
                                     }, 'json');
                                 }
+
                                 getImageList(hdjs.filesLists + '&type=image');
                                 //分页处理
                                 modalobj.delegate('#imagelists .pagination a', 'click', function () {
@@ -100,6 +106,7 @@ define(["jquery", "underscore", "webuploader", "util"], function ($, underscore,
                                         extensions: options.extensions,//允许上传的文件类型
                                         mimeTypes: 'image/jpg,image/jpeg,image/png,image/gif'
                                     },
+                                    compress: false,
                                     formData: options.data,
                                     multiple: options.multiple,
                                     fileNumLimit: 100,//允许上传的文件数量
@@ -107,21 +114,21 @@ define(["jquery", "underscore", "webuploader", "util"], function ($, underscore,
                                     fileSingleSizeLimit: 2 * 1024 * 1024    // 2 M 单个文件上传大小
                                 });
                                 uploader.on('uploadAccept', function (file, response) {
-                                        if (response.valid!==undefined) {
-                                            if (response.valid) {
-                                                images.push(response.message);
-                                                return true;
-                                            } else {
-                                                //上传失败
-                                                alert('上传失败, ' + response.message);
-                                                uploader.removeFile(file.file);
-                                                return false;
-                                            }
-                                        }else{
-                                            require(['util'],function(){
-                                                 util.message(response._raw,'','info',5);
-                                            })
+                                    if (response.valid !== undefined) {
+                                        if (response.valid) {
+                                            images.push(response.message);
+                                            return true;
+                                        } else {
+                                            //上传失败
+                                            alert('上传失败, ' + response.message);
+                                            uploader.removeFile(file.file);
+                                            return false;
                                         }
+                                    } else {
+                                        require(['util'], function () {
+                                            util.message(response._raw, '', 'info', 5);
+                                        })
+                                    }
                                 });
                             },
                             'hide.bs.modal': function () {
@@ -161,19 +168,24 @@ define(["jquery", "underscore", "webuploader", "util"], function ($, underscore,
                                 //加载远程文件
                                 function getImageList(url) {
                                     //添加获取的类型是后台用户还是前台用户
-                                    var post={extensions: options.extensions};
-                                    if(window.system){
+                                    var post = {extensions: options.extensions};
+                                    if (window.system) {
                                         post.user_type = window.system.user_type
                                     }
                                     post.csrf_token = options.data.csrf_token;
-                                    $.post(url,post, function (res) {
-                                        var html = '<ul class="clearfix">';
-                                        $(res.data).each(function (i) {
-                                            html += '<li><img src="' + res.data[i].path + '"></li>';
-                                        })
-                                        html += "</ul>";
-                                        html += res.page;
-                                        modalobj.find('#imagelists').html(html);
+                                    $.post(url, post, function (res) {
+                                        if (res.valid == 0) {
+                                            modalobj.modal('hide');
+                                            util.message(res.message, '', 'warning');
+                                        } else {
+                                            var html = '<ul class="clearfix">';
+                                            $(res.data).each(function (i) {
+                                                html += '<li><img src="' + res.data[i].path + '"></li>';
+                                            })
+                                            html += "</ul>";
+                                            html += res.page;
+                                            modalobj.find('#imagelists').html(html);
+                                        }
                                     }, 'json');
                                 }
 
@@ -267,22 +279,27 @@ define(["jquery", "underscore", "webuploader", "util"], function ($, underscore,
                                 //加载远程文件
                                 function getImageList(url) {
                                     //添加获取的类型是后台用户还是前台用户
-                                    var post={extensions: options.extensions};
-                                    if(window.system){
+                                    var post = {extensions: options.extensions};
+                                    if (window.system) {
                                         post.user_type = window.system.user_type
                                     }
                                     post.csrf_token = options.data.csrf_token;
                                     $.post(url, post, function (res) {
-                                        var html = '<table class="table table-hover">' +
-                                            '<tr><th>文件名</th><th>大小</th><th>创建时间</th></tr>';
-                                        $(res.data).each(function (i) {
-                                            html += '<tr><td><a href="javascript:;" src="' + res.data[i].path + '">' + res.data[i].name + '</a></td>' +
-                                                '<td>' + res.data[i].size + '</td>' +
-                                                '<td>' + res.data[i].createtime + '</td></tr>';
-                                        })
-                                        html += "</table>";
-                                        html += res.page;
-                                        modalobj.find('#imagelists').html(html);
+                                        if (res.valid == 0) {
+                                            modalobj.modal('hide');
+                                            util.message(res.message, '', 'warning');
+                                        } else {
+                                            var html = '<table class="table table-hover">' +
+                                                '<tr><th>文件名</th><th>大小</th><th>创建时间</th></tr>';
+                                            $(res.data).each(function (i) {
+                                                html += '<tr><td><a href="javascript:;" src="' + res.data[i].path + '">' + res.data[i].name + '</a></td>' +
+                                                    '<td>' + res.data[i].size + '</td>' +
+                                                    '<td>' + res.data[i].createtime + '</td></tr>';
+                                            })
+                                            html += "</table>";
+                                            html += res.page;
+                                            modalobj.find('#imagelists').html(html);
+                                        }
                                     }, 'json');
                                 }
 
