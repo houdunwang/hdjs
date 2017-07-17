@@ -18,12 +18,14 @@
 </head>
 <body>
 <div class="panel panel-default" id="app">
+    <h1 id="percentage" style="display: none">上传中 <b></b></h1>
     <div class="panel-body">
         <div class="well" v-for="(v,k) in files">
             <div class="input-group">
                 <input type="text" class="form-control" v-model="v.path" id="cc">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" :iaad="'bt'+k" id="pickVideo">上传文件</button>
+                    <button class="btn btn-default" type="button"
+                            :id="v.key">上传文件</button>
                </span>
             </div>
         </div>
@@ -36,18 +38,23 @@
     new Vue({
         el: '#app',
         data: {
-            files: [{path: ''}]
+            files: []
         },
         methods: {
             //添加表单
             addForm: function () {
-                this.files.push({path: ''})
+                var field = {path: '', key: 'hd' + Date.parse(new Date())};
+                this.files.push(field);
+                setTimeout(function () {
+                    upload(field)
+                }, 200);
             }
         }
     })
-    function upload() {
-        require(['oss'], function (oss) {
-            var id = '#pickVideo';
+    function upload(field) {
+        var loadBox;
+        require(['oss', 'util'], function (oss, util) {
+            var id = '#' + field.key;
             var uploader = oss.upload({
                 //获取签名
                 serverUrl: 'sign.php?',
@@ -56,30 +63,34 @@
                 //按钮元素
                 pick: id,
                 accept: {
-                    title: 'Images',
-//                  extensions: 'mp4',
-//                  mimeTypes: 'video/mp4'
+                    title: 'video',
+                    extensions: 'mp4',
+                    mimeTypes: 'video/mp4'
                 }
             });
             //上传开始
             uploader.on('startUpload', function () {
+                loadBox = util.loading();
                 console.log('开始上传');
             });
             //上传成功
             uploader.on('uploadSuccess', function (file, response) {
-                console.log('上传完成,文件名:'+oss.oss.host + '/' + oss.oss.object_name);
+                field.path = oss.oss.host + '/' + oss.oss.object_name;
+                console.log('上传完成,文件名:' + oss.oss.host + '/' + oss.oss.object_name);
             });
             //上传中
             uploader.on('uploadProgress', function (file, percentage) {
-                console.log('上传中,进度:'+parseInt(percentage * 100));
+                $("#percentage").show().find('b').text(parseInt(percentage * 100)+'%');
+                console.log('上传中,进度:' + parseInt(percentage * 100));
             })
             //上传结束
             uploader.on('uploadComplete', function () {
+                loadBox.modal('hide');
+                $("#percentage").hide();
                 console.log('上传结束');
             })
         });
     }
-    upload();
 </script>
 </body>
 </html>
