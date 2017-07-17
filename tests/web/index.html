@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OSS上传</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.1/vue.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script>
+        //模块配置项
+        var hdjs = {
+            //框架目录
+            'base': '../../',
+        };
+    </script>
+    <script src="../../app/util.js"></script>
+    <script src="../../require.js"></script>
+    <script src="../../config.js"></script>
+</head>
+<body>
+<div class="panel panel-default" id="app">
+    <div class="panel-body">
+        <div class="well" v-for="(v,k) in files">
+            <div class="input-group">
+                <input type="text" class="form-control" v-model="v.path" id="cc">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" :iaad="'bt'+k" id="pickVideo">上传文件</button>
+               </span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-primary" @click.prevent="addForm">添加表单</button>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            files: [{path: ''}]
+        },
+        methods: {
+            //添加表单
+            addForm: function () {
+                this.files.push({path: ''})
+            }
+        }
+    })
+    function upload() {
+        require(['oss'], function (oss) {
+            var id = '#pickVideo';
+            var uploader = oss.upload({
+                //获取签名
+                serverUrl: 'sign.php?',
+                //上传目录
+                dir: 'houdunwang/',
+                //按钮元素
+                pick: id,
+                accept: {
+                    title: 'Images',
+//                  extensions: 'mp4',
+//                  mimeTypes: 'video/mp4'
+                }
+            });
+            //上传开始
+            uploader.on('startUpload', function () {
+                console.log('开始上传');
+            });
+            //上传成功
+            uploader.on('uploadSuccess', function (file, response) {
+                console.log('上传完成,文件名:'+oss.oss.host + '/' + oss.oss.object_name);
+            });
+            //上传中
+            uploader.on('uploadProgress', function (file, percentage) {
+                console.log('上传中,进度:'+parseInt(percentage * 100));
+            })
+            //上传结束
+            uploader.on('uploadComplete', function () {
+                console.log('上传结束');
+            })
+        });
+    }
+    upload();
+</script>
+</body>
+</html>
