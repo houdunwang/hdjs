@@ -33,7 +33,7 @@ import image from './modules/image'
 //文件上传
 import file from './modules/file'
 import map from './modules/map'
-import address from './modules/address'
+import city from './modules/city'
 import validCode from './modules/validCode'
 import oss from './modules/oss'
 
@@ -44,6 +44,6 @@ define([], function () {
         datetimepicker, notify, daterangepicker, clockpicker, moment,
         message, confirm, loading, post, submit, preview, formValidator, validator,
         select2, bootstrapSwitch, image, fileUploader, file,
-        ueditor, font, map, address, validCode, oss
+        ueditor, font, map, city, validCode, oss
     }
 })

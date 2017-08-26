@@ -2,8 +2,15 @@
 import Modal from './modal'
 import 'font-awesome/css/font-awesome.css'
 
+/**
+ * 消息处理
+ * @param msg 内容
+ * @param redirect
+ * @param type
+ * @param timeout
+ * @param options
+ */
 export default (msg, redirect, type, timeout, options) => {
-
     if ($.isArray(msg)) {
         msg = msg.join('<br/>');
     }
@@ -45,7 +52,7 @@ export default (msg, redirect, type, timeout, options) => {
                 '<a href="javascript:;" onclick="history.go(-1)">' +
                 '如果你的浏览器在 <span id="timeout">' +
                 timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
-            redirect = document.referrer?document.referrer:location.href;
+            redirect = document.referrer ? document.referrer : location.href;
         } else if (redirect == 'refresh') {
             redirect = location.href;
             h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">系统将在 <span id="timeout"></span> 秒后刷新页面</a></p>';
@@ -95,7 +102,7 @@ export default (msg, redirect, type, timeout, options) => {
                     modalobj.find("#timeout").html(timeout);
                     doredirect();
                 }
-            }, timeout*1000);
+            }, timeout * 1000);
         }
     }
     modalobj.modal('show');

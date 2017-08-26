@@ -49,8 +49,57 @@
     }
     //移除图片
     function removeImg(obj) {
-        $(obj).prev('img').attr('src', 'dist/static/image/nopic.jpg');
+        $(obj).prev('img').attr('src', '../dist/static/image/nopic.jpg');
         $(obj).parent().prev().find('input').val('');
+    }
+</script>
+<h1 style="clear: both;margin-top: 200px;">多图上传</h1>
+<style>
+    #box img {
+        width: 200px;
+        float: left;
+        margin-right: 10px;
+        border: solid 1px #999;
+        padding: 10px;
+        height: 200px;
+    }
+</style>
+<button onclick="upImage(this)" class="btn btn-default" type="button">选择图片</button>
+<div id="box"></div>
+<script>
+    require(['util']);
+    //上传图片
+    function upImage(obj) {
+        require(['util'], function (util) {
+            util.image(function (images) {
+                $(images).each(function (k, v) {
+                    $("<img src='" + v + "'/>").appendTo('#box');
+                })
+            }, {
+                //上传多图
+                multiple: true,
+            })
+        });
+    }
+</script>
+
+<h1 style="clear: both;margin-top: 100px;">移动端上传</h1>
+<button onclick="upImage()" class="btn btn-default">选择图片</button>
+<script>
+    require(['util']);
+    //上传图片
+    function upImage() {
+        require(['util'], function (util) {
+            options = {
+                width: '90%',
+                multiple: false,//是否允许多图上传
+                //data是向后台服务器提交的POST数据
+                data: {name: '后盾人', year: 2099},
+            };
+            util.image(function (images) {
+                console.log(images[0])
+            }, options)
+        });
     }
 </script>
 </body>

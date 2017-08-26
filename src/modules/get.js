@@ -18,7 +18,7 @@ export default {
         return get_par;
     },
     //替换get参数
-    replace(paramName, replaceWith) {
+    set(paramName, replaceWith) {
         var oUrl = location.href.toString();
         if (oUrl.indexOf(paramName) >= 0) {
             var re = eval('/(' + paramName + '=)([^&]*)/gi');

@@ -2,10 +2,11 @@ import '../component/ueditor/ueditor.config'
 import '../component/ueditor/ueditor.all.min'
 import ZeroClipboard from 'zeroclipboard'
 import fileUploader from './fileUploader'
+
 window.ZeroClipboard = ZeroClipboard;
 export default (id, opt, callback) => {
-    var options = $.extend({
-        UEDITOR_HOME_URL: window.hdjs.node_modules + '/hdjs/dist/static/ueditor/',
+    var options = Object.assign({
+        UEDITOR_HOME_URL: window.hdjs.base + '/dist/static/ueditor/',
         serverUrl: window.hdjs.ueditor,
         'elementPathEnabled': false,
         'initialFrameHeight': 200,
@@ -25,7 +26,7 @@ export default (id, opt, callback) => {
         editor.registerCommand(uiName, {
             execCommand: function () {
                 fileUploader.show(function (imgs) {
-                    if (imgs.length> 0) {
+                    if (imgs.length > 0) {
                         var imglist = [];
                         for (i in imgs) {
                             imglist.push({

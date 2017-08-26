@@ -1,14 +1,14 @@
 <?php
-include 'vendor/autoload.php';
+include '../vendor/autoload.php';
 $files = glob('attachment/*');
 foreach ($files as $f) {
-    $file   = "test/".$f;
+    $file   = "php/".$f;
     $data[] = [
-        'url' => $file,
-        'path' => $file,
-        'size' => filesize($f),
-        'name'=>basename($f),
-        'createtime'=>date('Y-m-d',filemtime($f)),
+        'url'        => $file,
+        'path'       => $file,
+        'size'       => filesize($f),
+        'name'       => basename($f),
+        'createtime' => date('Y-m-d', filemtime($f)),
     ];
 }
 $json = ['data' => $data, 'page' => []];
