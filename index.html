@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script>
+        window.hdjs = {};
+        window.hdjs.base = '/hdjs';
+        window.hdjs.node_modules = '/hdjs/node_modules';
+        //上传文件后台地址
+        window.hdjs.uploader = 'test/php/uploader.php?';
+        //获取文件列表的后台地址
+        window.hdjs.filesLists = 'test/php/filesLists.php?';
+    </script>
+    <script src="./static/requirejs/require.js"></script>
+    <script src="./static/requirejs/config.js"></script>
+</head>
+<body style="padding: 50px;">
+<div class="input-group">
+    <input class="form-control" v-model="v.path">
+    <span class="input-group-btn">
+        <button class="btn btn-default oss" type="button" id="pickVideo">上传文件</button>
+   </span>
+</div>
+<script>
+    require(['util'], function (util) {
+        var id = '#pickVideo';
+        var uploader = util.oss.upload({
+            //获取签名
+            serverUrl: 'test/php/ossSign.php?',
+            //上传目录
+            dir: 'houdunwang/',
+            //按钮元素
+            pick: id,
+            accept: {
+                title: 'Images',
+                //extensions: 'mp4',
+                //mimeTypes: 'video/mp4'
+            }
+        });
+        //上传开始
+        uploader.on('startUpload', function () {
+            console.log('开始上传');
+        });
+        //上传成功
+        uploader.on('uploadSuccess', function (file, response) {
+            console.log('上传完成,文件名:' + util.oss.oss.host + '/' + util.oss.oss.object_name);
+        });
+        //上传中
+        uploader.on('uploadProgress', function (file, percentage) {
+            console.log('上传中,进度:' + parseInt(percentage * 100));
+        })
+        //上传结束
+        uploader.on('uploadComplete', function () {
+            console.log('上传结束');
+        })
+    });
+</script>
+</body>
+</html>

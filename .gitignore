@@ -1,8 +1,10 @@
-/storage
 .idea
 .env
 .DS_Store
 attachment
 composer.lock
-/vendor
 npm-debug.log
+/test/php/config
+/node_modules
+/test/attachment
+/test/vendor
