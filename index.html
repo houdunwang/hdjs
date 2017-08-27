@@ -18,45 +18,41 @@
     <script src="./static/requirejs/config.js"></script>
 </head>
 <body style="padding: 50px;">
-<div class="input-group">
-    <input class="form-control" v-model="v.path">
-    <span class="input-group-btn">
-        <button class="btn btn-default oss" type="button" id="pickVideo">上传文件</button>
-   </span>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="http://oss.hdcms.com/1502963276236c0417.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+            <img src="http://oss.hdcms.com/150183869614d9919.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+            <img src="http://www.houdunwang.com/attachment/69661487768411.jpg" alt="">
+        </div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
 </div>
+<style>
+    .swiper-container {
+        width: 600px;
+        height: 300px;
+    }
+</style>
 <script>
     require(['util'], function (util) {
-        var id = '#pickVideo';
-        var uploader = util.oss.upload({
-            //获取签名
-            serverUrl: 'test/php/ossSign.php?',
-            //上传目录
-            dir: 'houdunwang/',
-            //按钮元素
-            pick: id,
-            accept: {
-                title: 'Images',
-                //extensions: 'mp4',
-                //mimeTypes: 'video/mp4'
-            }
-        });
-        //上传开始
-        uploader.on('startUpload', function () {
-            console.log('开始上传');
-        });
-        //上传成功
-        uploader.on('uploadSuccess', function (file, response) {
-            console.log('上传完成,文件名:' + util.oss.oss.host + '/' + util.oss.oss.object_name);
-        });
-        //上传中
-        uploader.on('uploadProgress', function (file, percentage) {
-            console.log('上传中,进度:' + parseInt(percentage * 100));
+        var mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            // 如果需要分页器
+            pagination: '.swiper-pagination',
+            // 如果需要前进后退按钮
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
         })
-        //上传结束
-        uploader.on('uploadComplete', function () {
-            console.log('上传结束');
-        })
-    });
+    })
 </script>
 </body>
 </html>

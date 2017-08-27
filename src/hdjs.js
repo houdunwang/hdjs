@@ -36,6 +36,7 @@ import map from './modules/map'
 import city from './modules/city'
 import validCode from './modules/validCode'
 import oss from './modules/oss'
+import swiper from './modules/swiper'
 
 define([], function () {
     return {
@@ -44,6 +45,6 @@ define([], function () {
         datetimepicker, notify, daterangepicker, clockpicker, moment,
         message, confirm, loading, post, submit, preview, formValidator, validator,
         select2, bootstrapSwitch, image, fileUploader, file,
-        ueditor, font, map, city, validCode, oss
+        ueditor, font, map, city, validCode, oss,swiper
     }
 })
