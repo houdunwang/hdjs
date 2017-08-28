@@ -1,6 +1,4 @@
 import fileUploader from './fileUploader'
-import util from '../hdjs'
-
 export default (callback, options) => {
     //初始化参数数据
     options = options ? options : {};

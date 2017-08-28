@@ -16,21 +16,26 @@ module.exports = {
         //输出目录
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        chunkFilename: '[name].min.js',
+        sourceMapFilename: '[name].map',
+        // chunkFilename: '[name].min.js',
         libraryTarget: "umd",
-        library: "util"
+        library: "hdjs"
+    },
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {'vue$': 'vue/dist/vue.esm.js', '@': resolve('src')}
     },
     //热加载使用的项目目录
     devServer: {contentBase: path.join(__dirname, "dist"), port: 9000},
     plugins: [
         //压缩代码
-        new UglifyJSPlugin({output: {comments: false}}),
+        // new UglifyJSPlugin({output: {comments: false}}),
         //清理打包目录
         new CleanWebpackPlugin(['dist']),
         //生成css文件
-        new ExtractTextPlugin("app.css"),
+        new ExtractTextPlugin("hdjs.css"),
         //模板文件并生成到dist目录中，用于热加载使用
-        new HtmlWebpackPlugin({title: 'hdjs-vue', template: __dirname + '/src/module.html'}),
+        new HtmlWebpackPlugin({title: 'hdjs-vue',  template: __dirname + '/src/module.html'}),
         new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
         new CopyWebpackPlugin([{from: 'static', to: 'static'}])
     ],
@@ -76,9 +81,5 @@ module.exports = {
                 })
             }
         ]
-    },
-    resolve: {
-        extensions: ['.js', '.vue', '.json'],
-        alias: {'vue$': 'vue/dist/vue.esm.js', '@': resolve('src')}
     }
 };
