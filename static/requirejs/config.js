@@ -21,16 +21,12 @@ require.config({
     paths: {
         jquery: 'https://cdn.bootcss.com/jquery/3.2.1/jquery.min',
         util: window.hdjs.base + '/dist/hdjs',
-        hdjs: window.hdjs.base + '/dist/hdjs',
         css: window.hdjs.base + '/dist/static/requirejs/css.min',
         domReady: window.hdjs.base + '/dist/static/requirejs/domReady',
     },
     shim: {
         'util': {
-            deps: ['css!dist/app.css']
-        },
-        'hdjs': {
-            deps: ['css!dist/app.css']
+            deps: ['css!dist/hdjs.css']
         },
         'jquery': {
             exports: '$',

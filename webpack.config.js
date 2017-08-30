@@ -5,11 +5,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack');
+
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
+
 module.exports = {
-    entry: {app: './src/app.js', hdjs: './src/hdjs.js'},
+    entry: {
+        app: './src/app.js',
+        hdjs: './src/hdjs.js'
+    },
     output: {
         //输出目录
         path: path.resolve(__dirname, 'dist'),
