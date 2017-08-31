@@ -6,15 +6,16 @@ if (!window.hdjs) {
     window.hdjs = {node_modules: '', base: '', uploader: '', filesLists: ''};
 }
 if (!window.hdjs.base) {
-    window.hdjs.base =  '/node_modules/hdjs';
+    window.hdjs.base = '/node_modules/hdjs';
 }
 require.config({
     baseUrl: window.hdjs.base,
     paths: {
-        jquery: 'https://cdn.bootcss.com/jquery/3.2.1/jquery.min',
         util: window.hdjs.base + '/dist/hdjs',
         css: window.hdjs.base + '/dist/static/requirejs/css.min',
         domReady: window.hdjs.base + '/dist/static/requirejs/domReady',
+        vue: 'https://cdn.bootcss.com/vue/2.4.2/vue',
+        jquery: 'https://cdn.bootcss.com/jquery/3.2.1/jquery.min',
     },
     shim: {
         'util': {
