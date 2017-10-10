@@ -18,16 +18,16 @@
 <body style="padding: 50px;">
 <textarea id="container" style="height:300px;width:100%;"></textarea>
 <script>
-    require(['util'], function (util) {
-        util.ueditor('container', {hash: 2, data: 'hd'}, function (editor) {
+    require(['hdjs'], function (hdjs) {
+        hdjs.ueditor('container', {hash: 2, data: 'hd'}, function (editor) {
             console.log('编辑器执行后的回调方法')
         });
     })
 </script>
 <textarea id="hdphp" style="height:300px;width:100%;"></textarea>
 <script>
-    require(['util'], function (util) {
-        util.ueditor('hdphp', {'toolbars': [['fullscreen', 'source', 'preview']]}, function (editor) {
+    require(['hdjs'], function (hdjs) {
+        hdjs.ueditor('hdphp', {'toolbars': [['fullscreen', 'source','hdimage', 'preview']]}, function (editor) {
             //这是回调函数 editor是百度编辑器实例
         });
     })

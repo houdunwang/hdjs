@@ -17,10 +17,10 @@
 <body style="padding: 50px;">
 <buttoon class="btn btn-default" onclick="showmap()">打开地图</buttoon>
 <script>
-    require(['util'])
+    require(['hdjs'])
     function showmap() {
-        require(['util'], function (util) {
-            util.map('', function (res) {
+        require(['hdjs'], function (hdjs) {
+            hdjs.map('', function (res) {
                 //返回值是数组
                 console.log("地址:" + res.address + ";经度" + res.lng + ";纬度:" + res.lat);
             });
@@ -30,10 +30,10 @@
 
 <buttoon class="btn btn-default" onclick="showmap()">显示上海市</buttoon>
 <script>
-    require(['util'])
+    require(['hdjs'])
     function showmap() {
-        require(['util'], function (util) {
-            util.map({lng:121.480237,lat:31.236305}, function (res) {
+        require(['hdjs'], function (hdjs) {
+            hdjs.map({lng:121.480237,lat:31.236305}, function (res) {
                 //返回值是数组
                 console.log("地址:" + res.address + ";经度" + res.lng + ";纬度:" + res.lat);
             });

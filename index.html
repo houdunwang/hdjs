@@ -15,13 +15,17 @@
     <script src="./dist/static/requirejs/config.js"></script>
 </head>
 <body style="padding: 50px;">
-<select name="address[province]" class="form-control"></select>
-<select name="address[city]" class="form-control"></select>
-<select name="address[area]" class="form-control"></select>
+<textarea id="container" style="height:300px;width:100%;"></textarea>
 <script>
     require(['util'], function (util) {
-
+        var editor = util.ueditor('container', {hash: 2, data: 'hd'}, function (editor) {
+            console.log('编辑器执行后的回调方法')
+        });
+        setTimeout(function(){
+            editor.setContent('hdxj');
+        },2000)
     })
 </script>
+
 </body>
 </html>

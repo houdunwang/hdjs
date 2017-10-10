@@ -17,10 +17,10 @@
 <body style="padding: 50px;">
 <button onclick="upFile(this)" class="btn btn-default" type="button">选择文件</button>
 <script>
-    require(['util']);
+    require(['hdjs']);
     //上传图片
     function upFile() {
-        require(['util'], function (util) {
+        require(['hdjs'], function (hdjs) {
             var options = {
                 extensions: 'txt,php',
                 //data是向后台服务器提交的POST数据
@@ -28,7 +28,7 @@
                 //单个文件允许为5MB
                 fileSingleSizeLimit:5 * 1024 * 1024
             };
-            util.file(function (files) {
+            hdjs.file(function (files) {
                 //上传成功的文件，数组类型
                 console.log(files);
             }, options)

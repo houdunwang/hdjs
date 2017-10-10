@@ -20,7 +20,7 @@
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
     var URL = window.UEDITOR_HOME_URL || getUEBasePath();
-    // URL = window.hdjs.base + '/dist/static/ueditor/'
+
     /**
      * 配置项主体。注意，此处所有涉及到路径的配置别遗漏URL变量。
      */
@@ -41,7 +41,7 @@
             'directionalityltr', 'directionalityrtl', 'indent', '|',
             'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
             'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-            'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+            'simpleupload', 'insertimage','hdimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
             'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
             'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
             'print', 'preview', 'searchreplace', 'help', 'drafts'
@@ -355,7 +355,7 @@
 
         var configPath = document.getElementsByTagName('script');
 
-        return configPath[configPath.length - 1].src;
+        return configPath[ configPath.length - 1 ].src;
 
     }
 
@@ -382,7 +382,7 @@
 
     function optimizationPath(path) {
 
-        var protocol = /^[a-z]+:\/\//.exec(path)[0],
+        var protocol = /^[a-z]+:\/\//.exec(path)[ 0 ],
             tmp = null,
             res = [];
 
@@ -390,7 +390,7 @@
 
         path = path.replace(/\\/g, '/').split(/\//);
 
-        path[path.length - 1] = "";
+        path[ path.length - 1 ] = "";
 
         while (path.length) {
 

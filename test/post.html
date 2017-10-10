@@ -17,8 +17,8 @@
 </head>
 <body style="padding: 50px;">
 <script>
-    require(['util'], function (util) {
-        util.post({
+    require(['hdjs'], function (hdjs) {
+        hdjs.post({
             url: "php/post.php",
             data: {name: '后盾'},//post数据
             callback: function (json) {

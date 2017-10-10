@@ -31,16 +31,16 @@
     </div>
 </div>
 <script>
-    require(['util']);
+    require(['hdjs']);
     //上传图片
     function upImage() {
-        require(['util'], function (util) {
+        require(['hdjs'], function (hdjs) {
             options = {
                 multiple: false,//是否允许多图上传
                 //data是向后台服务器提交的POST数据
                 data: {name: '后盾人', year: 2099},
             };
-            util.image(function (images) {
+            hdjs.image(function (images) {
                 //上传成功的图片，数组类型
                 $("[name='thumb']").val(images[0]);
                 $(".img-thumbnail").attr('src', images[0]);
@@ -67,11 +67,11 @@
 <button onclick="upImage(this)" class="btn btn-default" type="button">选择图片</button>
 <div id="box"></div>
 <script>
-    require(['util']);
+    require(['hdjs']);
     //上传图片
     function upImage(obj) {
-        require(['util'], function (util) {
-            util.image(function (images) {
+        require(['hdjs'], function (hdjs) {
+            hdjs.image(function (images) {
                 $(images).each(function (k, v) {
                     $("<img src='" + v + "'/>").appendTo('#box');
                 })
@@ -86,17 +86,17 @@
 <h1 style="clear: both;margin-top: 100px;">移动端上传</h1>
 <button onclick="upImage()" class="btn btn-default">选择图片</button>
 <script>
-    require(['util']);
+    require(['hdjs']);
     //上传图片
     function upImage() {
-        require(['util'], function (util) {
+        require(['hdjs'], function (hdjs) {
             options = {
                 width: '90%',
                 multiple: false,//是否允许多图上传
                 //data是向后台服务器提交的POST数据
                 data: {name: '后盾人', year: 2099},
             };
-            util.image(function (images) {
+            hdjs.image(function (images) {
                 console.log(images[0])
             }, options)
         });

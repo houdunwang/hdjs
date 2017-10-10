@@ -1,8 +1,8 @@
 //获取get参数值
 export default {
-    get (par) {
+    get(par, url) {
         //获取当前URL
-        var local_url = document.location.href;
+        var local_url = url ? url : document.location.href;
         //获取要取得的get参数位置
         var get = local_url.indexOf(par + "=");
         if (get == -1) {
@@ -18,8 +18,9 @@ export default {
         return get_par;
     },
     //替换get参数
-    set(paramName, replaceWith) {
-        var oUrl = location.href.toString();
+    set(paramName, replaceWith, url) {
+        var url = url ? url : document.location.href;
+        var oUrl = url.toString();
         if (oUrl.indexOf(paramName) >= 0) {
             var re = eval('/(' + paramName + '=)([^&]*)/gi');
             return oUrl.replace(re, paramName + '=' + replaceWith);

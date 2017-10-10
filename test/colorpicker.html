@@ -18,8 +18,8 @@
 <body style="padding: 50px;">
 <input id="hd">
 <script>
-    require(['util'], function (util) {
-        util.colorpicker('#hd',{
+    require(['hdjs'], function (hdjs) {
+        hdjs.colorpicker('#hd',{
             //回调函数
             change: function(color) {
                 console.log(color.toHexString());

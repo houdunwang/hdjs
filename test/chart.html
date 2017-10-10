@@ -20,7 +20,7 @@
     <canvas id="myChart"></canvas>
 </div>
 <script>
-    require(['util'], function (util) {
+    require(['hdjs'], function (hdjs) {
         var options = {
             type: 'bar',
             data: {
@@ -61,7 +61,7 @@
                 }
             }
         };
-        util.chart('#myChart',options);
+        hdjs.chart('#myChart',options);
     })
 </script>
 </body>

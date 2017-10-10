@@ -27,6 +27,12 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    //为异步请求设置CSRF令牌
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 } else {
     // console.error('CSRF token not found');
 }

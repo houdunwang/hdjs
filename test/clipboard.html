@@ -19,13 +19,13 @@
 <input id="foo" value="https://github.com/zenorocha/clipboard.js.git" class="form-control">
 <button class="btn btn-default" data-clipboard-target="#foo">复制</button>
 <script>
-    require(['util', 'jquery'], function (util, $) {
-        var clipboard = util.clipboard('.btn')
+    require(['hdjs'], function (hdjs) {
+        var clipboard = hdjs.clipboard('.btn')
         clipboard.on('success', function (e) {
             console.info('Action:', e.action);
             console.info('Text:', e.text);
             console.info('Trigger:', e.trigger);
-            util.notify('复制成功');
+            hdjs.notify('复制成功');
             e.clearSelection();
         });
     })
@@ -36,8 +36,8 @@
 <input name="content" value="后盾人 人人做后盾" class="form-control">
 <button class="btn btn-default hdphp">复制内容</button>
 <script>
-    require(['util', 'jquery'], function (util, $) {
-        var clipboard = util.clipboard('.hdphp',{
+    require(['hdjs'], function (hdjs) {
+        var clipboard = hdjs.clipboard('.hdphp',{
             text: function(trigger) {
                 return $("[name='content']").val();
             }
@@ -46,7 +46,7 @@
             console.info('Action:', e.action);
             console.info('Text:', e.text);
             console.info('Trigger:', e.trigger);
-            util.notify('复制成功');
+            hdjs.notify('复制成功');
             e.clearSelection();
         });
     })

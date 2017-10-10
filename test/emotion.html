@@ -19,9 +19,9 @@
 
 <input class="form-control" name="icon" placeholder="点击文本框选择表情">
 <script>
-    require(['util'], function (util) {
+    require(['hdjs'], function (hdjs) {
         $(function () {
-            util.emotion({
+            hdjs.emotion({
                 //点击的元素，可以为任何元素触发
                 btn: "[name='icon']",
                 //选中图标后填入的文本框

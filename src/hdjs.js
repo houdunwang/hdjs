@@ -28,15 +28,15 @@ import bootstrapSwitch from './modules/bootstrapSwitch'
 import fileUploader from './modules/fileUploader'
 import ueditor from './modules/ueditor'
 import font from './modules/font'
-//图片上传
 import image from './modules/image'
-//文件上传
 import file from './modules/file'
 import map from './modules/map'
 import city from './modules/city'
 import validCode from './modules/validCode'
 import oss from './modules/oss'
 import swiper from './modules/swiper'
+import dateselect from './modules/dateselect'
+import video from './modules/video'
 
 define([], function () {
     return {
@@ -45,6 +45,6 @@ define([], function () {
         datetimepicker, notify, daterangepicker, clockpicker, moment,
         message, confirm, loading, post, submit, preview, formValidator, validator,
         select2, bootstrapSwitch, image, fileUploader, file,
-        ueditor, font, map, city, validCode, oss,swiper
+        ueditor, font, map, city, validCode, oss,swiper,dateselect,video
     }
 })

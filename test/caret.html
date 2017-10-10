@@ -18,14 +18,14 @@
 <textarea id="text" cols="30" rows="10">后盾网</textarea>
 <button id="bt">插入</button>
 <script>
-    require(['util'], function (util) {
+    require(['hdjs'], function (hdjs) {
         $("#bt").click(function () {
             //插入到文本框尾部
-            util.caret('#text', -1)
+            hdjs.caret('#text', -1)
             //插入到指定位置
-            util.caret('#text', 2)
+            hdjs.caret('#text', 2)
             //获取位置
-            console.log(util.caret('#text'));
+            console.log(hdjs.caret('#text'));
         })
     })
 </script>

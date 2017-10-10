@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>剪贴板</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -16,10 +15,16 @@
     <script src="../dist/static/requirejs/config.js"></script>
 </head>
 <body style="padding: 50px;">
+<form action="php/submit.php" onsubmit="post(event)">
+    <button type="submit">提交</button>
+</form>
 <script>
-    require(['hdjs'], function (hdjs) {
-        console.log(hdjs.md5('houdunren.com'));
-    })
+    function post(event) {
+        event.preventDefault();
+        require(['hdjs'], function (hdjs) {
+            hdjs.submit({url:'php/submit.php'});
+        })
+    }
 </script>
 </body>
 </html>

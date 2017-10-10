@@ -17,8 +17,8 @@
 <body style="padding: 50px;">
 <input name="birthdate" value="10/24/1984" class="form-control"/>
 <script>
-    require(['util', 'jquery'], function (util, jQuery) {
-        util.daterangepicker({
+    require(['hdjs'], function (hdjs) {
+        hdjs.daterangepicker({
             //标签元素
             element: 'input[name="birthdate"]',
             //选项参考插件官网

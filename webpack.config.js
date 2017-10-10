@@ -12,8 +12,9 @@ function resolve(dir) {
 
 module.exports = {
     entry: {
-        app: './src/app.js',
-        hdjs: './src/hdjs.js'
+        hdjs: './src/hdjs.js',
+        app: './src/app.js'
+        // common:['jquery']
     },
     output: {
         //输出目录
@@ -24,6 +25,7 @@ module.exports = {
         libraryTarget: "umd",
         library: "hdjs"
     },
+    externals: {},
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {'vue': 'vue/dist/vue.js', '@': resolve('src')}
@@ -31,6 +33,11 @@ module.exports = {
     //热加载使用的项目目录
     devServer: {contentBase: path.join(__dirname, "dist"), port: 9000},
     plugins: [
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: "commons",
+        //     // ( 公共chunk(commnons chunk) 的名称)
+        //     filename: "commons.js"
+        // }),
         //压缩代码
         // new UglifyJSPlugin({output: {comments: false}}),
         //清理打包目录

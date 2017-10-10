@@ -22,9 +22,9 @@
     </span>
 </div>
 <script type="text/javascript">
-    require(['util','jquery'], function (util) {
-        console.log(util)
-        var a = util.clockpicker('.clockpicker').clockpicker({
+    require(['hdjs'], function (hdjs) {
+        console.log(hdjs)
+        var a = hdjs.clockpicker('.clockpicker').clockpicker({
             afterDone: function() {
                 console.log("after hide times is "+$('.clockpicker input').val());
             }

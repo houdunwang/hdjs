@@ -17,8 +17,8 @@
 <body style="padding: 50px;">
 <input id="datetimepicker" class="form-control">
 <script>
-    require(['util', 'jquery'], function (util, jQuery) {
-        util.datetimepicker('#datetimepicker').datetimepicker({
+    require(['hdjs'], function (hdjs) {
+        hdjs.datetimepicker('#datetimepicker').datetimepicker({
             timepicker: false,
             format: 'Y-m-d',
             onChangeDateTime: function (dp, $input) {
@@ -30,8 +30,8 @@
 <hr>
 <input id="datetimepicker2" class="form-control">
 <script>
-    require(['util','jquery'], function (util,jQuery) {
-        util.datetimepicker('#datetimepicker2').datetimepicker({
+    require(['hdjs'], function (hdjs) {
+        hdjs.datetimepicker('#datetimepicker2').datetimepicker({
             onChangeDateTime:function(dp,$input){
                 console.log($input.val())
             }
@@ -42,8 +42,8 @@
 Start <input id="date_timepicker_start" value="">
 End <input id="date_timepicker_end" value="">
 <script>
-    require(['util', 'jquery'], function (util, jQuery) {
-        util.datetimepicker('#date_timepicker_start').datetimepicker({
+    require(['hdjs', 'jquery'], function (hdjs, jQuery) {
+        hdjs.datetimepicker('#date_timepicker_start').datetimepicker({
             format:'Y/m/d',
             onShow:function( ct ){
                 this.setOptions({
@@ -52,7 +52,7 @@ End <input id="date_timepicker_end" value="">
             },
             timepicker:false
         });
-        util.datetimepicker('#date_timepicker_end').datetimepicker({
+        hdjs.datetimepicker('#date_timepicker_end').datetimepicker({
             format:'Y/m/d',
             onShow:function( ct ){
                 this.setOptions({
@@ -66,8 +66,8 @@ End <input id="date_timepicker_end" value="">
 <hr>
 时间<input id="datetimepicker3" value="">
 <script>
-    require(['util', 'jquery'], function (util, jQuery) {
-        util.datetimepicker('#datetimepicker3').datetimepicker({
+    require(['hdjs', 'jquery'], function (hdjs, jQuery) {
+        hdjs.datetimepicker('#datetimepicker3').datetimepicker({
             datepicker: false,
             format: 'h:i'
         });

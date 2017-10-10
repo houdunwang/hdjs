@@ -17,11 +17,11 @@
 <body style="padding: 50px;">
 <a onclick="base()" class="btn btn-default">基本使用</a>
 <script>
-    require(['util'])
+    require(['hdjs'])
 
     function base() {
-        require(['util'], function (util) {
-            util.message('基本使用', '', 'success');
+        require(['hdjs'], function (hdjs) {
+            hdjs.message('基本使用', '', 'success');
         })
     }
 </script>
@@ -29,8 +29,8 @@
 <a onclick="size()" class="btn btn-default">弹出框宽度100%</a>
 <script>
     function size() {
-        require(['util'], function (util) {
-            util.message('弹出框宽度100%', '', 'success', 2, {width: '80%'});
+        require(['hdjs'], function (hdjs) {
+            hdjs.message('弹出框宽度100%', '', 'success', 2, {width: '80%'});
         })
     }
 </script>
@@ -38,8 +38,8 @@
 <a onclick="hideModal()" class="btn btn-default">使用modal模态框事件处理</a>
 <script>
     function hideModal() {
-        require(['util'], function (util) {
-            util.message('使用modal模态框事件处理', '', 'success', 2, {
+        require(['hdjs'], function (hdjs) {
+            hdjs.message('使用modal模态框事件处理', '', 'success', 2, {
                 events: {
                     'hidden.bs.modal': function () {
                         alert('模态框消失时，我来了');
@@ -53,8 +53,8 @@
 <a onclick="confirm()" class="btn btn-default">确认消息</a>
 <script>
     function confirm() {
-        require(['util'], function (util) {
-            util.confirm('确定删除吗?', function () {
+        require(['hdjs'], function (hdjs) {
+            hdjs.confirm('确定删除吗?', function () {
                 alert('点击确定后执行的回调函数');
             })
         })

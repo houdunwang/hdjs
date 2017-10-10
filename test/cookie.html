@@ -17,30 +17,30 @@
 <body style="padding: 50px;">
 <h1>创建与获取</h1>
 <script>
-    require(['util'], function (util) {
-        util.cookie.set('hdjs', '这是使用 hdjs 创建的cookie');
-        console.log(util.cookie.get('hdjs'));
+    require(['hdjs'], function (hdjs) {
+        hdjs.cookie.set('hdjs', '这是使用 hdjs 创建的cookie');
+        console.log(hdjs.cookie.get('hdjs'));
     })
 </script>
 
 <h1>获取所有</h1>
 <script>
-    require(['util'], function (util) {
-        console.log(util.cookie.get());
+    require(['hdjs'], function (hdjs) {
+        console.log(hdjs.cookie.get());
     })
 </script>
 
 <h1>删除</h1>
 <script>
-    require(['util'], function (util) {
-        console.log(util.cookie.remove('hdjs'));
+    require(['hdjs'], function (hdjs) {
+        console.log(hdjs.cookie.remove('hdjs'));
     })
 </script>
 
 <h1>获取所有</h1>
 <script>
-    require(['util'], function (util) {
-        console.log(util.cookie.get());
+    require(['hdjs'], function (hdjs) {
+        console.log(hdjs.cookie.get());
     })
 </script>
 </body>

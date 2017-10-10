@@ -19,8 +19,8 @@
 <select name="address[city]" class="form-control"></select>
 <select name="address[area]" class="form-control"></select>
 <script>
-    require(['util'], function (util) {
-        util.city.render({
+    require(['hdjs'], function (hdjs) {
+        hdjs.city.render({
             //省份标签
             province: document.querySelector('[name="address[province]"]'),
             //城市标签

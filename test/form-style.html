@@ -20,7 +20,7 @@
 <input type="file" name="thumbnail" class="filestyle form-control"
        data-iconName="glyphicon glyphicon-folder-open" data-buttonText="上传图片"/>
 <script>
-    require(['util'])
+    require(['hdjs'])
 </script>
 
 <h1>列表框</h1>
@@ -32,7 +32,7 @@
     </select>
 </div>
 <script>
-    require(['util'], function (util) {
+    require(['hdjs'], function (hdjs) {
         $(".js-example-basic-single").select2({
             tags: true
         });
@@ -42,7 +42,7 @@
 <h1>复选框</h1>
 <input type="checkbox" name="status" class="bootstrap-switch">
 <script>
-    require(['util'],function(util){
+    require(['hdjs'],function(hdjs){
         $(".bootstrap-switch").bootstrapSwitch();
     })
 </script>

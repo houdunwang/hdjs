@@ -17,14 +17,23 @@
 </head>
 <body style="padding: 50px;">
 <script>
-    require(['util'], function (util) {
-        console.log(util.get.get('a'));
+    require(['hdjs'], function (hdjs) {
+        console.log(hdjs.get.get('a'));
     })
 </script>
-
 <script>
-    require(['util'], function (util) {
-        console.log(util.get.set('name','hdphp'));
+    require(['hdjs'], function (hdjs) {
+        console.log(hdjs.get.get('name','http://hdphp.com?name=hdxj'));
+    })
+</script>
+<script>
+    require(['hdjs'], function (hdjs) {
+        console.log(hdjs.get.set('name','hdphp'));
+    })
+</script>
+<script>
+    require(['hdjs'], function (hdjs) {
+        console.log(hdjs.get.set('name','hdphp','http://hdphp.com?name=hdxj'));
     })
 </script>
 </body>

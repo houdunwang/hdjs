@@ -3,9 +3,10 @@ import 'webuploader/dist/webuploader.css'
 import modal from './modal'
 import Message from './message'
 import '../less/fileUploader.less'
+
 var modalobj = null;
 var obj = {
-    options:{},
+    options: {},
     //加载远程图片
     getImageList: function (url) {
         var options = this.options;
@@ -49,6 +50,7 @@ var obj = {
         switch (options.type) {
             case 'image':
                 modalobj = modal({
+                    id: 'hdWebUpload',
                     width: options.width,
                     title: '<ul class="nav nav-pills" role="tablist">\
                     <li role="presentation" class="active"><a href="#upload" aria-controls="home" role="tab" data-toggle="tab">上传图片</a></li>\
@@ -147,6 +149,7 @@ var obj = {
             case 'file':
                 //上传文件
                 modalobj = modal({
+                    id: 'hdWebUpload',
                     width: 700,
                     title: '<ul class="nav nav-pills" role="tablist">\
                     <li role="presentation" class="active"><a href="#upload" aria-controls="home" role="tab" data-toggle="tab">上传文件</a></li>\
@@ -222,10 +225,10 @@ var obj = {
                             var uploader = obj.initImageUploader({
                                 accept: {
                                     title: 'file',
-                                    // extensions: options.extensions,//允许上传的文件类型
+                                    extensions: options.extensions,//允许上传的文件类型
                                     // mimeTypes: 'image/jpg,image/jpeg,image/png,image/gif'
-                                    mimeTypes: '.' + options.extensions.replace(/,/g, ',.'),
-                                    // mimeTypes: 'application/zip' ',.'),
+                                    // mimeTypes: '.' + options.extensions.replace(/,/g, ',.'),
+                                    // mimeTypes: 'application/zip' ',.')
                                 },
                                 formData: options.data,
                                 multiple: options.multiple,
