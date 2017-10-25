@@ -9,13 +9,14 @@ if (!window.hdjs.base) {
     window.hdjs.base = '/node_modules/hdjs';
 }
 require.config({
-    urlArgs: 'version=1.2.63',
+    urlArgs: 'version=1.2.66',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: window.hdjs.base + '/dist/hdjs',
         css: window.hdjs.base + '/dist/static/requirejs/css.min',
         domReady: window.hdjs.base + '/dist/static/requirejs/domReady',
-        vue: 'https://cdn.bootcss.com/vue/2.4.2/vue'
+        vue: 'https://cdn.bootcss.com/vue/2.4.2/vue',
+        Aliplayer: 'http://g.alicdn.com/de/prismplayer/2.0.1/aliplayer-min'
     },
     shim: {
         'hdjs': {

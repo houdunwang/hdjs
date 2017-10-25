@@ -52,7 +52,7 @@ var obj = {
                 modalobj = modal({
                     id: 'hdWebUpload',
                     width: options.width,
-                    title: '<ul class="nav nav-pills" role="tablist">\
+                    title: '<ul class="nav nav-pills nav-hd-upload" role="tablist">\
                     <li role="presentation" class="active"><a href="#upload" aria-controls="home" role="tab" data-toggle="tab">上传图片</a></li>\
                     <li role="presentation"><a href="#imagelistsBox" aria-controls="profile" role="tab" data-toggle="tab">浏览图片</a></li>\
                     </ul>',
@@ -151,7 +151,7 @@ var obj = {
                 modalobj = modal({
                     id: 'hdWebUpload',
                     width: 700,
-                    title: '<ul class="nav nav-pills" role="tablist">\
+                    title: '<ul class="nav nav-pills nav-hd-upload" role="tablist">\
                     <li role="presentation" class="active"><a href="#upload" aria-controls="home" role="tab" data-toggle="tab">上传文件</a></li>\
                     <li role="presentation"><a href="#imagelists" aria-controls="profile" role="tab" data-toggle="tab">浏览文件</a></li>\
                     </ul>',

@@ -37,6 +37,7 @@ import oss from './modules/oss'
 import swiper from './modules/swiper'
 import dateselect from './modules/dateselect'
 import video from './modules/video'
+import socket from './modules/socket'
 
 define([], function () {
     return {
@@ -45,6 +46,6 @@ define([], function () {
         datetimepicker, notify, daterangepicker, clockpicker, moment,
         message, confirm, loading, post, submit, preview, formValidator, validator,
         select2, bootstrapSwitch, image, fileUploader, file,
-        ueditor, font, map, city, validCode, oss,swiper,dateselect,video
+        ueditor, font, map, city, validCode, oss,swiper,dateselect,video,socket
     }
 })
