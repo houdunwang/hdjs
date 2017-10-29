@@ -6,6 +6,10 @@ export default (option) => {
         url: '',
         //发送间隔时间
         timeout: 60,
+        //发送前执行的动作
+        before: function () {
+            return true;
+        }
     }, option);
 
     //上次发送的时间
@@ -46,14 +50,16 @@ export default (option) => {
                 Message('帐号格式错误', '', 'info');
                 return;
             }
-            This.setSendTime();
-            $.post(option.url, {username: username}, function (response) {
-                Message(response.message);
-                if (response.valid == 1) {
-                    This.setSendTime();
-                    This.update();
-                }
-            }, 'json');
+            if (option.before() === true) {
+                This.setSendTime();
+                $.post(option.url, {username: username}, function (response) {
+                    Message(response.message);
+                    if (response.valid == 1) {
+                        This.setSendTime();
+                        This.update();
+                    }
+                }, 'json');
+            }
         },
         //获取发送间隔时间
         getWaitTime: () => {

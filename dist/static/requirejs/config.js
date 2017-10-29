@@ -9,7 +9,7 @@ if (!window.hdjs.base) {
     window.hdjs.base = '/node_modules/hdjs';
 }
 require.config({
-    urlArgs: 'version=1.2.66',
+    urlArgs: 'version=1.2.69',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: window.hdjs.base + '/dist/hdjs',
