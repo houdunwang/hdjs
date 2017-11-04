@@ -21,11 +21,13 @@
         var editor = util.ueditor('container', {hash: 2, data: 'hd'}, function (editor) {
             console.log('编辑器执行后的回调方法')
         });
-        setTimeout(function(){
+        setTimeout(function () {
             editor.setContent('hdxj');
-        },2000)
+        }, 2000)
     })
 </script>
-
+<script>
+    location.href = '/test';
+</script>
 </body>
 </html>

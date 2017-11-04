@@ -1,6 +1,6 @@
 {
   "name": "hdjs",
-  "version": "1.2.69",
+  "version": "1.2.72",
   "description": "hdjs framework",
   "main": "dist/hdjs.js",
   "scripts": {

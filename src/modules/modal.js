@@ -1,11 +1,13 @@
+import util from './util';
+
 export default (options) => {
     var opt = Object.assign({
-        show:true,//自动显示
+        show: true,//自动显示
         title: '',//标题
         content: '',//内容
         footer: '',//底部
         id: 'hdMessage',//模态框id
-        width: 600,//宽度
+        width: util.isMobile() ? '95%' : 600,//宽度
         class: '',//样式
         option: {},//bootstrap模态框选项
         events: {},//事件,参考bootstrap

@@ -33,35 +33,5 @@ export default (opt) => {
         loadingModal.modal('hide');
         Message(response, '', 'error');
     });
-
-    // $.ajax({
-    //     url: options.url,
-    //     type: 'post',
-    //     cache: false,
-    //     data: data,
-    //     dataType: "json",
-    //     success: function (json) {
-    //         loadingModal.modal('hide');
-    //         $('[type="submit"]').removeAttr('disabled');
-    //         if (_.isObject(json)) {
-    //             if ($.isFunction(options.callback)) {
-    //                 options.callback(json);
-    //             } else {
-    //                 if (json.valid == 1) {
-    //                     Message(json.message, options.successUrl, 'success');
-    //                 } else {
-    //                     Message(json.message, '', 'info');
-    //                 }
-    //             }
-    //         } else {
-    //             Message(json, '', 'error');
-    //         }
-    //     },
-    //     error: function (response) {
-    //         console.log(response)
-    //         loadingModal.modal('hide');
-    //         Message(response, '', 'error');
-    //     }
-    // });
     return false;
 }

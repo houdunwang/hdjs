@@ -9,8 +9,12 @@ try {
 
     require('bootstrap-sass');
     require("bootstrap-sass/assets/stylesheets/_bootstrap.scss");
-    require('./less/app.less')
-    console.info('后盾人 人人做后盾  www.houdunren.com')
+    require('./less/app.less');
+    console.info('后盾人 人人做后盾  www.houdunren.com');
+    //将属性hdjs元素显示出来
+    $("[hd-cloak]").show();
+    $("[hd-hide]").hide();
+    $("[hd-loading]").hide();
 } catch (e) {
 }
 window.axios = require('axios');

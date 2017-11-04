@@ -1,3 +1,7 @@
+//加载动画
+@import "spinners.css";
+@import "loading";
+
 * {
   font-family: "Microsoft YaHei", arial, helvetica, sans-serif;
 }
@@ -6,8 +10,13 @@ a {
   text-decoration: none !important;
 }
 
+//hdjs加载成功后显示
+[hd-cloak] {
+  display: none;
+}
+
 [v-cloak] {
-  display: none !important;
+  display: none;
 }
 
 //星符号
