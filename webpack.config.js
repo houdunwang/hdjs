@@ -13,7 +13,7 @@ function resolve(dir) {
 module.exports = {
     entry: {
         hdjs: './src/hdjs.js',
-        app: './src/app.js'
+        // app: './src/app.js'
         // common:['jquery']
     },
     output: {

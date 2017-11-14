@@ -2,15 +2,16 @@
  * 前端模块配置
  * @author 向军 <2300071698@qq.com>
  */
-Object.assign({
-    node_modules: '', base: '/node_modules/hdjs', uploader: '', filesLists: ''
+window.hdjs = Object.assign({
+    node_modules: '', base: '/node_modules/hdjs', uploader: '', filesLists: '', hdjs: ''
 }, window.hdjs);
 
 require.config({
-    urlArgs: 'version=1.2.75',
+    urlArgs: 'version=1.2.80',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: window.hdjs.base + '/dist/hdjs',
+        // hdjs: 'http://houdunwang.oss-cn-hangzhou.aliyuncs.com/hdjs/hdjs',
         css: window.hdjs.base + '/dist/static/requirejs/css.min',
         domReady: window.hdjs.base + '/dist/static/requirejs/domReady',
         vue: 'https://cdn.bootcss.com/vue/2.4.2/vue',

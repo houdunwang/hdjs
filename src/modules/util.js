@@ -1,4 +1,5 @@
 //工具函数
+var md5 = require('md5');
 export default {
     //移动端检测
     isMobile() {
@@ -12,5 +13,9 @@ export default {
             }
         }
         return flag;
+    },
+    //md5加密
+    md5(val) {
+        return md5(val);
     }
 }

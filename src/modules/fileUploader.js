@@ -112,14 +112,15 @@ var obj = {
                                 accept: {
                                     title: 'Images',
                                     extensions: options.extensions,//允许上传的文件类型
-                                    mimeTypes: 'image/jpg,image/jpeg,image/png,image/gif'
+                                    // mimeTypes: 'image/jpg,image/jpeg,image/png,image/gif',
+                                    mimeTypes: 'image/*'
                                 },
-                                compress: false,
+                                compress: options.compress,
                                 formData: options.data,
                                 multiple: options.multiple,
                                 fileNumLimit: 100,//允许上传的文件数量
                                 fileSizeLimit: 200 * 1024 * 1024,    // 200 M 允许上传文件大小
-                                fileSingleSizeLimit: 2 * 1024 * 1024    // 2 M 单个文件上传大小
+                                fileSingleSizeLimit: options.fileSingleSizeLimit    // 2 M 单个文件上传大小
                             });
                             uploader.on('uploadAccept', function (file, response) {
                                 if (response.valid !== undefined) {

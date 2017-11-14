@@ -39,6 +39,7 @@ import dateselect from './modules/dateselect'
 import video from './modules/video'
 import socket from './modules/socket'
 import util from './modules/util'
+import regexp from './modules/regexp'
 
 define([], function () {
     return {
@@ -47,6 +48,6 @@ define([], function () {
         datetimepicker, notify, daterangepicker, clockpicker, moment,
         message, confirm, loading, post, submit, preview, formValidator, validator,
         select2, bootstrapSwitch, image, fileUploader, file,
-        ueditor, font, map, city, validCode, oss, swiper, dateselect, video, socket, util
+        ueditor, font, map, city, validCode, oss, swiper, dateselect, video, socket, util, regexp
     }
 })

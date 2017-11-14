@@ -32,10 +32,11 @@
 </div>
 <script>
     require(['hdjs']);
+
     //上传图片
     function upImage() {
         require(['hdjs'], function (hdjs) {
-            options = {
+            var options = {
                 multiple: false,//是否允许多图上传
                 //data是向后台服务器提交的POST数据
                 data: {name: '后盾人', year: 2099},
@@ -47,6 +48,7 @@
             }, options)
         });
     }
+
     //移除图片
     function removeImg(obj) {
         $(obj).prev('img').attr('src', '../dist/static/image/nopic.jpg');
@@ -82,19 +84,21 @@
         });
     }
 </script>
-
 <h1 style="clear: both;margin-top: 100px;">移动端上传</h1>
 <button onclick="upImage()" class="btn btn-default">选择图片</button>
 <script>
-    require(['hdjs']);
     //上传图片
     function upImage() {
         require(['hdjs'], function (hdjs) {
-            options = {
+            var options = {
                 width: '90%',
                 multiple: false,//是否允许多图上传
                 //data是向后台服务器提交的POST数据
                 data: {name: '后盾人', year: 2099},
+                compress: {
+                    width: 1600,
+                    height: 1600,
+                }
             };
             hdjs.image(function (images) {
                 console.log(images[0])

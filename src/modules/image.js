@@ -1,4 +1,5 @@
 import fileUploader from './fileUploader'
+import util from './util'
 
 export default (callback, options) => {
     //初始化参数数据mes
@@ -6,10 +7,13 @@ export default (callback, options) => {
     //初始化POST数据
     options.data = options.data ? options.data : {};
     var opts = Object.assign({
-        width: 700,
+        width: util.isMobile() ? '95%' : 700,//宽度
         type: 'image',
         extensions: 'gif,jpg,jpeg,png',
         multiple: false,
+        fileSizeLimit: 200 * 1024 * 1024,
+        fileSingleSizeLimit: 20 * 1024 * 1024,
+        compress:false,
         data: {},
     }, options);
 
