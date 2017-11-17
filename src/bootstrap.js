@@ -6,7 +6,6 @@ window._ = require('lodash');
  */
 try {
     global.$ = global.jQuery = window.$ = window.jQuery = require('jquery');
-
     require('bootstrap-sass');
     require("bootstrap-sass/assets/stylesheets/_bootstrap.scss");
     require('./less/app.less');
