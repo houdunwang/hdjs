@@ -17,10 +17,12 @@
 </head>
 <body style="padding: 50px;">
 <h1>文件表单</h1>
-<input type="file" name="thumbnail" class="filestyle form-control"
-       data-iconName="glyphicon glyphicon-folder-open" data-buttonText="上传图片"/>
+
+<input type="file" class="filestyle" data-text="上传图片"  data-placeholder="请选择上传文件" data-btnClass="btn-primary">
 <script>
-    require(['hdjs'])
+    require(['hdjs'], function (hdjs) {
+        hdjs.bootstrapfilestyle(':file');
+    })
 </script>
 
 <h1>列表框</h1>
@@ -33,17 +35,15 @@
 </div>
 <script>
     require(['hdjs'], function (hdjs) {
-        $(".js-example-basic-single").select2({
-            tags: true
-        });
+        hdjs.select2('.js-example-basic-single');
     })
 </script>
 
 <h1>复选框</h1>
-<input type="checkbox" name="status" class="bootstrap-switch">
+<input type="checkbox" name="my-checkbox" checked>
 <script>
-    require(['hdjs'],function(hdjs){
-        $(".bootstrap-switch").bootstrapSwitch();
+    require(['hdjs'], function (hdjs) {
+        hdjs.bootstrapswitch("[name='my-checkbox']");
     })
 </script>
 </body>

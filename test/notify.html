@@ -17,7 +17,17 @@
 <body style="padding: 50px;">
 <script>
     require(['hdjs'], function (hdjs) {
-        hdjs.notify('hello hdjs')
+        hdjs.notify({
+            title: "提示:",
+            message: 'HDJS 开发必用',
+            type: 'danger',
+            icon: 'glyphicon glyphicon-star',
+            url: "https://hdjs.hdphp.com"
+        }, {
+            offset: 50,
+            type: 'warning',
+            delay: 3000
+        })
     })
 </script>
 </body>

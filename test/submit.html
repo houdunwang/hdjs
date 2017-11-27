@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>表单提交</title>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,7 +23,7 @@
     function post(event) {
         event.preventDefault();
         require(['hdjs'], function (hdjs) {
-            hdjs.submit({url:'php/submit.php'});
+            hdjs.submit({url:'php/submit.php',successUrl:'refresh'});
         })
     }
 </script>

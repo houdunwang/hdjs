@@ -15,33 +15,38 @@
     <script src="../dist/static/requirejs/config.js"></script>
 </head>
 <body style="padding: 50px;">
-<h1>创建与获取</h1>
+<h2>请在console控制台看效果</h2>
+<button class="btn btn-default" onclick="set()">设置</button>
 <script>
-    require(['hdjs'], function (hdjs) {
-        hdjs.cookie.set('hdjs', '这是使用 hdjs 创建的cookie');
-        console.log(hdjs.cookie.get('hdjs'));
-    })
+    function set() {
+        require(['hdjs'], function (hdjs) {
+            hdjs.cookie(function (Cookie) {
+                Cookie.set('hdjs', '这是使用 hdjs 创建的cookie');
+            })
+        })
+    }
 </script>
 
-<h1>获取所有</h1>
+<button class="btn btn-default" onclick="alls()">获取所有</button>
 <script>
-    require(['hdjs'], function (hdjs) {
-        console.log(hdjs.cookie.get());
-    })
+    function alls() {
+        require(['hdjs'], function (hdjs) {
+            hdjs.cookie(function (Cookie) {
+                console.log(Cookie.get());
+            })
+        })
+    }
 </script>
 
-<h1>删除</h1>
+<button class="btn btn-default" onclick="remove()">删除</button>
 <script>
-    require(['hdjs'], function (hdjs) {
-        console.log(hdjs.cookie.remove('hdjs'));
-    })
-</script>
-
-<h1>获取所有</h1>
-<script>
-    require(['hdjs'], function (hdjs) {
-        console.log(hdjs.cookie.get());
-    })
+    function remove() {
+        require(['hdjs'], function (hdjs) {
+            hdjs.cookie(function (Cookie) {
+                Cookie.remove('hdjs');
+            })
+        })
+    }
 </script>
 </body>
 </html>

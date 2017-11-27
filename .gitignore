@@ -1,6 +1,7 @@
 .idea
 .env
 .DS_Store
+stats.json
 composer.lock
 npm-debug.log
 /test/php/config

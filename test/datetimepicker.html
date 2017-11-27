@@ -18,7 +18,7 @@
 <input id="datetimepicker" class="form-control">
 <script>
     require(['hdjs'], function (hdjs) {
-        hdjs.datetimepicker('#datetimepicker').datetimepicker({
+        hdjs.datetimepicker('#datetimepicker', {
             timepicker: false,
             format: 'Y-m-d',
             onChangeDateTime: function (dp, $input) {
@@ -31,8 +31,8 @@
 <input id="datetimepicker2" class="form-control">
 <script>
     require(['hdjs'], function (hdjs) {
-        hdjs.datetimepicker('#datetimepicker2').datetimepicker({
-            onChangeDateTime:function(dp,$input){
+        hdjs.datetimepicker('#datetimepicker2', {
+            onChangeDateTime: function (dp, $input) {
                 console.log($input.val())
             }
         });
@@ -43,23 +43,23 @@ Start <input id="date_timepicker_start" value="">
 End <input id="date_timepicker_end" value="">
 <script>
     require(['hdjs', 'jquery'], function (hdjs, jQuery) {
-        hdjs.datetimepicker('#date_timepicker_start').datetimepicker({
-            format:'Y/m/d',
-            onShow:function( ct ){
+        hdjs.datetimepicker('#date_timepicker_start',{
+            format: 'Y/m/d',
+            onShow: function (ct) {
                 this.setOptions({
-                    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
+                    maxDate: jQuery('#date_timepicker_end').val() ? jQuery('#date_timepicker_end').val() : false
                 })
             },
-            timepicker:false
+            timepicker: false
         });
-        hdjs.datetimepicker('#date_timepicker_end').datetimepicker({
-            format:'Y/m/d',
-            onShow:function( ct ){
+        hdjs.datetimepicker('#date_timepicker_end',{
+            format: 'Y/m/d',
+            onShow: function (ct) {
                 this.setOptions({
-                    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+                    minDate: jQuery('#date_timepicker_start').val() ? jQuery('#date_timepicker_start').val() : false
                 })
             },
-            timepicker:false
+            timepicker: false
         });
     })
 </script>
@@ -67,7 +67,7 @@ End <input id="date_timepicker_end" value="">
 时间<input id="datetimepicker3" value="">
 <script>
     require(['hdjs', 'jquery'], function (hdjs, jQuery) {
-        hdjs.datetimepicker('#datetimepicker3').datetimepicker({
+        hdjs.datetimepicker('#datetimepicker3',{
             datepicker: false,
             format: 'h:i'
         });

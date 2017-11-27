@@ -20,7 +20,7 @@
 <select name="address[area]" class="form-control"></select>
 <script>
     require(['hdjs'], function (hdjs) {
-        hdjs.city.render({
+        hdjs.city({
             //省份标签
             province: document.querySelector('[name="address[province]"]'),
             //城市标签
@@ -31,9 +31,9 @@
             //默认省
             province: '福建省',
             //默认市
-            city:'厦门市',
+            city: '厦门市',
             //默认地区
-            area:'海沧区',
+            area: '海沧区',
         });
     })
 </script>

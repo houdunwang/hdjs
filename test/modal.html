@@ -39,7 +39,8 @@
     function ajax() {
         require(['hdjs'], function (hdjs) {
             hdjs.modal({
-                content: ['http://localhost'],//加载的远程地址
+                //加载的远程地址
+                content: ['http://hdjstest.hdphp.com/test/'],
                 title: '添加用户',
                 width: 800,
                 show: true,//直接显示
@@ -48,7 +49,7 @@
     }
 </script>
 
-<h1 onclick="post()">post</h1>
+<h1 onclick="post()">加载并传递POST数据</h1>
 <script>
     function post() {
         require(['hdjs'], function (hdjs) {

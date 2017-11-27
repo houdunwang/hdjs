@@ -13,17 +13,27 @@ function resolve(dir) {
 module.exports = {
     entry: {
         hdjs: './src/hdjs.js',
-        // app: './src/app.js'
-        // common:['jquery']
+        vendor: [
+            'jquery', 'bootstrap-sass', 'moment'
+            // , 'bootstrap-switch',
+            // 'jquery-caret', 'chart.js', 'clockpicker/dist/jquery-clockpicker',
+            // 'spectrum-colorpicker', 'js-cookie', 'bootstrap-daterangepicker',
+            // 'jquery-datetimepicker', 'webuploader', 'md5', 'bootstrap-notify',
+            // 'qrcode', 'select2', 'swiper', 'zeroclipboard', 'video.js/dist/video',
+        ],
+        // modules: [
+        //     './src/component/ueditor/ueditor.all'
+        // ]
     },
     output: {
         //输出目录
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
         sourceMapFilename: '[name].map',
-        // chunkFilename: '[name].min.js',
         libraryTarget: "umd",
-        library: "hdjs"
+        library: "hdjs",
+        publicPath: '/dist/',
+        chunkFilename: "[chunkhash].js",
     },
     externals: {},
     resolve: {
@@ -33,11 +43,14 @@ module.exports = {
     //热加载使用的项目目录
     devServer: {contentBase: path.join(__dirname, "dist"), port: 9000},
     plugins: [
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: "commons",
-        //     // ( 公共chunk(commnons chunk) 的名称)
-        //     filename: "commons.js"
-        // }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ["vendor"],
+            // minChunks: ({ resource }) => (
+            //     resource &&
+            //     resource.indexOf('node_modules') >= 0 &&
+            //     resource.match(/\.js$/)
+            // ),
+        }),
         //压缩代码
         // new UglifyJSPlugin({output: {comments: false}}),
         //清理打包目录

@@ -20,15 +20,25 @@
 <button class="btn btn-default" data-clipboard-target="#foo">复制</button>
 <script>
     require(['hdjs'], function (hdjs) {
-        var clipboard = hdjs.clipboard('.btn')
-        clipboard.on('success', function (e) {
+        var clipboard = hdjs.clipboard('.btn', {},function (e) {
             console.info('Action:', e.action);
             console.info('Text:', e.text);
             console.info('Trigger:', e.trigger);
             hdjs.notify('复制成功');
             e.clearSelection();
-        });
+        })
     })
+</script>
+<h1>复制元素文本</h1>
+
+<a href="javascript:;" class="copy" data-clipboard-text="我是复制的内容">点我复制</a>
+<script>
+    require(['hdjs'], function (hdjs) {
+        hdjs.clipboard('.copy',{},function(e){
+            hdjs.notify('复制成功');
+            e.clearSelection();
+        })
+    });
 </script>
 
 <h1>指定复制内容</h1>
@@ -37,18 +47,17 @@
 <button class="btn btn-default hdphp">复制内容</button>
 <script>
     require(['hdjs'], function (hdjs) {
-        var clipboard = hdjs.clipboard('.hdphp',{
-            text: function(trigger) {
+        var clipboard = hdjs.clipboard('.hdphp', {
+            text: function (trigger) {
                 return $("[name='content']").val();
             }
-        })
-        clipboard.on('success', function (e) {
+        }, function (e) {
             console.info('Action:', e.action);
             console.info('Text:', e.text);
             console.info('Trigger:', e.trigger);
             hdjs.notify('复制成功');
             e.clearSelection();
-        });
+        })
     })
 </script>
 </body>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>剪贴板</title>
+    <title>swiper幻灯片</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -44,13 +44,22 @@
 </style>
 <script>
     require(['hdjs'], function (hdjs) {
-        var mySwiper = new Swiper('.swiper-container', {
+        hdjs.swiper('.swiper-container', {
             loop: true,
-            // 如果需要分页器
-            pagination: '.swiper-pagination',
-            // 如果需要前进后退按钮
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
+            //自动轮换
+            autoplay: {
+                delay: 1000,
+            },
+            //如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            //如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
         })
     })
 </script>

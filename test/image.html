@@ -16,12 +16,11 @@
 </head>
 <body style="padding: 50px;">
 <h1>单图上传</h1>
-
 <div class="col-sm-10">
     <div class="input-group">
         <input class="form-control" name="thumb" readonly="" value="">
         <div class="input-group-btn">
-            <button onclick="upImage(this)" class="btn btn-default" type="button">选择图片</button>
+            <button onclick="upImagePc(this)" class="btn btn-default" type="button">选择图片</button>
         </div>
     </div>
     <div class="input-group" style="margin-top:5px;">
@@ -32,9 +31,8 @@
 </div>
 <script>
     require(['hdjs']);
-
     //上传图片
-    function upImage() {
+    function upImagePc() {
         require(['hdjs'], function (hdjs) {
             var options = {
                 multiple: false,//是否允许多图上传
@@ -66,12 +64,12 @@
         height: 200px;
     }
 </style>
-<button onclick="upImage(this)" class="btn btn-default" type="button">选择图片</button>
+<button onclick="upImageMul(this)" class="btn btn-default" type="button">选择图片</button>
 <div id="box"></div>
 <script>
     require(['hdjs']);
     //上传图片
-    function upImage(obj) {
+    function upImageMul(obj) {
         require(['hdjs'], function (hdjs) {
             hdjs.image(function (images) {
                 $(images).each(function (k, v) {
@@ -91,7 +89,6 @@
     function upImage() {
         require(['hdjs'], function (hdjs) {
             var options = {
-                width: '90%',
                 multiple: false,//是否允许多图上传
                 //data是向后台服务器提交的POST数据
                 data: {name: '后盾人', year: 2099},

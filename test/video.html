@@ -27,8 +27,10 @@
 </video>
 <script>
     require(['hdjs'], function (hdjs) {
-        hdjs.video('my-video',function(){
-            alert('播放器准备后执行');
+         hdjs.video('my-video',function(video){
+            console.log(video);
+            console.log('播放器准备后执行');
+             video.width(1000);
         })
     })
 </script>

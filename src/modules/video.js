@@ -46,7 +46,7 @@ export default (TagName,callback) => {
                 }
             });
             if($.isFunction(callback)){
-                callback();
+                callback(VideoExtend);
             }
         }
     })

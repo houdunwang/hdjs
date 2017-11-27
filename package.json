@@ -1,12 +1,13 @@
 {
   "name": "hdjs",
-  "version": "1.2.88",
+  "version": "1.2.90",
   "description": "hdjs framework",
   "main": "dist/hdjs.js",
   "scripts": {
     "build": "NODE_ENV=development node_modules/webpack/bin/webpack.js -p --progress --hide-modules --config=webpack.config.js",
     "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js -p --watch --progress --hide-modules --config=webpack.config.js",
-    "dev": "webpack-dev-server --open --hot --inline --config=webpack.config.js"
+    "dev": "webpack-dev-server --open --hot --inline --config=webpack.config.js",
+    "status": "webpack --env production --profile --json >stats.json"
   },
   "repository": {
     "type": "git",

@@ -22,9 +22,9 @@
    </span>
 </div>
 <script>
-    require(['hdjs'], function (hdjs) {
+    require(['oss'], function (oss) {
         var id = '#pickVideo';
-        var uploader = hdjs.oss.upload({
+        var uploader = oss.upload({
             //获取签名
             serverUrl: 'php/ossSign.php?',
             //上传目录
@@ -43,7 +43,7 @@
         });
         //上传成功
         uploader.on('uploadSuccess', function (file, response) {
-            console.log('上传完成,文件名:' + hdjs.oss.oss.host + '/' + hdjs.oss.oss.object_name);
+            console.log('上传完成,文件名:' + oss.oss.host + '/' + oss.oss.object_name);
         });
         //上传中
         uploader.on('uploadProgress', function (file, percentage) {
