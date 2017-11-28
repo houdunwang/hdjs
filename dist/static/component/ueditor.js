@@ -1,7 +1,7 @@
 define(['ZeroClipboard', 'jquery', 'dist/static/component/fileUploader', 'ueditor'], function (ZeroClipboard, $, fileUploader) {
     return function (id, opt, callback, buttons) {
         window['ZeroClipboard'] = ZeroClipboard;
-        var options = Object.assign({
+        var options = $.extend({
             UEDITOR_HOME_URL: window.hdjs.base + '/dist/static/package/ueditor/',
             serverUrl: window.hdjs.ueditor,
             'elementPathEnabled': false,
@@ -44,7 +44,7 @@ define(['ZeroClipboard', 'jquery', 'dist/static/component/fileUploader', 'uedito
             }
         };
         if ($.isFunction(callback)) {
-            callback(editor);
+            return callback(editor);
         }
         return editor;
     }

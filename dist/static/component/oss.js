@@ -46,8 +46,8 @@ define([
         //获取签名
         get_signature: function () {
             //可以判断当前expire是否超过了当前时间,如果超过了当前时间,就重新取一下.3s 做为缓冲
-            let now = Date.parse(new Date()) / 1000;
-            let timestamp = now;
+            var now = Date.parse(new Date()) / 1000;
+            var timestamp = now;
             if (instance.oss.expire < now + 3) {
                 $.ajax({
                     type: "POST",
@@ -73,15 +73,15 @@ define([
             var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
             var maxPos = chars.length;
             var pwd = '';
-            for (let i = 0; i < len; i++) {
+            for ( i = 0; i < len; i++) {
                 pwd += chars.charAt(Math.floor(Math.random() * maxPos));
             }
             return pwd;
         },
         //获取扩展名后缀
         get_suffix: function (filename) {
-            let pos = filename.lastIndexOf('.')
-            let suffix = ''
+            var pos = filename.lastIndexOf('.')
+            var suffix = ''
             if (pos != -1) {
                 suffix = filename.substring(pos)
             }
@@ -98,7 +98,7 @@ define([
             return ''
         },
         webupload: function () {
-            let uploader = new WebUploader.create(instance.opt);
+            var uploader = new WebUploader.create(instance.opt);
             //当有文件被添加进队列的时候
             uploader.on('fileQueued', function (file) {
                 instance.get_signature();

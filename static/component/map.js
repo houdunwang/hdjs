@@ -1,7 +1,5 @@
-define([
-    'dist/static/component/modal'
-], function (modal) {
-    let instance = {};
+define(['dist/static/component/modal'], function (modal) {
+    var instance = {};
     return function (val, callback) {
         $.getScript('http://api.map.baidu.com/getscript?v=2.0&ak=WcqLYXBH2tHLhYNfPNpZCD4s&services=&t=20160708193109', function () {
             if (!val) {

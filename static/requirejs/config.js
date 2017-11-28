@@ -2,11 +2,12 @@
  * 前端模块配置
  * @author 向军 <2300071698@qq.com>
  */
-window.hdjs = Object.assign({
-    node_modules: '', base: '/node_modules/hdjs/', uploader: '', filesLists: '', hdjs: ''
-}, window.hdjs);
+
+// window.hdjs = Object.assign({
+//     node_modules: '', base: '/node_modules/hdjs/', uploader: '', filesLists: '', hdjs: ''
+// }, window.hdjs);
 require.config({
-    urlArgs: 'version=1.2.90',
+    urlArgs: 'version=1.2.93',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'dist/static/hdjs',
@@ -79,8 +80,35 @@ require.config({
             ]
         }
     },
-    waitSeconds: 3
+    waitSeconds: 30
 });
-require(['jquery', 'bootstrap'], function ($) {
+require([
+    'jquery',
+    'https://cdn.bootcss.com/axios/0.17.1/axios.min.js',
+    'lodash',
+    'bootstrap',
+], function ($, axios, _) {
     window.$ = window.jQuery = $;
+    window._ = _;
+    console.info('后盾人 人人做后盾  www.houdunren.com');
+    //将属性hdjs元素显示出来
+    $("[hd-cloak]").show();
+    $("[hd-hide]").hide();
+    $("[hd-loading]").hide();
+    window.axios = axios;
+    window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+    var token = document.head.querySelector('meta[name="csrf-token"]');
+
+    if (token) {
+        window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+        //为异步请求设置CSRF令牌
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    } else {
+        console.error('CSRF token not found');
+    }
 })

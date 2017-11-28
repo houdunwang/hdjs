@@ -4,7 +4,7 @@ define([
     'css!dist/static/package/spectrum-colorpicker/spectrum.css'
 ], function () {
     return function (el, options) {
-        $(el).spectrum(Object.assign({
+        $(el).spectrum($.extend({
             className: "colorpicker",
             showInput: true,
             showInitial: true,

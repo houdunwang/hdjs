@@ -83,6 +83,7 @@ input {
 }
 div.modal .modal-title .nav-hd-upload {
   height: auto;
+  width: auto !important;
   box-shadow: none;
 }
 #hdWebUpload .modal-title .nav li a {

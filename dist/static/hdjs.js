@@ -127,7 +127,7 @@ define([
         //预览图片
         preview: function (url, option) {
             var option = option ? option : {};
-            var opt = Object.assign({
+            var opt = $.extend({
                 title: '图片预览',
                 width: 700,
                 height: 500,
@@ -245,7 +245,7 @@ define([
         },
         //URL中GET参数管理
         get: {
-            get(par, url) {
+            get: function (par, url) {
                 //获取当前URL
                 var local_url = url ? url : document.location.href;
                 //获取要取得的get参数位置
@@ -263,7 +263,7 @@ define([
                 return get_par;
             },
             //替换get参数
-            set(paramName, replaceWith, url) {
+            set: function (paramName, replaceWith, url) {
                 var url = url ? url : document.location.href;
                 var oUrl = url.toString();
                 if (oUrl.indexOf(paramName) >= 0) {
@@ -275,11 +275,11 @@ define([
             },
             regexp: {
                 //手机
-                mobile(val) {
+                mobile: function (val) {
                     return /^\d{11}$/.test(val);
                 },
                 //邮箱
-                email(val) {
+                email: function (val) {
                     return !/^.+@.+$/.test(val);
                 }
             }

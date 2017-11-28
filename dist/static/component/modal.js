@@ -1,6 +1,6 @@
 define(['dist/static/component/util'], function (util) {
     return function (options, userCallback) {
-        var opt = Object.assign({
+        var opt = $.extend({
             show: true,//自动显示
             title: '',//标题
             content: '',//内容
@@ -85,7 +85,7 @@ define(['dist/static/component/util'], function (util) {
             });
         }
         if ($.isFunction(userCallback)) {
-            // userCallback(modalObj);
+            return userCallback(modalObj);
         }
         modalObj.modal(opt);
         return modalObj;

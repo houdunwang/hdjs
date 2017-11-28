@@ -9615,7 +9615,7 @@ var area = [{
     fatherID: "659000"
 }, {id: "3144", areaID: "659004", area: "\u4e94\u5bb6\u6e20\u5e02", fatherID: "659000"}];
 
-let instance = {
+var instance = {
     renderArea: function (items, vals) {
         if (!items.area) return;
         items.area.options.length = 0;

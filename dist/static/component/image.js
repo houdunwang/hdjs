@@ -4,7 +4,7 @@ define(['dist/static/component/fileUploader', 'dist/static/component/util'], fun
         options = options ? options : {};
         //初始化POST数据
         options.data = options.data ? options.data : {};
-        var opts = Object.assign({
+        var opts = $.extend({
             width: util.isMobile() ? '95%' : 700,//宽度
             type: 'image',
             extensions: 'gif,jpg,jpeg,png',

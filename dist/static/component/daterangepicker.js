@@ -4,7 +4,7 @@ define([
     'css!https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css'
 ], function () {
     return function (options) {
-        var options = Object.assign({
+        var options = $.extend({
             //自动关闭,有timePicker属性时无效
             // "autoApply": true,
             "locale": {

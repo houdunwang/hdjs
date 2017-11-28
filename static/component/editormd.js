@@ -14,7 +14,7 @@ define(["hdjs", "jquery", 'css!dist/static/css/editormd.css'], function (hdjs, $
                 "dist/static/package/editor.md/plugins/help-dialog/help-dialog",
                 "dist/static/package/editor.md/plugins/html-entities-dialog/html-entities-dialog",
                 "dist/static/package/editor.md/plugins/preformatted-text-dialog/preformatted-text-dialog"], function (editormd) {
-                options = Object.assign({
+                options = $.extend({
                     syncScrolling: "single",
                     path: window.hdjs.base + "/dist/static/package/editor.md/lib/",
                     width: "100%",
@@ -66,7 +66,7 @@ define(["hdjs", "jquery", 'css!dist/static/css/editormd.css'], function (hdjs, $
         },
         markdownToHTML: function (elem, options) {
             require(['editormd'], function (editormd) {
-                options = Object.assign({
+                options = $.extend({
                     htmlDecode: "style,script,iframe",  // you can filter tags decode
                     emoji: true,
                     taskList: true,
