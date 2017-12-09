@@ -108,21 +108,17 @@ define([
                 clockpicker(el, options);
             })
         },
+        //异步提交
+        ajax: function (opt) {
+            require(['dist/static/component/ajax'], function (ajax) {
+                ajax(opt);
+            })
+        },
         //提交POST
         post: function (opt) {
-            var options = $.extend({
-                url: '',
-                data: {},
-                success: function () {
-                },
-                error: function () {
-                }
-            }, opt);
-            $.post(options.url, options.data, function (json) {
-                if ($.isFunction(options.callback)) {
-                    options.callback(json);
-                }
-            }, 'json')
+            require(['dist/static/component/ajax'], function (ajax) {
+                ajax(opt)
+            })
         },
         //预览图片
         preview: function (url, option) {

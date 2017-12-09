@@ -5,7 +5,7 @@ define(['ZeroClipboard', 'jquery', 'dist/static/component/fileUploader', 'uedito
             UEDITOR_HOME_URL: window.hdjs.base + '/dist/static/package/ueditor/',
             serverUrl: window.hdjs.ueditor,
             'elementPathEnabled': false,
-            'initialFrameHeight': 200,
+            // 'initialFrameHeight': 200,
             'focus': false,
             'maximumWords': 9999999999999,
             'autoClearinitialContent': false,
@@ -22,7 +22,7 @@ define(['ZeroClipboard', 'jquery', 'dist/static/component/fileUploader', 'uedito
                 'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
                 'print', 'preview', 'searchreplace'
             ]],
-            autoHeightEnabled: false,//自动增高
+            autoHeightEnabled: true,//自动增高
             autoFloatEnabled: false,
         }, opt);
         var editor = UE.getEditor(id, options);

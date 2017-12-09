@@ -7,7 +7,7 @@
 //     node_modules: '', base: '/node_modules/hdjs/', uploader: '', filesLists: '', hdjs: ''
 // }, window.hdjs);
 require.config({
-    urlArgs: 'version=1.2.93',
+    urlArgs: 'version=1.2.97',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'dist/static/hdjs',
@@ -15,6 +15,8 @@ require.config({
         domReady: 'dist/static/requirejs/domReady',
         vue: 'https://cdn.bootcss.com/vue/2.4.2/vue',
         Aliplayer: 'http://g.alicdn.com/de/prismplayer/2.0.1/aliplayer-min',
+        //微信JSSDK
+        jweixin: 'http://res.wx.qq.com/open/js/jweixin-1.2.0',
         //百度编辑器
         ueditor: 'dist/static/package/ueditor/ueditor.all',
         //代码高亮
@@ -85,9 +87,11 @@ require.config({
 require([
     'jquery',
     'https://cdn.bootcss.com/axios/0.17.1/axios.min.js',
-    'bootstrap',
-], function ($, axios) {
+    'lodash',
+    'bootstrap'
+], function ($, axios, _) {
     window.$ = window.jQuery = $;
+    window._ = _;
     console.info('后盾人 人人做后盾  www.houdunren.com');
     //将属性hdjs元素显示出来
     $("[hd-cloak]").show();
@@ -107,6 +111,6 @@ require([
             }
         });
     } else {
-        console.error('CSRF token not found');
+        // console.error('CSRF token not found');
     }
 })
