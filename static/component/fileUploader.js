@@ -1,7 +1,8 @@
 define([
     'bootstrap', 'webuploader', 'dist/static/component/modal',
+    'dist/static/component/message',
     'css!dist/static/css/fileUploader.css'
-], function ($, WebUploader, modal) {
+], function ($, WebUploader, modal,Message) {
     var modalobj = null;
     var obj = {
         options: {},
