@@ -87,6 +87,7 @@ var obj = {
                             }
                             obj.getImageList(hdjs.filesLists + '&type=image');
                             //分页处理
+                            modalobj = $("#hdWebUpload");
                             modalobj.delegate('#imagelists .pagination a', 'click', function () {
                                 obj.getImageList($(this).attr('href'));
                                 return false;
@@ -211,6 +212,7 @@ var obj = {
 
                             getImageList(hdjs.filesLists + '&type=file');
                             //分页处理
+
                             modalobj.delegate('#imagelists .pagination a', 'click', function () {
                                 var url = $(this).attr('href');
                                 getImageList(url);

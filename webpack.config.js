@@ -12,15 +12,16 @@ function resolve(dir) {
 
 module.exports = {
     entry: {
+        app: './src/app.js',
         hdjs: './src/hdjs.js',
-        vendor: [
-            'jquery', 'bootstrap-sass', 'moment'
+        // vendor: [
+        // 'jquery', 'bootstrap-sass', 'moment'
             // , 'bootstrap-switch',
             // 'jquery-caret', 'chart.js', 'clockpicker/dist/jquery-clockpicker',
             // 'spectrum-colorpicker', 'js-cookie', 'bootstrap-daterangepicker',
             // 'jquery-datetimepicker', 'webuploader', 'md5', 'bootstrap-notify',
             // 'qrcode', 'select2', 'swiper', 'zeroclipboard', 'video.js/dist/video',
-        ],
+        // ],
         // modules: [
         //     './src/component/ueditor/ueditor.all'
         // ]
@@ -29,11 +30,12 @@ module.exports = {
         //输出目录
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        sourceMapFilename: '[name].map',
+        // sourceMapFilename: '[name].map',
         libraryTarget: "umd",
-        library: "hdjs",
-        publicPath: '/dist/',
-        chunkFilename: "[chunkhash].js",
+        // library: "hdjs",
+        // publicPath: '/',
+        // publicPath: '/dist/',
+        // chunkFilename: "[chunkhash].js",
     },
     externals: {},
     resolve: {
@@ -43,14 +45,14 @@ module.exports = {
     //热加载使用的项目目录
     devServer: {contentBase: path.join(__dirname, "dist"), port: 9000},
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ["vendor"],
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     names: ["vendor"],
             // minChunks: ({ resource }) => (
             //     resource &&
             //     resource.indexOf('node_modules') >= 0 &&
             //     resource.match(/\.js$/)
             // ),
-        }),
+        // }),
         //压缩代码
         // new UglifyJSPlugin({output: {comments: false}}),
         //清理打包目录
@@ -58,7 +60,7 @@ module.exports = {
         //生成css文件
         new ExtractTextPlugin("hdjs.css"),
         //模板文件并生成到dist目录中，用于热加载使用
-        new HtmlWebpackPlugin({title: 'hdjs-vue', template: __dirname + '/src/module.html'}),
+        new HtmlWebpackPlugin({title: 'hdjs-vue', template: __dirname + '/index.html'}),
         new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery"}),
         new CopyWebpackPlugin([{from: 'static', to: 'static'}])
     ],

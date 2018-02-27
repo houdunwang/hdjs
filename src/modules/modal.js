@@ -1,6 +1,6 @@
 import util from './util';
 
-export default (options) => {
+export default (options,userCallback) => {
     var opt = Object.assign({
         show: true,//自动显示
         title: '',//标题
@@ -85,5 +85,9 @@ export default (options) => {
             options.events['cancel'](modalObj);
         });
     }
-    return modalObj.modal(opt);
+    if ($.isFunction(userCallback)) {
+        return userCallback(modalObj);
+    }
+    modalObj.modal(opt);
+    return modalObj;
 }
