@@ -7,7 +7,7 @@
 //     node_modules: '', base: '/node_modules/hdjs/', uploader: '', filesLists: '', hdjs: ''
 // }, window.hdjs);
 require.config({
-    urlArgs: 'version=1.2.102',
+    urlArgs: 'version=1.2.105',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'dist/static/hdjs',
