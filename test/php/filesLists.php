@@ -1,6 +1,5 @@
 <?php
-include '../vendor/autoload.php';
-$files = glob('attachment/*');
+$files = glob('uploads/*');
 foreach ($files as $f) {
     $file   = "php/".$f;
     $data[] = [
@@ -11,5 +10,5 @@ foreach ($files as $f) {
         'createtime' => date('Y-m-d', filemtime($f)),
     ];
 }
-$json = ['data' => $data, 'page' => []];
+$json = ['data' => $data,'code'=>0, 'page' => []];
 die(json_encode($json));

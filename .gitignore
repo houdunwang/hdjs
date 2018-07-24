@@ -7,4 +7,4 @@ npm-debug.log
 /test/php/config
 /node_modules
 /test/vendor
-/test/php/attachment
+/test/php/uploads

@@ -2,30 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script>
         window.hdjs = {};
         window.hdjs.base = '../';
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
 <h1>单图上传</h1>
 <div class="col-sm-10">
-    <div class="input-group">
+    <div class="input-group mb-1">
         <input class="form-control" name="thumb" readonly="" value="">
-        <div class="input-group-btn">
-            <button onclick="upImagePc(this)" class="btn btn-default" type="button">选择图片</button>
+        <div class="input-group-append">
+            <button onclick="upImagePc(this)" class="btn btn-outline-secondary" type="button">选择图片</button>
         </div>
     </div>
-    <div class="input-group" style="margin-top:5px;">
-        <img src="../dist/static/image/nopic.jpg" class="img-responsive img-thumbnail" width="150">
-        <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片"
+    <div style="display: inline-block;position: relative;">
+        <img src="../image/nopic.jpg" class="img-responsive img-thumbnail" width="150">
+        <em class="close" style="position: absolute;top: 3px;right: 8px;" title="删除这张图片"
             onclick="removeImg(this)">×</em>
     </div>
 </div>
