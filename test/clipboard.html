@@ -11,43 +11,46 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
-<h1>复制</h1>
-<input id="foo" value="https://github.com/zenorocha/clipboard.js.git" class="form-control">
-<button class="btn btn-default" data-clipboard-target="#foo">复制</button>
+<div class="input-group mb-3">
+<input type="text" class="form-control" id="foo" value="https://github.com/zenorocha/clipboard.js.git" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+<div class="input-group-append">
+<button class="btn btn-outline-secondary" type="button" data-clipboard-target="#foo">复制</button>
+</div>
+</div>
 <script>
-    require(['hdjs'], function (hdjs) {
-        var clipboard = hdjs.clipboard('.btn', {},function (e) {
-            console.info('Action:', e.action);
-            console.info('Text:', e.text);
-            console.info('Trigger:', e.trigger);
-            hdjs.notify('复制成功');
-            e.clearSelection();
-        })
-    })
+require(['hdjs', 'bootstrap'], function (hdjs) {
+hdjs.clipboard('.btn', {}, function (e) {
+console.info('Action:', e.action);
+console.info('Text:', e.text);
+console.info('Trigger:', e.trigger);
+hdjs.notify('复制成功');
+e.clearSelection();
+})
+})
 </script>
-<h1>复制元素文本</h1>
-
-<a href="javascript:;" class="copy" data-clipboard-text="我是复制的内容">点我复制</a>
+<hr>
+<a href="javascript:;" class="copy btn btn-success" data-clipboard-text="我是复制的内容">复制元素文本</a>
 <script>
-    require(['hdjs'], function (hdjs) {
-        hdjs.clipboard('.copy',{},function(e){
-            hdjs.notify('复制成功');
-            e.clearSelection();
-        })
-    });
+require(['hdjs'], function (hdjs) {
+hdjs.clipboard('.copy', {}, function (e) {
+e.clearSelection();
+})
+});
 </script>
-
-<h1>指定复制内容</h1>
-
-<input name="content" value="后盾人 人人做后盾" class="form-control">
-<button class="btn btn-default hdphp">复制内容</button>
+<hr>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" name="content" value="后盾人 人人做后盾 houdunren.com" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary hdphp" type="button">复制指定表单内容</button>
+    </div>
+</div>
 <script>
     require(['hdjs'], function (hdjs) {
-        var clipboard = hdjs.clipboard('.hdphp', {
+        hdjs.clipboard('.hdphp', {
             text: function (trigger) {
                 return $("[name='content']").val();
             }
@@ -55,7 +58,6 @@
             console.info('Action:', e.action);
             console.info('Text:', e.text);
             console.info('Trigger:', e.trigger);
-            hdjs.notify('复制成功');
             e.clearSelection();
         })
     })

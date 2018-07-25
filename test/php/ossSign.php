@@ -1,4 +1,5 @@
 <?php
-include '../vendor/autoload.php';
+include __DIR__.'/vendor/autoload.php';
 \houdunwang\config\Config::loadFiles(__DIR__.'/config');
-echo \houdunwang\oss\Oss::sign();
+$sign =  \houdunwang\oss\Oss::sign();
+echo($sign);

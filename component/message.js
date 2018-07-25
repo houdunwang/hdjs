@@ -6,12 +6,12 @@
  * @param timeout
  * @param options
  */
-define(['bootstrap','jquery','component/modal'], function (bootstrap,$,Modal) {
+define(['jquery','component/modal'], function ($,Modal) {
     return function (msg, redirect, type, timeout, options) {
         if ($.isArray(msg)) {
             msg = msg.join('<br/>');
         }
-        timeout = timeout ? timeout : 2;
+        timeout = timeout ? timeout : 3;
         if (!redirect && !type) {
             type = 'info';
         }
@@ -21,13 +21,13 @@ define(['bootstrap','jquery','component/modal'], function (bootstrap,$,Modal) {
         if (type == '') {
             type = redirect == '' ? 'error' : 'success';
         }
-        var icons = {
+        let icons = {
             success: 'check-circle',
             error: 'times-circle',
             info: 'info-circle',
             warning: 'exclamation-triangle'
         };
-        var fa = '';
+        let fa = '';
         switch (type) {
             case 'success':
                 fa = 'fa-check-circle';
@@ -42,7 +42,7 @@ define(['bootstrap','jquery','component/modal'], function (bootstrap,$,Modal) {
                 fa = 'fa-info-circle';
                 break;
         }
-        var h = '';
+        let h = '';
         if (redirect && redirect.length > 0) {
             if (redirect == 'back') {
                 h = '<p>' +
@@ -57,26 +57,25 @@ define(['bootstrap','jquery','component/modal'], function (bootstrap,$,Modal) {
                 h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">如果你的浏览器在 <span id="timeout">' + timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
             }
         }
-        var content =
+        let content =
             '			<i class="pull-left fa fa-4x fa-' + icons[type] + '"></i>' +
             '			<div class="pull-left"><p>' + msg + '</p>' + h +
             '			</div>' +
             '			<div class="clearfix"></div>';
-        var footer =
-            '			<button type="button" class="btn btn-default" data-dismiss="modal">确认</button>';
+        let footer =
+            '			<button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>';
 
-        var modalobj = Modal($.extend({
+        let modalobj = Modal($.extend({
             title: '系统提示',
             content: content,
             footer: footer,
             id: 'modalMessage'
         }, options));
         modalobj.find('.modal-content').addClass('alert alert-' + type);
-
         if (redirect) {
-            var timer = '';
+            let timer = '';
             modalobj.find("#timeout").html(timeout);
-            modalobj.on('show.bs.modal', function () {
+            modalobj.on('shown.bs.modal', function () {
                 doredirect();
             });
             modalobj.on('hide.bs.modal', function () {
@@ -93,7 +92,6 @@ define(['bootstrap','jquery','component/modal'], function (bootstrap,$,Modal) {
                         modalobj.modal('hide');
                         clearTimeout(timer);
                         window.location.href = redirect;
-                        return;
                     } else {
                         timeout--;
                         modalobj.find("#timeout").html(timeout);
@@ -105,4 +103,4 @@ define(['bootstrap','jquery','component/modal'], function (bootstrap,$,Modal) {
         modalobj.modal('show');
         return modalobj;
     }
-})
+});

@@ -1,5 +1,5 @@
-define(['dist/static/component/modal'], function (modal) {
-    var instance = {};
+define(['component/modal'], function (modal) {
+    let instance = {};
     return function (val, callback) {
         $.getScript('http://api.map.baidu.com/getscript?v=2.0&ak=WcqLYXBH2tHLhYNfPNpZCD4s&services=&t=20160708193109', function () {
             if (!val) {
@@ -20,17 +20,19 @@ define(['dist/static/component/modal'], function (modal) {
                     '<style>.tangram-suggestion-main { z-index : 9999; }/*搜索样式*/</style>' +
                     '<div class="form-group">' +
                     '<div class="input-group">' +
-                    '<input type="text" class="form-control" id="suggestId" placeholder="请输入地址来直接查找相关位置">' +
+                    '<div class="input-group mb-3">\n' +
+                    '  <input type="text" class="form-control" id="suggestId" placeholder="请输入地址来直接查找相关位置" aria-label="Recipient\'s username" aria-describedby="basic-addon2">\n' +
                     '<input type="text" id="coordinate" class="form-control" style="display: none;">' +
                     '<div id="searchResultPanel" style="border:1px solid #c0c0c0;width:150px;height:auto; display:none;z-index:2000"></div>' +
-                    '<div class="input-group-btn">' +
-                    '<button class="btn btn-default"><i class="icon-search"></i> 搜索</button>' +
-                    '</div>' +
+                    '  <div class="input-group-append">\n' +
+                    '    <button class="btn btn-outline-secondary" type="button">搜索</button>\n' +
+                    '  </div>\n' +
+                    '</div>'+
                     '</div>' +
                     '</div>' +
                     '<div id="map-container" style="height:400px;"></div>';
-                var footer =
-                    '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' +
+                let footer =
+                    '<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>' +
                     '<button type="button" class="btn btn-primary">确认</button>';
                 modalobj = modal({
                     title: '请选择地点',

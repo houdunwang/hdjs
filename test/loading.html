@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>剪贴板</title>
+    <title>加载动画</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -12,16 +12,18 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
 <script>
     require(['hdjs'], function (hdjs) {
-        var Modal = hdjs.loading()
-        setTimeout(function(){
-            Modal.modal('hide')
-        },2000)
+        hdjs.loading(function(obj){
+            setTimeout(function(){
+                //移动加载动画
+                obj.remove();
+            },3000)
+        });
     })
 </script>
 </body>

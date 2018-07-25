@@ -12,11 +12,11 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
-<textarea id="container" style="height:600px;width:100%;"></textarea>
+<textarea id="container" style="height:300px;width:100%;"></textarea>
 <script>
     require(['hdjs'], function (hdjs) {
         hdjs.ueditor('container', {hash: 2, data: 'hd'}, function (editor) {
@@ -25,10 +25,10 @@
     })
 </script>
 <div>
-    <textarea id="hdphp" style="height:600px;width:100%;"></textarea>
+    <textarea id="hdphp" style="height:300px;width:100%;"></textarea>
 </div>
 <script>
-    require(['hdjs'], function (hdjs) {
+    require(['hdjs','bootstrap'], function (hdjs) {
         hdjs.ueditor('hdphp', {
             toolbars: [['fullscreen', 'source', 'hdimage', 'preview']],
         }, function (editor) {

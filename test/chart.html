@@ -11,8 +11,8 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
 
@@ -21,7 +21,7 @@
 </div>
 <script>
     require(['hdjs'], function (hdjs) {
-        var options = {
+        let options = {
             type: 'bar',
             data: {
                 labels: ["hdjs", "hdphp", "hdcms", "Green", "Purple", "Orange"],

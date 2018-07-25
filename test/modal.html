@@ -11,16 +11,18 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
-<h1 onclick="base()">基本使用</h1>
+
+<h5 onclick="base()" class="btn btn-success">基本使用</h5>
 <script>
+    require(['bootstrap'])
     function base() {
-        require(['hdjs'], function (hdjs) {
+        require(['hdjs','bootstrap'], function (hdjs) {
             var modalObj = hdjs.modal({
-                title: '友情提示你哟',//标题
+                title: '友情提示',//标题
                 content: '后盾人 人人做后盾',//内容
                 footer: '<button type="button" class="btn btn-default confirm" data-dismiss="modal">关闭</button>',//底部
                 events: {
@@ -34,13 +36,13 @@
     }
 </script>
 
-<h1 onclick="ajax()">远程加载</h1>
+<h5 onclick="ajax()" class="btn btn-success">远程加载</h5>
 <script>
     function ajax() {
-        require(['hdjs'], function (hdjs) {
+        require(['hdjs','bootstrap'], function (hdjs) {
             hdjs.modal({
                 //加载的远程地址
-                content: ['http://hdjstest.hdphp.com/test/'],
+                content: ['index.html'],
                 title: '添加用户',
                 width: 800,
                 show: true,//直接显示
@@ -49,13 +51,13 @@
     }
 </script>
 
-<h1 onclick="post()">加载并传递POST数据</h1>
+<h5 onclick="post()" class="btn btn-success">加载并传递POST数据</h5>
 <script>
     function post() {
-        require(['hdjs'], function (hdjs) {
+        require(['hdjs','bootstrap'], function (hdjs) {
             hdjs.modal({
                 //加载的远程地址
-                content: ['./', {name: '后盾网'}],
+                content: ['php/modal.php', {name: '后盾网'}],
                 title: '添加站点',
                 width: 800
             });

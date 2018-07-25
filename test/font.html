@@ -12,16 +12,29 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
+<h5>基本使用</h5>
+<i class="fa fa-camera-retro fa-lg"></i> fa-lg
+<i class="fa fa-camera-retro fa-2x"></i> fa-2x
+<i class="fa fa-camera-retro fa-3x"></i> fa-3x
+<i class="fa fa-camera-retro fa-4x"></i> fa-4x
+<i class="fa fa-camera-retro fa-5x"></i> fa-5x
 <script>
-    require(['hdjs'], function (hdjs) {
-        hdjs.font(function(icon){
-            alert(icon)
+    require(['hdjs','bootstrap'])
+</script>
+<hr>
+<button class="btn btn-success" onclick="font()">点击选择图标</button>
+<script>
+    function font(){
+        require(['hdjs','bootstrap'], function (hdjs) {
+            hdjs.font(function(icon){
+                alert(icon)
+            })
         })
-    })
+    }
 </script>
 </body>
 </html>

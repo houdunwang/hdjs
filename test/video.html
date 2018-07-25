@@ -11,12 +11,12 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
 <!--如果需要加速则需要添加class VideoSpeed-->
-<video id="my-video" class="video-js vjs-big-play-centered VideoSpeed" controls preload="auto" width="1200" height="550" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+<video id="my-video" class="video-js vjs-big-play-centered VideoSpeed" controls preload="auto" width="1200" height="550" poster="http://www.houdunwang.com/attachment/21531487736025.jpg" data-setup="{}">
     <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
     <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
     <source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg">
@@ -28,8 +28,6 @@
 <script>
     require(['hdjs'], function (hdjs) {
          hdjs.video('my-video',function(video){
-            console.log(video);
-            console.log('播放器准备后执行');
              video.width(1000);
         })
     })

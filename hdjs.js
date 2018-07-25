@@ -1,19 +1,9 @@
-define([
-    'jquery',
-    'component/modal',
-    'bootstrap'
-], function ($, modal) {
+define(['jquery'], function ($) {
     return {
         //百度编辑器
         ueditor: function (id, opt, callback, buttons) {
             require(['component/ueditor'], function (ueditor) {
                 ueditor(id, opt, callback, buttons);
-            })
-        },
-        //Markdown编辑器
-        markdown: function (el, options) {
-            require(['component/editormd'], function (editormd) {
-                editormd.markdown(el, options);
             })
         },
         //Markdown编辑器前台转为HTML
@@ -24,7 +14,9 @@ define([
         },
         //模态框
         modal: function (options, callback) {
-            return modal(options, callback);
+            require(['component/modal'], function (modal) {
+                modal(options, callback);
+            })
         },
         //提示消息
         message: function (msg, redirect, type, timeout, options) {
@@ -114,24 +106,20 @@ define([
                 ajax(opt);
             })
         },
-        //提交POST
-        post: function (opt) {
-            require(['component/ajax'], function (ajax) {
-                ajax(opt)
-            })
-        },
         //预览图片
         preview: function (url, option) {
-            var option = option ? option : {};
-            var opt = $.extend({
+            option = option ? option : {};
+            let opt = $.extend({
                 title: '图片预览',
                 width: 700,
                 height: 500,
                 content: '<div style="text-align: center">' +
                 '<img style="max-width: 100%;" src="' + url + '"/>' +
                 '</div>'
-            }, option)
-            modal(opt)
+            }, option);
+            require(['component/modal'], function (modal) {
+                modal(opt)
+            })
         },
         //二维码
         qrcode: function (el, options) {
@@ -183,7 +171,7 @@ define([
         },
         //css加载动画
         spinners: function (callback) {
-            require(['css!dist/static/css/spinners.css'])
+            require(['css!/css/spinners.css'])
         },
         //字体选择
         swiper: function (el, options) {
@@ -221,24 +209,59 @@ define([
                 $.validate();
             })
         },
-        //加载动作
-        loading: function (callback) {
-            var modalobj = $('#modal-loading');
-            if (modalobj.length == 0) {
-                $(document.body).append('<div id="modal-loading" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>');
-                modalobj = $('#modal-loading');
-                var html =
-                    '<div class="modal-dialog" style="position: absolute;top:30%;left:35%;">' +
-                    '	<div style="text-align:center; background-color: transparent;">' +
-                    '     <i class="fa fa-spinner fa-spin fa-4x fa-fw" style="font-size: 5em;"></i>' +
-                    '	</div>' +
-                    '</div>';
-                modalobj.html(html);
-            }
-            modalobj.modal('show');
-            modalobj.next().css('z-index', 999999);
-            return modalobj;
+        //MD5加密
+        md5: function (content, callback) {
+            require(['https://cdn.bootcss.com/spark-md5/3.0.0/spark-md5.min.js'], function (md5) {
+                callback(md5.hash(content));
+            })
         },
+        //设备检测
+        isMobile: function () {
+            let userAgentInfo = navigator.userAgent;
+            let Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+            let flag = false;
+            for (let v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = true;
+                    break;
+                }
+            }
+            return flag;
+        },
+        //加载动画
+        loading: function (callback) {
+            require(['css!/css/spinners.css'], function () {
+                let html = '<div id="loading-css-hdjs" ' +
+                    'style="width: 100%;top:0;right:0;bottom:0;left:0;text-align: center;' +
+                    'position: absolute;padding-top:20%;background: rgba(255,255,255,0.6);z-index: 9999;">\n' +
+                    '    <span class="timer-loader">Loading&#8230;</span>\n' +
+                    '</div>';
+                $('body').append(html);
+                if ($.isFunction(callback)) {
+                    callback($("#loading-css-hdjs"));
+                }
+            })
+        },
+        //加载动作
+        // loading: function (callback) {
+        //     require(['css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css'], function () {
+        //         let modalobj = $('#modal-loading');
+        //         if (modalobj.length == 0) {
+        //             $(document.body).append('<div id="modal-loading"></div>');
+        //             modalobj = $('#modal-loading');
+        //             let html =
+        //                 '<div class="modal-dialog" style="position: absolute;top:30%;left:0;right:0;z-index: 9999">' +
+        //                 '	<div style="text-align:center; background-color: transparent;">' +
+        //                 '     <i class="fa fa-spinner fa-spin fa-4x fa-fw" style="font-size: 5em;"></i>' +
+        //                 '	</div>' +
+        //                 '</div>';
+        //             modalobj.html(html);
+        //             if ($.isFunction(callback)) {
+        //                 callback(modalobj);
+        //             }
+        //         }
+        //     })
+        // },
         //URL中GET参数管理
         get: {
             get: function (par, url) {
@@ -281,4 +304,4 @@ define([
             }
         }
     }
-})
+});

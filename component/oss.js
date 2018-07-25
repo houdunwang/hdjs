@@ -1,7 +1,7 @@
 define([
     'plupload',
     'webuploader',
-    'css!dist/static/css/oss.css'
+    'css!/css/oss.css'
 ], function (plupload) {
     return {
         upload:function(options){

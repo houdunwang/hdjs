@@ -1,7 +1,7 @@
 //颜色选择
 define([
-    'dist/static/package/spectrum-colorpicker/spectrum',
-    'css!dist/static/package/spectrum-colorpicker/spectrum.css'
+    'https://cdn.bootcss.com/spectrum/1.8.0/spectrum.min.js',
+    'css!https://cdn.bootcss.com/spectrum/1.8.0/spectrum.min.css'
 ], function () {
     return function (el, options) {
         $(el).spectrum($.extend({

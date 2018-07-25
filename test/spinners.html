@@ -11,7 +11,6 @@
             margin: 0;
             padding: 20px;
         }
-
         .grid {
             overflow: hidden;
         }
@@ -40,8 +39,8 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body>
 <script>
@@ -49,6 +48,9 @@
         hdjs.spinners();
     })
 </script>
+<!--<div id="loading-css-hdjs" style="width: 100%;top:0;right:0;bottom:0;left:0;text-align: center;position: absolute;padding-top:20%;background: rgba(255,255,255,0.6);z-index: 9999;">-->
+    <!--<span class="spinner-loader">Loading&#8230;</span>-->
+<!--</div>-->
 <div class="grid">
     <div class="cell">
         <div class="card">
@@ -144,7 +146,6 @@
             <span class="hexdots-loader">Loading&#8230;</span>
         </div>
     </div>
-
 </div>
 </body>
 </html>

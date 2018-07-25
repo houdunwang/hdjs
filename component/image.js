@@ -1,11 +1,11 @@
-define(['component/fileUploader', 'component/util'], function (fileUploader, util) {
+define(['component/fileUploader', 'hdjs'], function (fileUploader, hdjs) {
     return function (callback, options) {
         //初始化参数数据mes
         options = options ? options : {};
         //初始化POST数据
         options.data = options.data ? options.data : {};
         let opts = $.extend({
-            width: util.isMobile() ? '95%' : 800,//宽度
+            width: hdjs.isMobile() ? '95%' : 800,//宽度
             type: 'image',
             extensions: 'gif,jpg,jpeg,png',
             multiple: false,

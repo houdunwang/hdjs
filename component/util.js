@@ -16,9 +16,5 @@ define([
             }
             return flag;
         },
-        //md5加密
-        md5: function (content) {
-            return md5.hash(content);
-        }
     }
 })

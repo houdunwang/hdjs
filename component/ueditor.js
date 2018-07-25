@@ -1,8 +1,8 @@
-define(['ZeroClipboard', 'jquery', 'dist/static/component/fileUploader', 'ueditor'], function (ZeroClipboard, $, fileUploader) {
+define(['hdjs','ZeroClipboard', 'jquery', 'component/fileUploader', 'ueditor'], function (hdjs,ZeroClipboard, $, fileUploader) {
     return function (id, opt, callback, buttons) {
         window['ZeroClipboard'] = ZeroClipboard;
         var options = $.extend({
-            UEDITOR_HOME_URL: window.hdjs.base + '/dist/static/package/ueditor/',
+            UEDITOR_HOME_URL: window.hdjs.base + '/package/ueditor/',
             serverUrl: window.hdjs.ueditor,
             'elementPathEnabled': false,
             // 'initialFrameHeight': 200,
@@ -11,18 +11,18 @@ define(['ZeroClipboard', 'jquery', 'dist/static/component/fileUploader', 'uedito
             'autoClearinitialContent': false,
             'toolbars': [[
                 'fullscreen', 'source', '|', 'undo', 'redo', '|',
-                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'hdimage', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript',
+                'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor',
+                'backcolor', 'hdimage', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
                 'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
                 'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-                'directionalityltr', 'directionalityrtl', 'indent', '|',
                 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
                 'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                'emotion', 'music', 'attachment', 'map', 'insertframe', 'insertcode', 'pagebreak', 'template', 'background', '|',
-                'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
-                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-                'print', 'preview', 'searchreplace'
+                'emotion', 'music', 'attachment', 'map', 'insertframe', 'insertcode','|',
+                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol',
+                'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts'
             ]],
-            autoHeightEnabled: true,//自动增高
+            autoHeightEnabled: false,//自动增高
             autoFloatEnabled: false,
         }, opt);
         var editor = UE.getEditor(id, options);
@@ -40,7 +40,7 @@ define(['ZeroClipboard', 'jquery', 'dist/static/component/fileUploader', 'uedito
                         }
                         This.execCommand('insertimage', imglist);
                     }
-                }, {type: 'image', multiple: true, extensions: 'gif,jpg,jpeg,bmp,png'});
+                }, {type: 'image', multiple: true, extensions: 'gif,jpg,jpeg,bmp,png',width:'800px'});
             }
         };
         if ($.isFunction(callback)) {

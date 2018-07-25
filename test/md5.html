@@ -12,14 +12,18 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
-<h2>请在console控制台看效果</h2>
+<div class="alert alert-info" role="alert">
+    请在console控制台看效果
+</div>
 <script>
-    require(['util'], function (util) {
-        console.log(util.md5('houdunren.com'));
+    require(['hdjs'], function (hdjs) {
+        hdjs.md5('houdunren.com',function(hash){
+            console.log(hash);
+        });
     })
 </script>
 </body>

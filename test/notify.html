@@ -11,12 +11,12 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
 <script>
-    require(['hdjs'], function (hdjs) {
+    require(['hdjs','bootstrap'], function (hdjs) {
         hdjs.notify({
             title: "提示:",
             message: 'HDJS 开发必用',

@@ -11,14 +11,13 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
-<a onclick="base()" class="btn btn-default">基本使用</a>
+<button onclick="base()" class="btn btn-success">基本使用</button>
 <script>
-    require(['hdjs'])
-
+    require(['bootstrap']);
     function base() {
         require(['hdjs'], function (hdjs) {
             hdjs.message('基本使用', '', 'success');
@@ -26,7 +25,7 @@
     }
 </script>
 
-<a onclick="size()" class="btn btn-default">弹出框宽度100%</a>
+<button onclick="size()" class="btn btn-success">弹出框宽度100%</button>
 <script>
     function size() {
         require(['hdjs'], function (hdjs) {
@@ -35,7 +34,7 @@
     }
 </script>
 
-<a onclick="hideModal()" class="btn btn-default">使用modal模态框事件处理</a>
+<button onclick="hideModal()" class="btn btn-success">使用modal模态框事件处理</button>
 <script>
     function hideModal() {
         require(['hdjs'], function (hdjs) {
@@ -50,7 +49,7 @@
     }
 </script>
 
-<a onclick="confirm()" class="btn btn-default">确认消息</a>
+<button onclick="confirm()" class="btn btn-success">确认消息</button>
 <script>
     function confirm() {
         require(['hdjs'], function (hdjs) {

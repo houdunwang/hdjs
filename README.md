@@ -9,6 +9,8 @@ hdjs是一个优秀的前端组件化框架，可以在浏览器中直接使用a
 
 请查看手册学习使用 [http://hdjs.hdphp.com](http://hdjs.hdphp.com)
 
+hdjs 1.0 https://www.kancloud.cn/houdunwang/hdjs/439417
+
 ### 作者
 
 向军大叔  http://www.aoxiangjun.com

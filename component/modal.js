@@ -1,4 +1,4 @@
-define(['component/util', 'jquery'], function (util, $) {
+define(['hdjs', 'jquery'], function (hdjs, $) {
     return function (options, userCallback) {
         let opt = $.extend({
             show: true,//自动显示
@@ -6,7 +6,7 @@ define(['component/util', 'jquery'], function (util, $) {
             content: '',//内容
             footer: '',//底部
             id: 'hdMessage',//模态框id
-            width: util.isMobile() ? '95%' : 600,//宽度
+            width: hdjs.isMobile() ? '95%' : 600,//宽度
             class: '',//样式
             option: {},//bootstrap模态框选项
             events: {},//事件,参考bootstrap
@@ -92,4 +92,4 @@ define(['component/util', 'jquery'], function (util, $) {
         modalObj.modal(opt);
         return modalObj;
     }
-})
+});

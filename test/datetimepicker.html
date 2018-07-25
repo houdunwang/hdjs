@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script>
         window.hdjs = {};
         window.hdjs.base = '../';
         window.hdjs.uploader = 'test/php/uploader.php?';
         window.hdjs.filesLists = 'test/php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
+<h2>日期与时间</h2>
 <input id="datetimepicker" class="form-control">
 <script>
     require(['hdjs'], function (hdjs) {
@@ -27,23 +25,13 @@
         });
     })
 </script>
-<hr>
-<input id="datetimepicker2" class="form-control">
-<script>
-    require(['hdjs'], function (hdjs) {
-        hdjs.datetimepicker('#datetimepicker2', {
-            onChangeDateTime: function (dp, $input) {
-                console.log($input.val())
-            }
-        });
-    })
-</script>
-<hr>
+
+<h2>区间时间</h2>
 Start <input id="date_timepicker_start" value="">
 End <input id="date_timepicker_end" value="">
 <script>
-    require(['hdjs', 'jquery'], function (hdjs, jQuery) {
-        hdjs.datetimepicker('#date_timepicker_start',{
+    require(['hdjs'], function (hdjs) {
+        hdjs.datetimepicker('#date_timepicker_start', {
             format: 'Y/m/d',
             onShow: function (ct) {
                 this.setOptions({
@@ -52,7 +40,7 @@ End <input id="date_timepicker_end" value="">
             },
             timepicker: false
         });
-        hdjs.datetimepicker('#date_timepicker_end',{
+        hdjs.datetimepicker('#date_timepicker_end', {
             format: 'Y/m/d',
             onShow: function (ct) {
                 this.setOptions({
@@ -63,13 +51,14 @@ End <input id="date_timepicker_end" value="">
         });
     })
 </script>
-<hr>
-时间<input id="datetimepicker3" value="">
+
+<h2>时间选择</h2>
+时间<input id="datetimepickertime" class="form-control">
 <script>
-    require(['hdjs', 'jquery'], function (hdjs, jQuery) {
-        hdjs.datetimepicker('#datetimepicker3',{
+    require(['hdjs'], function (hdjs) {
+        hdjs.datetimepicker('#datetimepickertime', {
             datepicker: false,
-            format: 'h:i'
+            format: 'H:i'
         });
     })
 </script>

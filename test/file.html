@@ -11,17 +11,17 @@
         window.hdjs.uploader = 'php/uploader.php?';
         window.hdjs.filesLists = 'php/filesLists.php?';
     </script>
-    <script src="../dist/static/requirejs/require.js"></script>
-    <script src="../dist/static/requirejs/config.js"></script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
-<button onclick="upFile(this)" class="btn btn-default" type="button">选择文件</button>
+<button onclick="upFile(this)" class="btn btn-success" type="button">选择文件</button>
 <script>
-    require(['hdjs']);
+    require(['bootstrap']);
     //上传图片
     function upFile() {
-        require(['hdjs'], function (hdjs) {
-            var options = {
+        require(['hdjs','bootstrap'], function (hdjs) {
+            let options = {
                 extensions: 'txt,php',
                 //data是向后台服务器提交的POST数据
                 data:{name:'后盾人',year:2099},

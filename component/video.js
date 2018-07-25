@@ -2,15 +2,15 @@
 define([
     'https://cdn.bootcss.com/video.js/6.5.0/video.min.js',
     'css!https://cdn.bootcss.com/video.js/6.5.0/video-js.min.css',
-    'css!dist/static/css/video.css'
+    'css!/css/video.css'
 ], function (video) {
     return function (TagName, callback) {
-        var object = video(TagName);
+        let object = video(TagName);
         object.ready(function () {
-            var VideoExtend = this;
+            let VideoExtend = this;
             if (VideoExtend.hasClass('VideoSpeed')) {
                 //加速部位的字符串
-                var str = '<div id="VideoSpeed">加速 <ul><li>2.0x</li><li>1.75x</li><li>1.5x</li><li>1.25x</li><li class="active">1.0x</li></ul></div>'
+                let str = '<div id="VideoSpeed">加速 <ul><li>2.0x</li><li>1.75x</li><li>1.5x</li><li>1.25x</li><li class="active">1.0x</li></ul></div>'
                 //将加速按钮插入到进度条后面
                 $('.vjs-progress-control.vjs-control').after(str);
                 //给加速按钮添加鼠标移入事件
@@ -26,7 +26,7 @@ define([
                 //给每个li添加点击事件
                 $('.vjs-control-bar').on('click', '#VideoSpeed ul li', function () {
                     //获得当前li的序号
-                    var num = $(this).index();
+                    let num = $(this).index();
                     //判断当前li的序号 设置相应的播放速度
                     if (num == 0) {
                         //设置播放速度

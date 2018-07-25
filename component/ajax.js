@@ -1,20 +1,20 @@
 //提交表单
 define([
-    'dist/static/component/message',
+    'jquery',
+    'component/message',
     'hdjs',
     'axios',
     'lodash'
-], function (Message, hdjs, axios) {
+], function ($,Message, hdjs, axios,_) {
     return function (opt) {
-        var options = $.extend({
+        let options = $.extend({
             type: 'post',
             url: window.system ? window.system.url : '',
             data: {},
             successUrl: 'back',
             callback: '',
         }, opt);
-        var loadingModal = hdjs.loading();
-        var ax;
+        let ax;
         switch (options.type) {
             case 'get':
                 ax = axios.get(options.url, {params: options.data})
@@ -23,25 +23,27 @@ define([
                 ax = axios.post(options.url, options.data)
                 break;
         }
-        ax.then(function (response) {
-            loadingModal.modal('hide');
-            if (_.isObject(response.data)) {
-                if ($.isFunction(options.callback)) {
-                    options.callback(response.data);
-                } else {
-                    if (response.data.valid == 1) {
-                        Message(response.data.message, options.successUrl, 'success');
+        hdjs.loading(function(loadingBox){
+            ax.then(function (response) {
+                if (_.isObject(response.data)) {
+                    if ($.isFunction(options.callback)) {
+                        options.callback(response.data);
                     } else {
-                        Message(response.data.message, '', 'info');
+                        if (response.data.code == 0) {
+                            Message(response.data.message, options.successUrl, 'success');
+                        } else {
+                            Message(response.data.message, '', 'info');
+                        }
                     }
+                } else {
+                    Message(response.data, '', 'error');
                 }
-            } else {
-                Message(response.data, '', 'error');
-            }
-        }).catch(function (response) {
-            loadingModal.modal('hide');
-            Message(response, '', 'error');
+            }).catch(function (response) {
+                Message(response, '', 'error');
+            });
+            loadingBox.remove();
         });
+
         return false;
     }
 })

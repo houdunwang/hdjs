@@ -5,8 +5,8 @@ define([
     'component/message',
     'css!/css/fileUploader.css'
 ], function ($, WebUploader, modal, Message) {
-     let modalobj = null;
-     let obj = {
+    let modalobj = null;
+    let obj = {
         options: {},
         //加载远程图片
         getImageList: function (url) {
@@ -66,7 +66,6 @@ define([
                             </div><div class="info"></div>\
                             <div class="btns">\
                             <div class="btn btn-default" data-dismiss="modal">取消</div>\
-                            <button type="button" class="btn btn-primary">Save changes</button>\
                             <div class="btn btn-info uploadBtn">确定使用</div>\
                             </div> </div> </div> </div> </div></div>\
                     <div role="tabpanel" class="tab-pane" id="imagelistsBox">\
@@ -91,7 +90,7 @@ define([
                                     images = [];
                                     $("#imagelists li.selectActive").each(function () {
                                         images.push($(this).attr('path'));
-                                    })
+                                    });
                                     if (!options.multiple) {
                                         modalobj.modal('hide');
                                     }
@@ -101,7 +100,7 @@ define([
                                     modalobj.modal('hide');
                                 });
                                 //显示上传控件
-                                var uploader = obj.initImageUploader({
+                                let uploader = obj.initImageUploader({
                                     accept: {
                                         title: 'Images',
                                         extensions: options.extensions,//允许上传的文件类型
@@ -116,8 +115,8 @@ define([
                                     fileSingleSizeLimit: options.fileSingleSizeLimit    // 2 M 单个文件上传大小
                                 });
                                 uploader.on('uploadAccept', function (file, response) {
-                                    if (response.code!==undefined ) {
-                                        if (response.code==0) {
+                                    if (response.code !== undefined) {
+                                        if (response.code == 0) {
                                             images.push(response.file);
                                             return true;
                                         } else {
@@ -146,8 +145,8 @@ define([
                         id: 'hdWebUpload',
                         width: 700,
                         title: '<ul class="nav nav-pills nav-hd-upload" role="tablist">\
-                    <li role="presentation" class="active"><a href="#upload" aria-controls="home" role="tab" data-toggle="tab">上传文件</a></li>\
-                    <li role="presentation"><a href="#imagelists" aria-controls="profile" role="tab" data-toggle="tab">浏览文件</a></li>\
+                    <li role="presentation" class="active"><a href="#upload" aria-controls="home" role="tab" data-toggle="tab"  class="nav-link active">上传文件</a></li>\
+                    <li role="presentation"><a href="#imagelists" aria-controls="profile" role="tab" data-toggle="tab"  class="nav-link">浏览文件</a></li>\
                     </ul>',
                         content: ' <div class="tab-content">\
                     <div role="tabpanel" class="tab-pane active" id="upload"><div id="wrapper">\
@@ -178,10 +177,7 @@ define([
                                 //加载远程文件
                                 function getImageList(url) {
                                     $.post(url, options.data, function (res) {
-                                        if (res.valid == 0) {
-                                            modalobj.modal('hide');
-                                            Message(res.message, '', 'warning');
-                                        } else {
+                                        if (res.code == 0) {
                                             let html = '<table class="table table-hover">' +
                                                 '<tr><th>文件名</th><th>大小</th><th>创建时间</th></tr>';
                                             $(res.data).each(function (i) {
@@ -192,6 +188,9 @@ define([
                                             html += "</table>";
                                             html += res.page;
                                             modalobj.find('#imagelists').html(html);
+                                        } else {
+                                            modalobj.modal('hide');
+                                            Message(res.message, '', 'warning');
                                         }
                                     }, 'json');
                                 }
@@ -225,14 +224,18 @@ define([
                                     fileSingleSizeLimit: options.fileSingleSizeLimit    // 2 M 单个文件上传大小
                                 });
                                 uploader.on('uploadAccept', function (file, response) {
-                                    if (response.valid) {
-                                        images.push(response.message);
-                                        return true;
+                                    if (response.code !== undefined) {
+                                        if (response.code == 0) {
+                                            images.push(response.file);
+                                            return true;
+                                        } else {
+                                            //上传失败
+                                            alert('上传失败, ' + response.message);
+                                            uploader.removeFile(file.file);
+                                            return false;
+                                        }
                                     } else {
-                                        //上传失败
-                                        alert('上传失败, ' + response.message);
-                                        uploader.removeFile(file.file);
-                                        return false;
+                                        Message(response._raw, '', 'info', 5);
                                     }
                                 });
                             },

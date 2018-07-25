@@ -1,6 +1,6 @@
 //生成二维码
 define([
-    'bootstrap',
+    'jquery',
     'https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js'
 ], function ($) {
     return function (el, text) {
@@ -10,4 +10,4 @@ define([
             if (error) console.error(error)
         })
     }
-})
+});
