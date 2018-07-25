@@ -9,8 +9,6 @@ hdjs是一个优秀的前端组件化框架，可以在浏览器中直接使用a
 
 请查看手册学习使用 [http://hdjs.hdphp.com](http://hdjs.hdphp.com)
 
-hdjs 1.0 https://www.kancloud.cn/houdunwang/hdjs/439417
-
 ### 作者
 
 向军大叔  http://www.aoxiangjun.com
@@ -39,8 +37,3 @@ QQ  : 2300071698
 HDJS是为了方便前台工作框架内部集成了常用的前台开发组件，使用前台组件化管理，可以大大节省开发工作。
 
 GitHub下载: [https://github.com/houdunwang/hdjs](https://github.com/houdunwang/hdjs)
-
-NPM安装:
-```
-npm install --save hdjs
-```
