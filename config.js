@@ -7,41 +7,37 @@ require.config({
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'hdjs',
-        // css: 'css.min',
         css:'https://cdn.bootcss.com/require-css/0.1.10/css.min',
         domReady: 'domReady',
-        vue: 'package/vue',
-        scroll: 'package/jquery-scrollTo/jquery.scrollTo.min',
+        vue: 'https://cdn.bootcss.com/vue/2.5.16/vue.min',
+        scroll: 'https://cdn.bootcss.com/jquery-scrollTo/2.1.2/jquery.scrollTo.min',
         Aliplayer: 'http://g.alicdn.com/de/prismplayer/2.0.1/aliplayer-min',
         //微信JSSDK
         jweixin: 'http://res.wx.qq.com/open/js/jweixin-1.2.0',
         //百度编辑器
         ueditor: 'package/ueditor/ueditor.all',
         //代码高亮
-        prism: 'package/prism/prism',
+        prism: 'https://cdn.bootcss.com/prism/9000.0.1/prism.min',
         //剪贴版
-        ZeroClipboard: 'package/ZeroClipboard/ZeroClipboard.min',
+        ZeroClipboard: 'https://cdn.bootcss.com/zeroclipboard/2.3.0/ZeroClipboard.min',
         //JS验证
         validator:'https://cdn.bootcss.com/validator/10.2.0/validator.min',
         //上传组件
         webuploader: 'package/webuploader/dist/webuploader',
         bootstrap: 'https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min',
         lodash: 'https://cdn.bootcss.com/lodash.js/4.17.10/lodash.min',
-        moment: 'package/moment.min',
+        moment: 'https://cdn.bootcss.com/moment.js/2.22.1/moment.min',
         oss: "component/oss",
-        'jquery-mousewheel': 'package/jquery-mousewheel/jquery.mousewheel.min',
-        //markdown编辑器edit.md设置
+        'jquery-mousewheel': 'https://cdn.bootcss.com/jquery-mousewheel/3.1.13/jquery.mousewheel.min',
         jquery: "https://cdn.bootcss.com/jquery/3.3.1/jquery.min",
         axios: "https://cdn.bootcss.com/axios/0.18.0/axios.min",
-        katex: "package/katex.min",
-        codemirror: "package/codemirror.min",
-        //代码高亮
-        highlight: "package/highlight/highlight.min",
+        katex: "https://cdn.bootcss.com/KaTeX/0.9.0/katex.min",
+        codemirror: "https://cdn.bootcss.com/codemirror/5.38.0/codemirror.min",
         plupload: "package/plupload/plupload.full.min"
     },
     shim: {
         hdjs:{
-          deps:["css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"]
+            deps:["css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"]
         },
         plupload: {
             exports: 'plupload'

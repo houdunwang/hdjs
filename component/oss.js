@@ -157,8 +157,8 @@ define([
                 browse_button : options.pick,
                 //multi_selection: false,
                 // container: document.getElementById('container'),
-                flash_swf_url : window.hdjs+'/dist/static/oss/lib/plupload-2.1.2/js/Moxie.swf',
-                silverlight_xap_url : window.hdjs+'/dist/static/oss/lib/plupload-2.1.2/js/Moxie.xap',
+                // flash_swf_url : window.hdjs.base+'/package/oss/lib/plupload-2.1.2/js/Moxie.swf',
+                // silverlight_xap_url : window.hdjs.base+'/package/oss/lib/plupload-2.1.2/js/Moxie.xap',
                 url : 'http://oss.aliyuncs.com',
                 filters: {
                     mime_types : options.filters.mime_types,
