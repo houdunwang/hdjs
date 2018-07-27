@@ -15,18 +15,14 @@
     <script src="../config.js"></script>
 </head>
 <body style="padding: 50px;">
-<pre>
-    <code class="language-javascript line-numbers code-toolbar">
-        <script>
-            window.hdjs = {};
-            window.hdjs.base = '../';
-            window.hdjs.uploader = 'php/uploader.php?';
-            window.hdjs.filesLists = 'php/filesLists.php?';
-        </script>
-    </code>
-</pre>
+<pre><code class="language-javascript line-numbers">
+window.hdjs = {};
+window.hdjs.base = '../';
+window.hdjs.uploader = 'php/uploader.php?';
+window.hdjs.filesLists = 'php/filesLists.php?';
+</code></pre>
 <script>
-    require(['prism'], function () {})
+    require(['prism'])
 </script>
 </body>
 </html>

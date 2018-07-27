@@ -17,7 +17,7 @@ require.config({
         //百度编辑器
         ueditor: 'package/ueditor/ueditor.all',
         //代码高亮
-        prism: 'https://cdn.bootcss.com/prism/9000.0.1/prism.min',
+        prism: 'package/prism/prism',
         //剪贴版
         ZeroClipboard: 'https://cdn.bootcss.com/zeroclipboard/2.3.0/ZeroClipboard.min',
         //JS验证
