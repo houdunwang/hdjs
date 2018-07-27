@@ -54,6 +54,12 @@ define(['jquery'], function ($) {
                 image(callback, options);
             })
         },
+        scrollTo: function (container, elem, times, options) {
+            options = options ? options : {};
+            require(['scrollTo'], function () {
+                $(container).scrollTo(elem, times, options);
+            });
+        },
         //文件上传
         file: function (callback, options) {
             require(['component/file'], function (file) {

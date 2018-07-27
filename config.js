@@ -10,7 +10,7 @@ require.config({
         css:'https://cdn.bootcss.com/require-css/0.1.10/css.min',
         domReady: 'domReady',
         vue: 'https://cdn.bootcss.com/vue/2.5.16/vue.min',
-        scroll: 'https://cdn.bootcss.com/jquery-scrollTo/2.1.2/jquery.scrollTo.min',
+        scrollTo: 'https://cdn.bootcss.com/jquery-scrollTo/2.1.2/jquery.scrollTo.min',
         Aliplayer: 'http://g.alicdn.com/de/prismplayer/2.0.1/aliplayer-min',
         //微信JSSDK
         jweixin: 'http://res.wx.qq.com/open/js/jweixin-1.2.0',
