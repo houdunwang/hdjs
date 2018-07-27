@@ -6,5 +6,5 @@ composer.lock
 npm-debug.log
 /test/php/config
 /node_modules
-/test/vendor
+/test/phpvendor
 /test/php/uploads
