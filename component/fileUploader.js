@@ -3,7 +3,7 @@ define([
     'webuploader',
     'component/modal',
     'component/message',
-    'css!/css/fileUploader.css'
+    'css!less/fileUploader.css'
 ], function ($, WebUploader, modal, Message) {
     let modalobj = null;
     let obj = {

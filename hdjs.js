@@ -177,7 +177,7 @@ define(['jquery'], function ($) {
         },
         //css加载动画
         spinners: function (callback) {
-            require(['css!/css/spinners.css'])
+            require(['css!less/spinners.css'])
         },
         //字体选择
         swiper: function (el, options) {
@@ -236,7 +236,7 @@ define(['jquery'], function ($) {
         },
         //加载动画
         loading: function (callback) {
-            require(['css!/css/spinners.css'], function () {
+            require(['css!less/spinners.css'], function () {
                 let html = '<div id="loading-css-hdjs" ' +
                     'style="width: 100%;top:0;right:0;bottom:0;left:0;text-align: center;' +
                     'position: absolute;padding-top:20%;background: rgba(255,255,255,0.6);z-index: 9999;">\n' +
@@ -248,26 +248,6 @@ define(['jquery'], function ($) {
                 }
             })
         },
-        //加载动作
-        // loading: function (callback) {
-        //     require(['css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css'], function () {
-        //         let modalobj = $('#modal-loading');
-        //         if (modalobj.length == 0) {
-        //             $(document.body).append('<div id="modal-loading"></div>');
-        //             modalobj = $('#modal-loading');
-        //             let html =
-        //                 '<div class="modal-dialog" style="position: absolute;top:30%;left:0;right:0;z-index: 9999">' +
-        //                 '	<div style="text-align:center; background-color: transparent;">' +
-        //                 '     <i class="fa fa-spinner fa-spin fa-4x fa-fw" style="font-size: 5em;"></i>' +
-        //                 '	</div>' +
-        //                 '</div>';
-        //             modalobj.html(html);
-        //             if ($.isFunction(callback)) {
-        //                 callback(modalobj);
-        //             }
-        //         }
-        //     })
-        // },
         //URL中GET参数管理
         get: {
             get: function (par, url) {

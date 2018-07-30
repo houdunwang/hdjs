@@ -7,7 +7,7 @@ require.config({
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'hdjs',
-        css:'https://cdn.bootcss.com/require-css/0.1.10/css.min',
+        css:'css.min',
         domReady: 'domReady',
         vue: 'https://cdn.bootcss.com/vue/2.5.16/vue.min',
         scrollTo: 'https://cdn.bootcss.com/jquery-scrollTo/2.1.2/jquery.scrollTo.min',
@@ -64,7 +64,7 @@ require.config({
         },
         prism: {
             deps: [
-                'css!/package/prism/prism.css'
+                'css!package/prism/prism.css'
             ]
         },
         ueditor: {
@@ -75,25 +75,24 @@ require.config({
 });
 require([
     'jquery',
-    'axios',
-    'lodash',
-], function ($, axios, _) {
-    window.$ = window.jQuery = $;
-    window._ = _;
-    console.info('后盾人 人人做后盾  www.houdunren.com');
+    'axios'
+], function ($, axios) {
+    // window.$ = window.jQuery = $;
+    // window._ = _;
+    // console.info('后盾人 人人做后盾  www.houdunren.com');
     //将属性hdjs元素显示出来
-    $("[hd-cloak]").show();
-    $("[hd-hide]").hide();
-    $("[hd-loading]").hide();
-    window.axios = axios;
-    window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    // $("[hd-cloak]").show();
+    // $("[hd-hide]").hide();
+    // $("[hd-loading]").hide();
+    // window.axios = axios;
+    axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     let token = document.head.querySelector('meta[name="csrf-token"]');
     if (token) {
-        window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
         //为异步请求设置CSRF令牌
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': token.content
             }
         });
     }
