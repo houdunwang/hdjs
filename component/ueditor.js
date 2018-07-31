@@ -1,4 +1,8 @@
-define(['hdjs','ZeroClipboard', 'jquery', 'component/fileUploader', 'ueditor'], function (hdjs,ZeroClipboard, $, fileUploader) {
+define(['hdjs','ZeroClipboard', 'jquery',
+    'component/fileUploader',
+    'ueditor',
+    'css!less/ueditor.css'
+], function (hdjs,ZeroClipboard, $, fileUploader) {
     return function (id, opt, callback, buttons) {
         window['ZeroClipboard'] = ZeroClipboard;
         var options = $.extend({
@@ -11,16 +15,13 @@ define(['hdjs','ZeroClipboard', 'jquery', 'component/fileUploader', 'ueditor'], 
             'autoClearinitialContent': false,
             'toolbars': [[
                 'fullscreen', 'source', '|', 'undo', 'redo', '|',
-                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough',
                 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor',
-                'backcolor', 'hdimage', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                'emotion', 'music', 'attachment', 'map', 'insertframe', 'insertcode','|',
-                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol',
-                'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts'
+                'backcolor', 'hdimage', 'insertorderedlist', 'insertunorderedlist', 'selectall', '|',
+                 'paragraph', 'fontfamily', 'fontsize', '|',
+                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                'link', 'emotion', 'map',  'insertcode','|',
+                'inserttable', 'deletetable'
             ]],
             autoHeightEnabled: false,//自动增高
             autoFloatEnabled: false,

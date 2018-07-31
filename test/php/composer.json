@@ -1,6 +1,5 @@
 {
     "require": {
-        "houdunwang/config": "^1.0",
         "houdunwang/oss": "^1.0"
     }
 }
