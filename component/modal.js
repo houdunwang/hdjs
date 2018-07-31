@@ -1,4 +1,4 @@
-define(['hdjs', 'jquery'], function (hdjs, $) {
+define(['hdjs', 'jquery','bootstrap'], function (hdjs, $) {
     return function (options, userCallback) {
         let opt = $.extend({
             show: true,//自动显示

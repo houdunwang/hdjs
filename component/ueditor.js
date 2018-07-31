@@ -40,7 +40,7 @@ define(['hdjs','ZeroClipboard', 'jquery', 'component/fileUploader', 'ueditor'], 
                         }
                         This.execCommand('insertimage', imglist);
                     }
-                }, {type: 'image', multiple: true, extensions: 'gif,jpg,jpeg,bmp,png',width:'800px'});
+                }, {type: 'image', multiple: true, extensions: 'gif,jpg,jpeg,bmp,png',width:'800px',data:{csrf_token:''}});
             }
         };
         if ($.isFunction(callback)) {

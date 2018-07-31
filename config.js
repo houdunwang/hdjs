@@ -55,8 +55,8 @@ require.config({
         },
         bootstrap: {
             deps: [
-                'css!https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css',
-                'css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css'
+                // 'css!https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css',
+                // 'css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css'
             ]
         },
         webuploader: {

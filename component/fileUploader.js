@@ -13,8 +13,8 @@ define([
             let options = this.options;
             let token = document.head.querySelector('meta[name="csrf-token"]');
             if (token) {
-                options.data.csrf_token = token;
-                options.data._token = token;
+                options.data.csrf_token = token.content;
+                options.data._token = token.content;
             }
             $.post(url, options.data, function (res) {
                 if (res.code == 0) {
@@ -35,8 +35,8 @@ define([
             this.options = options;
             let token = document.head.querySelector('meta[name="csrf-token"]');
             if (token) {
-                options.data.csrf_token = token;
-                options.data._token = token;
+                options.data.csrf_token = token.content;
+                options.data._token = token.content;
             }
             //成功上传的图片
             let images = [];
@@ -251,7 +251,6 @@ define([
             }
         },
         initImageUploader: function (options) {
-
             var opt = $.extend({
                 accept: {
                     title: 'Images',
