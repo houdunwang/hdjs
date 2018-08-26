@@ -6,14 +6,14 @@
  * @param timeout
  * @param options
  */
-define(['jquery','component/modal'], function ($,Modal) {
+define(['jquery', 'component/modal'], function ($, Modal) {
     return function (msg, redirect, type, timeout, options) {
         if ($.isArray(msg)) {
             msg = msg.join('<br/>');
         }
         timeout = timeout ? timeout : 3;
         if (!redirect && !type) {
-            type = 'info';
+            type = '';
         }
         if ($.inArray(type, ['success', 'error', 'info', 'warning']) == -1) {
             type = '';
@@ -71,7 +71,9 @@ define(['jquery','component/modal'], function ($,Modal) {
             footer: footer,
             id: 'modalMessage'
         }, options));
-        modalobj.find('.modal-content').addClass('alert alert-' + type);
+        if (type) {
+            modalobj.find('.modal-content').addClass('alert alert-' + type);
+        }
         if (redirect) {
             let timer = '';
             modalobj.find("#timeout").html(timeout);

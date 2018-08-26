@@ -46,7 +46,7 @@ define([
                 let username = $.trim($(option.input).val());
                 //验证手机号或邮箱
                 if (!/^\d{11}$/.test(username) && !/^.+@.+$/.test(username)) {
-                    Message('帐号格式错误', '', 'info');
+                    Message('邮箱或手机号错误，不能发送验证码', '', '');
                     return;
                 }
                 if (option.before() === true) {

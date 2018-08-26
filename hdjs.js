@@ -12,6 +12,16 @@ define(['jquery'], function ($) {
                 editormd.markdownToHTML(el, options);
             })
         },
+        //SweetAlert
+        swal: function (title, content, type) {
+            require(['https://cdn.bootcss.com/sweetalert/2.1.0/sweetalert.min.js', 'lodash'], function (swal, _) {
+                if (_.isObject(title)) {
+                    swal(title)
+                } else {
+                    swal(title, content, type)
+                }
+            });
+        },
         //模态框
         modal: function (options, callback) {
             require(['component/modal'], function (modal) {
@@ -120,8 +130,8 @@ define(['jquery'], function ($) {
                 width: 700,
                 height: 500,
                 content: '<div style="text-align: center">' +
-                '<img style="max-width: 100%;" src="' + url + '"/>' +
-                '</div>'
+                    '<img style="max-width: 100%;" src="' + url + '"/>' +
+                    '</div>'
             }, option);
             require(['component/modal'], function (modal) {
                 modal(opt)
