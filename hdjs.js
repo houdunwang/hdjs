@@ -6,6 +6,39 @@ define(['jquery'], function ($) {
                 ueditor(id, opt, callback, buttons);
             })
         },
+        simditor: function (options) {
+            require(['lodash','simditor', 'simditor-fullscreen', 'marked', 'to-markdown', 'simditor-dropzone',
+            'simditor-markdown'], function (_,Simditor) {
+                 opt =_.merge({
+                    spellChecker: false,
+                    pasteImage: true,
+                    locale: 'zh-CN',
+                    // markdown: true,
+                    toolbar: [
+                        'title',
+                        'bold',
+                        'italic',
+                        'fontScale',
+                        'color',
+                        'ol',
+                        'ul',
+                        'blockquote',
+                        'code',
+                        'table',
+                        'link',
+                        'image',
+                        'hr',
+                        'fullscreen',
+                    ]
+                },options);
+                new Simditor(opt);
+            })
+        },
+        editormd: function (el, options) {
+            require(['component/editormd'], function (editor) {
+                editor.markdown(el, options);
+            })
+        },
         //Markdown编辑器前台转为HTML
         markdownToHTML: function (el, options) {
             require(['component/editormd'], function (editormd) {
