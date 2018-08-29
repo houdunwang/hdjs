@@ -23,7 +23,7 @@ define([
                         html += '<li style="background-image: url(' + res.data[i].url + ');" path="' + res.data[i].path + '"></li>';
                     });
                     html += "</ul>";
-                    html += res.page;
+                    html += _.isObject(res.page)?JSON.stringify(res.page):res.page;
                     modalobj.find('#imagelists').html(html);
                 } else {
                     modalobj.modal('hide');
