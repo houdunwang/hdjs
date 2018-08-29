@@ -13,6 +13,8 @@ define(['component/fileUploader', 'hdjs'], function (fileUploader, hdjs) {
             fileSingleSizeLimit: 20 * 1024 * 1024,
             compress: false,
             data: {},
+            //后台上传处理地址
+            uploader: ''
         }, options);
         fileUploader.show(function (images) {
             if (images.length > 0) {

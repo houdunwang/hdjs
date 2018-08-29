@@ -1,6 +1,8 @@
 define(["hdjs", "jquery"], function (hdjs, $) {
     return {
         markdown: function (elem, options) {
+            //图片上传地址
+            serverUrl= options.server?options.server:window.hdjs.uploader;
             require([
                 "editormd",
                 "package/editor.md/languages/zh-tw",
@@ -24,6 +26,7 @@ define(["hdjs", "jquery"], function (hdjs, $) {
                     saveHTMLToTextarea: true,
                     flowChart: true,
                     sequenceDiagram: true,
+
                     toolbarIcons: function () {
                         return [
                             "undo", "redo", "|",
@@ -68,23 +71,24 @@ define(["hdjs", "jquery"], function (hdjs, $) {
                     onload: function () {
                         //拖放上传
                         var codeEditor = $(".CodeMirror-wrap")[0];
-                        codeEditor.ondragenter = function(e) {
+                        codeEditor.ondragenter = function (e) {
                             e.preventDefault();
                             e.stopPropagation();
                             return false;
                         };
-                        codeEditor.ondragover = function(e) {
+                        codeEditor.ondragover = function (e) {
                             e.preventDefault();
                             e.stopPropagation();
                             return false;
                         };
-                        codeEditor.ondrop = function(e) {
+                        codeEditor.ondrop = function (e) {
                             e.preventDefault();
                             e.stopPropagation();
                             var files = e.dataTransfer.files // 这里获取到用户拖放的文件
                             // 其中 ajaxUpload是Ajax上传文件的函数
                             // uploadUrl是后端提供的上传地址, uploadCallback是上传后的回调函数，用于生成代码片段并插入编辑器
-                            ajaxUpload(window.hdjs.uploader, files, function(data){});
+                            ajaxUpload(serverUrl, files, function (data) {
+                            });
                             return false;
                         }
 
@@ -99,11 +103,11 @@ define(["hdjs", "jquery"], function (hdjs, $) {
                                 processData: false,
                                 contentType: false,
                                 dataType: 'json',
-                                success: function(data) {
+                                success: function (data) {
                                     md.insertValue("\n![aa](" + data.file + ")");
                                     callback(data);
                                 },
-                                complete: function(data) {
+                                complete: function (data) {
                                 }
                             });
 
@@ -129,11 +133,12 @@ define(["hdjs", "jquery"], function (hdjs, $) {
                             reader.onload = function (event) {
                                 var base64 = event.target.result;
                                 //ajax上传图片
-                                $.post(window.hdjs.uploader, {file: base64}, function (ret) {
-                                    console.log(ret)
+                                $.post(serverUrl, {file: base64}, function (ret) {
                                     if (ret.code === 0) {
                                         //新一行的图片显示
                                         md.insertValue("\n![aa](" + ret.file + ")");
+                                    }else{
+                                        hdjs.message(ret.message)
                                     }
                                 });
                             };

@@ -13,9 +13,9 @@ define(['jquery', 'component/modal'], function ($, Modal) {
         }
         timeout = timeout ? timeout : 3;
         if (!redirect && !type) {
-            type = '';
+            type = 'default';
         }
-        if ($.inArray(type, ['success', 'error', 'info', 'warning']) == -1) {
+        if ($.inArray(type, ['success', 'error', 'info', 'warning','default']) == -1) {
             type = '';
         }
         if (type == '') {

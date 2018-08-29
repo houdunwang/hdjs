@@ -11,7 +11,8 @@ define(['component/fileUploader', 'hdjs'], function (fileUploader, hdjs) {
             multiple: false,
             fileSizeLimit: 200 * 1024 * 1024,
             fileSingleSizeLimit: 20 * 1024 * 1024,
-            data: {}
+            data: {},
+            server: ''
         }, options);
         fileUploader.show(function (files) {
             if (files) {

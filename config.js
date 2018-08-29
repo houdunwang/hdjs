@@ -38,18 +38,18 @@ require.config({
         "simditor-fullscreen": "package/simditor/simditor-fullscreen-master/lib/simditor-fullscreen",
         "marked": "https://cdn.bootcss.com/marked/0.4.0/marked.min",
         "to-markdown": "https://cdn.bootcss.com/to-markdown/3.1.1/to-markdown.min",
-        "simditor-markdown":"package/simditor/simditor-markdown/lib/simditor-markdown",
-        "simditor-dropzone":"package/simditor/simditor-dropzone/lib/simditor-dropzone",
-        "simple-module":"package/simditor/scripts/module",
+        "simditor-markdown": "package/simditor/simditor-markdown/lib/simditor-markdown",
+        "simditor-dropzone": "package/simditor/simditor-dropzone/lib/simditor-dropzone",
+        "simple-module": "package/simditor/scripts/module",
         //editor.md
-        prettify:'https://cdn.bootcss.com/prettify/r298/prettify.min',
-        raphael:'package/editor.md/lib/raphael.min',
-        underscore:'https://cdn.bootcss.com/underscore.js/1.9.0/underscore-min',
-        flowchart:"package/editor.md/lib/flowchart.min",
-        jqueryflowchart:'package/editor.md/lib/jquery.flowchart.min',
-        sequenceDiagram:'package/editor.md/lib/sequence-diagram.min',
-        katex:'https://cdn.bootcss.com/KaTeX/0.10.0-alpha/katex.min',
-        editormd:'package/editor.md/editormd.amd',
+        prettify: 'https://cdn.bootcss.com/prettify/r298/prettify.min',
+        raphael: 'package/editor.md/lib/raphael.min',
+        underscore: 'https://cdn.bootcss.com/underscore.js/1.9.0/underscore-min',
+        flowchart: "package/editor.md/lib/flowchart.min",
+        jqueryflowchart: 'package/editor.md/lib/jquery.flowchart.min',
+        sequenceDiagram: 'package/editor.md/lib/sequence-diagram.min',
+        katex: 'https://cdn.bootcss.com/KaTeX/0.10.0-alpha/katex.min',
+        editormd: 'package/editor.md/editormd.amd',
 
     },
     shim: {
@@ -109,14 +109,14 @@ require([
     'jquery',
     'axios'
 ], function ($, axios) {
-    // window.$ = window.jQuery = $;
-    // window._ = _;
-    // console.info('后盾人 人人做后盾  www.houdunren.com');
-    //将属性hdjs元素显示出来
-    // $("[hd-cloak]").show();
-    // $("[hd-hide]").hide();
-    // $("[hd-loading]").hide();
-    // window.axios = axios;
+    //全局错误定义
+    $.ajaxSetup({
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            require(['hdjs'],function(hdjs){
+                hdjs.message(JSON.stringify(XMLHttpRequest.responseJSON));
+            })
+        }
+    });
     axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     let token = document.head.querySelector('meta[name="csrf-token"]');
     if (token) {
