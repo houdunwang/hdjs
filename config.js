@@ -112,8 +112,12 @@ require([
     //全局错误定义
     $.ajaxSetup({
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            require(['hdjs'],function(hdjs){
-                hdjs.message(JSON.stringify(XMLHttpRequest.responseJSON));
+            require(['hdjs'], function (hdjs) {
+                if (XMLHttpRequest.responseJSON.message) {
+                    hdjs.message(XMLHttpRequest.responseJSON.message);
+                } else {
+                    hdjs.message(JSON.stringify(XMLHttpRequest.responseJSON));
+                }
             })
         }
     });
