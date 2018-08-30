@@ -113,10 +113,14 @@ require([
     $.ajaxSetup({
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             require(['hdjs'], function (hdjs) {
-                if (XMLHttpRequest.responseJSON.message) {
-                    hdjs.message(XMLHttpRequest.responseJSON.message);
+                if (XMLHttpRequest.responseJSON) {
+                    if (XMLHttpRequest.responseJSON.message) {
+                        hdjs.message(XMLHttpRequest.responseJSON.message);
+                    } else {
+                        hdjs.message(JSON.stringify(XMLHttpRequest.responseJSON));
+                    }
                 } else {
-                    hdjs.message(JSON.stringify(XMLHttpRequest.responseJSON));
+                    hdjs.message('网站忙绿，请稍候连接');
                 }
             })
         }

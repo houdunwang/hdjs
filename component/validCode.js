@@ -1,13 +1,15 @@
 define([
     'component/message',
-    'jquery'
-], function (Message,$) {
+    'jquery',
+    'lodash'
+], function (Message, $,_) {
     return function (option) {
         option = $.extend({
             //后台发送地址
             url: '',
             //发送间隔时间
             timeout: 60,
+            data: {},
             //发送前执行的动作
             before: function () {
                 return true;
@@ -51,7 +53,8 @@ define([
                 }
                 if (option.before() === true) {
                     This.setSendTime();
-                    $.post(option.url, {username: username}, function (response) {
+                    option.data.username = username;
+                    $.post(option.url, option.data, function (response) {
                         Message(response.message);
                         if (response.code == 0) {
                             This.setSendTime();
