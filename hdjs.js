@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+define(['jquery','lodash'], function ($,_) {
     return {
         //百度编辑器
         ueditor: function (id, opt, callback, buttons) {
