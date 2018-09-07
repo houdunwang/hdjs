@@ -10,7 +10,7 @@ define(['component/fileUploader', 'hdjs'], function (fileUploader, hdjs) {
             extensions: 'doc,ppt,wps,zip,txt,jpg,jpeg,png,gif',
             multiple: false,
             fileSizeLimit: 200 * 1024 * 1024,
-            fileSingleSizeLimit: 20 * 1024 * 1024,
+            fileSingleSizeLimit: 5 * 1024 * 1024,
             data: {},
             server: ''
         }, options);

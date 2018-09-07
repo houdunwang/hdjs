@@ -112,7 +112,7 @@ define([
                                     multiple: options.multiple,
                                     server: options.server ? options.server : window.hdjs.uploader,
                                     fileNumLimit: 100,//允许上传的文件数量
-                                    fileSizeLimit: 200 * 1024 * 1024,    // 200 M 允许上传文件大小
+                                    fileSizeLimit: options.fileSizeLimit,    // 200 M 允许上传文件大小
                                     fileSingleSizeLimit: options.fileSingleSizeLimit    // 2 M 单个文件上传大小
                                 });
                                 uploader.on('uploadAccept', function (file, response) {
@@ -222,7 +222,7 @@ define([
                                     multiple: options.multiple,
                                     server: options.server ? options.server : window.hdjs.uploader,
                                     fileNumLimit: 100,//允许上传的文件数量
-                                    fileSizeLimit: 200 * 1024 * 1024,    // 200 M 允许上传文件大小
+                                    fileSizeLimit: options.fileSizeLimit,    // 200 M 允许上传文件大小
                                     fileSingleSizeLimit: options.fileSingleSizeLimit    // 2 M 单个文件上传大小
                                 });
                                 uploader.on('uploadAccept', function (file, response) {

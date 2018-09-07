@@ -10,7 +10,7 @@ define(['component/fileUploader', 'hdjs'], function (fileUploader, hdjs) {
             extensions: 'gif,jpg,jpeg,png',
             multiple: false,
             fileSizeLimit: 200 * 1024 * 1024,
-            fileSingleSizeLimit: 20 * 1024 * 1024,
+            fileSingleSizeLimit: 2 * 1024 * 1024,
             compress: false,
             data: {},
             //后台上传处理地址
