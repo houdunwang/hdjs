@@ -120,7 +120,7 @@ require([
                         hdjs.message(JSON.stringify(XMLHttpRequest.responseJSON));
                     }
                 } else {
-                    hdjs.message('网站忙绿，请稍候连接');
+                    hdjs.message('网站忙碌，请稍候连接');
                 }
             })
         }
