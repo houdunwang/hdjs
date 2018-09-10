@@ -19,7 +19,7 @@ define(['jquery', 'component/modal'], function ($, Modal) {
                 }
             }
         }, options));
-        modalobj.find('.modal-content').addClass('alert alert-info');
+        modalobj.find('.modal-content').addClass('alert');
         return modalobj;
     }
 })
