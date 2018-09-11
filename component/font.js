@@ -3450,10 +3450,9 @@ var tpl = `
     }
 </style>`;
 
-define(['component/modal','css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css' +
-''], function (modal) {
+define(['component/modal','css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css'], function (modal) {
     return function (callback) {
-        modal({
+       let modalobj=  modal({
             title: '选择图标',
             width: '95%',
             content: tpl,
@@ -3461,6 +3460,7 @@ define(['component/modal','css!https://cdn.bootcss.com/font-awesome/4.7.0/css/fo
         });
         window.selectIconComplete = function (ico) {
             callback(ico);
+            modalobj.modal('hide');
         };
     }
 });
