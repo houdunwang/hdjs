@@ -1,4 +1,4 @@
-define(['jquery','lodash'], function ($,_) {
+define(['jquery', 'lodash'], function ($, _) {
     return {
         //百度编辑器
         ueditor: function (id, opt, callback, buttons) {
@@ -7,9 +7,9 @@ define(['jquery','lodash'], function ($,_) {
             })
         },
         simditor: function (options) {
-            require(['lodash','simditor', 'simditor-fullscreen', 'marked', 'to-markdown', 'simditor-dropzone',
-            'simditor-markdown'], function (_,Simditor) {
-                 opt =_.merge({
+            require(['lodash', 'simditor', 'simditor-fullscreen', 'marked', 'to-markdown', 'simditor-dropzone',
+                'simditor-markdown'], function (_, Simditor) {
+                opt = _.merge({
                     spellChecker: false,
                     pasteImage: true,
                     locale: 'zh-CN',
@@ -30,7 +30,7 @@ define(['jquery','lodash'], function ($,_) {
                         'hr',
                         'fullscreen',
                     ]
-                },options);
+                }, options);
                 new Simditor(opt);
             })
         },

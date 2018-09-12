@@ -116,6 +116,7 @@ define(["hdjs", "jquery"], function (hdjs, $) {
                     }
                 }, options);
                 let md = editormd(elem, options);
+                window[elem] = md;
                 if ($.isFunction(options.callback)) {
                     options.callback(md);
                 }
@@ -146,9 +147,8 @@ define(["hdjs", "jquery"], function (hdjs, $) {
                         }
                     }
                 });
+
             })
-
-
         },
         markdownToHTML: function (elem, options) {
             require(['editormd'], function (editormd) {

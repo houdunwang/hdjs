@@ -109,6 +109,7 @@ require([
     'jquery',
     'axios'
 ], function ($, axios) {
+    window.$=window.jQuery=$
     //全局错误定义
     $.ajaxSetup({
         error: function (XMLHttpRequest, textStatus, errorThrown) {
