@@ -41,6 +41,8 @@ require.config({
         "simditor-markdown": "package/simditor/simditor-markdown/lib/simditor-markdown",
         "simditor-dropzone": "package/simditor/simditor-dropzone/lib/simditor-dropzone",
         "simple-module": "package/simditor/scripts/module",
+        highlight:"https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min",
+        MarkdownIt: "https://cdn.bootcss.com/markdown-it/8.4.1/markdown-it.min",
         //editor.md
         prettify: 'https://cdn.bootcss.com/prettify/r298/prettify.min',
         raphael: 'package/editor.md/lib/raphael.min',
@@ -72,7 +74,7 @@ require.config({
             exports: 'plupload'
         },
         highlight: {
-            deps: ["css!package/highlight/dracula.min.css"]
+            deps: ["css!https://cdn.bootcss.com/highlight.js/9.12.0/styles/androidstudio.min.css"]
         },
         editormd: {
             deps: [
@@ -109,7 +111,7 @@ require([
     'jquery',
     'axios'
 ], function ($, axios) {
-    window.$=window.jQuery=$
+    window.$ = window.jQuery = $
     //全局错误定义
     $.ajaxSetup({
         error: function (XMLHttpRequest, textStatus, errorThrown) {
