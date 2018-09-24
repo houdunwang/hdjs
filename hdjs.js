@@ -246,6 +246,12 @@ define(['jquery', 'lodash'], function ($, _) {
                 validCode(options);
             })
         },
+        //dplayer播放器
+        DPlayer: function (options) {
+            require(['DPlayer'], function (DPlayer) {
+                let dp = new DPlayer(options);
+            })
+        },
         //视频播放器
         video: function (TagName, callback) {
             require(['component/video'], function (video) {

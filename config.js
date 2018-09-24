@@ -41,7 +41,8 @@ require.config({
         "simditor-markdown": "package/simditor/simditor-markdown/lib/simditor-markdown",
         "simditor-dropzone": "package/simditor/simditor-dropzone/lib/simditor-dropzone",
         "simple-module": "package/simditor/scripts/module",
-        highlight:"https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min",
+        DPlayer: "package/dplayer/DPlayer.min",
+        highlight: "https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min",
         MarkdownIt: "https://cdn.bootcss.com/markdown-it/8.4.1/markdown-it.min",
         //editor.md
         prettify: 'https://cdn.bootcss.com/prettify/r298/prettify.min',
@@ -57,6 +58,9 @@ require.config({
     shim: {
         hdjs: {
             deps: ["css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"]
+        },
+        DPlayer: {
+            deps: ["css!https://cdn.bootcss.com/dplayer/1.22.2/DPlayer.min.css"]
         },
         simditor: {
             deps: [
