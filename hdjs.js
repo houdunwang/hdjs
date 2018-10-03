@@ -67,6 +67,9 @@ define(['jquery', 'lodash'], function ($, _) {
                 message(msg, redirect, type, timeout, options);
             })
         },
+        info: function (msg) {
+            this.swal({text: msg, button: false, icon: 'info'});
+        },
         //确认消息框
         confirm: function (content, callback, options) {
             require(['component/confirm'], function (confirm) {
