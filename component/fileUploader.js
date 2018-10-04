@@ -180,11 +180,10 @@ define([
                                     $.post(url, options.data, function (res) {
                                         if (res.code == 0) {
                                             let html = '<table class="table table-hover">' +
-                                                '<tr><th>文件名</th><th>大小</th><th>创建时间</th></tr>';
+                                                '<tr><th>文件名</th><th>创建时间</th></tr>';
                                             $(res.data).each(function (i) {
-                                                html += '<tr><td><a href="javascript:;" src="' + res.data[i].path + '">' + res.data[i].name + '</a></td>' +
-                                                    '<td>' + res.data[i].size + '</td>' +
-                                                    '<td>' + res.data[i].createtime + '</td></tr>';
+                                                html += '<tr><td><a href="javascript:;" src="' + res.data[i].path + '">' + res.data[i].filename + '</a></td>' +
+                                                    '<td>' + res.data[i].created_at + '</td></tr>';
                                             });
                                             html += "</table>";
                                             html += res.page;
