@@ -9,9 +9,9 @@ require.config({
         hdjs: 'hdjs',
         css: 'css.min',
         domReady: 'domReady',
-        vue: 'https://cdn.bootcss.com/vue/2.5.16/vue.min',
-        scrollTo: 'https://cdn.bootcss.com/jquery-scrollTo/2.1.2/jquery.scrollTo.min',
-        Aliplayer: 'http://g.alicdn.com/de/prismplayer/2.0.1/aliplayer-min',
+        vue: 'package/vue.min',
+        scrollTo: 'package/jquery.scrollTo.min',
+        Aliplayer: 'package/aliplayer-min',
         //微信JSSDK
         jweixin: 'http://res.wx.qq.com/open/js/jweixin-1.2.0',
         //百度编辑器
@@ -19,45 +19,43 @@ require.config({
         //代码高亮
         prism: 'package/prism/prism',
         //剪贴版
-        ZeroClipboard: 'https://cdn.bootcss.com/zeroclipboard/2.3.0/ZeroClipboard.min',
+        ZeroClipboard: 'packageZeroClipboard.min',
         //JS验证
-        validator: 'https://cdn.bootcss.com/validator/10.2.0/validator.min',
+        validator: 'package/validator.min',
         //上传组件
         webuploader: 'package/webuploader/dist/webuploader',
-        bootstrap: 'https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min',
-        lodash: 'https://cdn.bootcss.com/lodash.js/4.17.10/lodash.min',
-        moment: 'https://cdn.bootcss.com/moment.js/2.22.1/moment.min',
+        bootstrap: 'package/bootstrap.bundle.min',
+        lodash: 'package/lodash.min',
+        moment: 'package/moment.min',
         oss: "component/oss",
-        'jquery-mousewheel': 'https://cdn.bootcss.com/jquery-mousewheel/3.1.13/jquery.mousewheel.min',
-        jquery: "https://cdn.bootcss.com/jquery/3.3.1/jquery.min",
-        axios: "https://cdn.bootcss.com/axios/0.18.0/axios.min",
-        katex: "https://cdn.bootcss.com/KaTeX/0.9.0/katex.min",
-        codemirror: "https://cdn.bootcss.com/codemirror/5.38.0/codemirror.min",
+        "jquery-mousewheel": "package/jquery.mousewheel.min",
+        jquery: "package/jquery.min",
+        axios: "package/axios.min",
+        codemirror: "package/codemirror.min",
         plupload: "package/plupload/plupload.full.min",
         simditor: "package/simditor/scripts/simditor",
         "simditor-fullscreen": "package/simditor/simditor-fullscreen-master/lib/simditor-fullscreen",
-        "marked": "https://cdn.bootcss.com/marked/0.4.0/marked.min",
-        "to-markdown": "https://cdn.bootcss.com/to-markdown/3.1.1/to-markdown.min",
+        "marked": "package/marked.min",
+        "to-markdown": "package/to-markdown.min",
         "simditor-markdown": "package/simditor/simditor-markdown/lib/simditor-markdown",
         "simditor-dropzone": "package/simditor/simditor-dropzone/lib/simditor-dropzone",
         "simple-module": "package/simditor/scripts/module",
         DPlayer: "package/dplayer/DPlayer.min",
-        highlight: "https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min",
-        MarkdownIt: "https://cdn.bootcss.com/markdown-it/8.4.1/markdown-it.min",
+        highlight: "package/highlight.min",
+        MarkdownIt: "package/markdown-it.min",
         //editor.md
-        prettify: 'https://cdn.bootcss.com/prettify/r298/prettify.min',
+        prettify: 'package/prettify.min',
         raphael: 'package/editor.md/lib/raphael.min',
-        underscore: 'https://cdn.bootcss.com/underscore.js/1.9.0/underscore-min',
+        underscore: 'package/underscore-min',
         flowchart: "package/editor.md/lib/flowchart.min",
         jqueryflowchart: 'package/editor.md/lib/jquery.flowchart.min',
         sequenceDiagram: 'package/editor.md/lib/sequence-diagram.min',
-        katex: 'https://cdn.bootcss.com/KaTeX/0.10.0-alpha/katex.min',
+        katex: 'package/katex.min',
         editormd: 'package/editor.md/editormd.amd',
-
     },
     shim: {
         hdjs: {
-            deps: ["css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"]
+            deps: ["css!package/css/font-awesome.min.css"]
         },
         DPlayer: {
             deps: ["css!https://cdn.bootcss.com/dplayer/1.22.2/DPlayer.min.css"]
@@ -78,7 +76,7 @@ require.config({
             exports: 'plupload'
         },
         highlight: {
-            deps: ["css!https://cdn.bootcss.com/highlight.js/9.12.0/styles/androidstudio.min.css"]
+            deps: ["css!package/css/androidstudio.min.css"]
         },
         editormd: {
             deps: [

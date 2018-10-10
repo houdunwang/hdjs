@@ -1,7 +1,7 @@
 define([
     'moment',
-    'https://cdn.bootcss.com/bootstrap-daterangepicker/3.0.3/daterangepicker.min.js',
-    'css!https://cdn.bootcss.com/bootstrap-daterangepicker/3.0.3/daterangepicker.min.css'
+    'package/daterangepicker.min',
+    'css!package/css/daterangepicker.min.css'
 ], function (moment) {
     return function (param) {
         $('.reservation').daterangepicker({autoUpdateInput: false});

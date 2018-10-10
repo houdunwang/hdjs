@@ -1,7 +1,7 @@
 //生成二维码
 define([
     'jquery',
-    'https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js'
+    'package/jquery.qrcode.min'
 ], function ($) {
     return function (el, text) {
         return $(el).qrcode(text);

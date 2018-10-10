@@ -3450,7 +3450,7 @@ var tpl = `
     }
 </style>`;
 
-define(['component/modal','css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css'], function (modal) {
+define(['component/modal','css!package/css/font-awesome.min.css'], function (modal) {
     return function (callback) {
        let modalobj=  modal({
             title: '选择图标',

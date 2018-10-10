@@ -1,6 +1,6 @@
 //表情选择
 define([
-    'https://cdn.bootcss.com/caret/1.0.0/jquery.caret.min.js',
+    'package/jquery.caret.min',
     'css!../less/emotion.css'
 ], function () {
     return function (options) {

@@ -176,7 +176,7 @@ define([
                         events: {
                             'shown.bs.modal': function () {
                                 //加载远程文件
-                                function getImageList(url) {
+                                function getImageList(url) {``
                                     $.post(url, options.data, function (res) {
                                         if (res.code == 0) {
                                             let html = '<table class="table table-hover">' +

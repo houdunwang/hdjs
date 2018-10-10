@@ -1,7 +1,7 @@
 //视频播放器
 define([
-    'https://cdn.bootcss.com/video.js/7.0.3/video.min.js',
-    'css!https://cdn.bootcss.com/video.js/7.0.3/video-js.min.css',
+    'package/video.min',
+    'css!package/css/video-js.min.css',
     'css!less/video.css'
 ], function (video) {
     return function (TagName, callback) {
