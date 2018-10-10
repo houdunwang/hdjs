@@ -18,7 +18,7 @@ hdjs是一个优秀的前端组件化框架，可以在浏览器中直接使用a
 邮箱:  2300071698@qq.com
 QQ  : 2300071698
 
-> [向军大叔每天免费直播实战开发，助你提升开发技能](http://www.aoxiangjun.com)
+> [向军大叔每天免费直播实战开发，助你提升开发技能！http://www.houdunren.com](http://www.houdunren.com) 
 
 ### 感谢
 
