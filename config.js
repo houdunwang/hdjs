@@ -19,7 +19,7 @@ require.config({
         //代码高亮
         prism: 'package/prism/prism',
         //剪贴版
-        ZeroClipboard: 'packageZeroClipboard.min',
+        ZeroClipboard: 'package/ZeroClipboard.min',
         //JS验证
         validator: 'package/validator.min',
         //上传组件
