@@ -11,10 +11,14 @@ hdjs是一个优秀的前端组件化框架，可以在浏览器中直接使用a
 
 ### 作者
 
-向军大叔  http://www.aoxiangjun.com
+向军大叔
+
+主页：http://www.aoxiangjun.com
 
 邮箱:  2300071698@qq.com
 QQ  : 2300071698
+
+> [向军大叔每天免费直播实战开发，助你提升开发技能](http://www.aoxiangjun.com)
 
 ### 感谢
 
