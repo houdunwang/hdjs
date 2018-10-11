@@ -55,7 +55,7 @@ require.config({
     },
     shim: {
         hdjs: {
-            deps: ["css!package/css/font-awesome.min.css"]
+            deps: ["css!package/font-awesome-4.7.0/css/font-awesome.min.css"]
         },
         DPlayer: {
             deps: ["css!https://cdn.bootcss.com/dplayer/1.22.2/DPlayer.min.css"]
