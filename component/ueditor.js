@@ -20,7 +20,7 @@ define(['hdjs','ZeroClipboard', 'jquery',
                 'backcolor', 'hdimage', 'insertorderedlist', 'insertunorderedlist', 'selectall', '|',
                  'paragraph', 'fontfamily', 'fontsize', '|',
                 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
-                'link', 'emotion', 'map',  'insertcode','|',
+                'link', 'emotion', 'map','|',
                 'inserttable', 'deletetable'
             ]],
             autoHeightEnabled: false,//自动增高
