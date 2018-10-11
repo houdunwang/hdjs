@@ -20,7 +20,7 @@ define([
                 if (res.code == 0) {
                     let html = '<ul class="clearfix image-list-box">';
                     $(res.data).each(function (i) {
-                        html += '<li style="background-image: url(' + res.data[i].url + ');" path="' + res.data[i].path + '"></li>';
+                        html += '<li style="background-image: url(' + res.data[i].url + ');" url="' + res.data[i].url + '"></li>';
                     });
                     html += "</ul>";
                     html += _.isObject(res.page)?JSON.stringify(res.page):res.page;
@@ -89,7 +89,7 @@ define([
                                     $(this).toggleClass('selectActive');
                                     images = [];
                                     $("#imagelists li.selectActive").each(function () {
-                                        images.push($(this).attr('path'));
+                                        images.push($(this).attr('url'));
                                     });
                                     if (!options.multiple) {
                                         modalobj.modal('hide');

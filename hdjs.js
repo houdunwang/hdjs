@@ -47,7 +47,7 @@ define(['jquery', 'lodash'], function ($, _) {
         },
         //SweetAlert
         swal: function (title, content, type) {
-            require(['https://cdn.bootcss.com/sweetalert/2.1.0/sweetalert.min.js', 'lodash'], function (swal, _) {
+            require(['package/sweetalert.min', 'lodash'], function (swal, _) {
                 if (_.isObject(title)) {
                     swal(title)
                 } else {
@@ -114,7 +114,7 @@ define(['jquery', 'lodash'], function ($, _) {
         },
         //光标定位
         caret: function (el, pos) {
-            require(['https://cdn.bootcss.com/caret/1.0.0/jquery.caret.min.js'], function () {
+            require(['package/jquery.caret.min.js'], function () {
                 if ($.isFunction(pos)) {
                     pos($(el).caret());
                 } else {
@@ -263,13 +263,13 @@ define(['jquery', 'lodash'], function ($, _) {
         },
         //表单验证
         validate: function () {
-            require(['https://cdn.bootcss.com/jquery-form-validator/2.3.77/jquery.form-validator.min.js'], function () {
+            require(['package/jquery.form-validator.min.js'], function () {
                 $.validate();
             })
         },
         //MD5加密
         md5: function (content, callback) {
-            require(['https://cdn.bootcss.com/spark-md5/3.0.0/spark-md5.min.js'], function (md5) {
+            require(['package/spark-md5.min.js'], function (md5) {
                 callback(md5.hash(content));
             })
         },
