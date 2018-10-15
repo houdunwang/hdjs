@@ -1,5 +1,5 @@
 define([
-    'package/swiper.js',
+    'package/swiper',
     'css!package/css/swiper.min.css'
 ], function (Swiper) {
     return function (el, options) {
