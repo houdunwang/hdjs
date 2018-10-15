@@ -65,7 +65,7 @@ define([
                             <span class="percentage"></span>\
                             </div><div class="info"></div>\
                             <div class="btns">\
-                            <div class="btn btn-default" data-dismiss="modal">取消</div>\
+                            <div class="btn btn-white" data-dismiss="modal">取消上传</div>\
                             <div class="btn btn-info uploadBtn">确定使用</div>\
                             </div> </div> </div> </div> </div></div>\
                     <div role="tabpanel" class="tab-pane" id="imagelistsBox">\

@@ -26,7 +26,11 @@
   border: solid 3px #00a0e9;
 }
 #hdWebUpload .modal-title .nav li a {
-  font-size: 14px !important;
+  font-size: 12px !important;
+}
+#hdWebUpload .modal-title .nav li a.nav-link {
+  padding: 6px 15px;
+  margin-right: 10px;
 }
 /* ------------ */
 #wrapper {
