@@ -2,7 +2,7 @@
  * 前端模块配置
  * @author 向军 <2300071698@qq.com>
  */
-require.config({
+config = {
     urlArgs: 'version=1.2.106',
     baseUrl: window.hdjs.base,
     paths: {
@@ -27,69 +27,72 @@ require.config({
         bootstrap: 'package/bootstrap.bundle.min',
         lodash: 'package/lodash.min',
         moment: 'package/moment.min',
-        oss: "component/oss",
-        "jquery-mousewheel": "package/jquery.mousewheel.min",
-        jquery: "package/jquery.min",
-        axios: "package/axios.min",
-        codemirror: "package/codemirror.min",
-        plupload: "package/plupload/plupload.full.min",
-        simditor: "package/simditor/scripts/simditor",
-        "simditor-fullscreen": "package/simditor/simditor-fullscreen-master/lib/simditor-fullscreen",
-        "marked": "package/marked.min",
-        "to-markdown": "package/to-markdown.min",
-        "simditor-markdown": "package/simditor/simditor-markdown/lib/simditor-markdown",
-        "simditor-dropzone": "package/simditor/simditor-dropzone/lib/simditor-dropzone",
-        "simple-module": "package/simditor/scripts/module",
-        DPlayer: "package/dplayer/DPlayer.min",
-        highlight: "package/highlight.min",
-        MarkdownIt: "package/markdown-it.min",
+        oss: 'component/oss',
+        'jquery-mousewheel': 'package/jquery.mousewheel.min',
+        jquery: 'package/jquery.min',
+        axios: 'package/axios.min',
+        codemirror: 'package/codemirror.min',
+        plupload: 'package/plupload/plupload.full.min',
+        simditor: 'package/simditor/scripts/simditor',
+        'simditor-fullscreen': 'package/simditor/simditor-fullscreen-master/lib/simditor-fullscreen',
+        'marked': 'package/marked.min',
+        'to-markdown': 'package/to-markdown.min',
+        'simditor-markdown': 'package/simditor/simditor-markdown/lib/simditor-markdown',
+        'simditor-dropzone': 'package/simditor/simditor-dropzone/lib/simditor-dropzone',
+        'simple-module': 'package/simditor/scripts/module',
+        DPlayer: 'package/dplayer/DPlayer.min',
+        highlight: 'package/highlight.min',
+        MarkdownIt: 'package/markdown-it.min',
         //editor.md
         prettify: 'package/prettify.min',
         raphael: 'package/editor.md/lib/raphael.min',
         underscore: 'package/underscore-min',
-        flowchart: "package/editor.md/lib/flowchart.min",
+        flowchart: 'package/editor.md/lib/flowchart.min',
         jqueryflowchart: 'package/editor.md/lib/jquery.flowchart.min',
         sequenceDiagram: 'package/editor.md/lib/sequence-diagram.min',
         katex: 'package/katex.min',
         editormd: 'package/editor.md/editormd.amd',
+        //front
+
+
     },
     shim: {
         hdjs: {
-            deps: ["css!package/font-awesome-4.7.0/css/font-awesome.min.css"]
+            deps: ['css!package/font-awesome-4.7.0/css/font-awesome.min.css']
         },
         DPlayer: {
-            deps: ["css!https://cdn.bootcss.com/dplayer/1.22.2/DPlayer.min.css"]
+            deps: ['css!https://cdn.bootcss.com/dplayer/1.22.2/DPlayer.min.css']
         },
         simditor: {
             deps: [
-                "jquery",
-                "package/simditor/scripts/module",
-                "package/simditor/scripts/hotkeys",
-                "package/simditor/scripts/uploader",
-                "css!package/simditor/simditor-fullscreen-master/styles/simditor-fullscreen.css",
-                "css!package/simditor/styles/simditor.css",
-                "css!package/simditor/styles/hdjs.css",
-                "css!package/simditor/simditor-markdown/styles/simditor-markdown.css"
+                'jquery',
+                'package/simditor/scripts/module',
+                'package/simditor/scripts/hotkeys',
+                'package/simditor/scripts/uploader',
+                'css!package/simditor/simditor-fullscreen-master/styles/simditor-fullscreen.css',
+                'css!package/simditor/styles/simditor.css',
+                'css!package/simditor/styles/hdjs.css',
+                'css!package/simditor/simditor-markdown/styles/simditor-markdown.css'
             ]
         },
         plupload: {
             exports: 'plupload'
         },
         highlight: {
-            deps: ["css!package/css/androidstudio.min.css"]
+            deps: ['css!package/css/androidstudio.min.css']
         },
         editormd: {
             deps: [
                 'underscore',
-                "flowchart",
-                "sequenceDiagram",
-                "css!package/editor.md/css/editormd.css",
-                "css!package/editor.md/lib/codemirror/codemirror.min.css"
+                'flowchart',
+                'sequenceDiagram',
+                'css!package/editor.md/css/editormd.css',
+                'css!package/editor.md/lib/codemirror/codemirror.min.css'
             ]
         },
         sequenceDiagram: {
             deps: [
-                "raphael"
+                'raphael'
             ]
         },
         jqueryflowchart: {
@@ -108,7 +111,13 @@ require.config({
         }
     },
     waitSeconds: 30
-});
+};
+if(hdjs.requireJs){
+    config.paths = Object.assign(config.paths,hdjs.requireJs.paths);
+    config.shim = Object.assign(config.shim,hdjs.requireJs.shim);
+}
+// console.log(config);
+require.config(config);
 require([
     'jquery',
     'axios'
@@ -128,6 +137,7 @@ require([
                     hdjs.message('网站忙碌，请稍候连接');
                 }
             })
+
         }
     });
     axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
