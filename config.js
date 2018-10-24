@@ -52,16 +52,13 @@ config = {
         sequenceDiagram: 'package/editor.md/lib/sequence-diagram.min',
         katex: 'package/katex.min',
         editormd: 'package/editor.md/editormd.amd',
-        //front
-
-
     },
     shim: {
         hdjs: {
             deps: ['css!package/font-awesome-4.7.0/css/font-awesome.min.css']
         },
         DPlayer: {
-            deps: ['css!https://cdn.bootcss.com/dplayer/1.22.2/DPlayer.min.css']
+            deps: ['css!package/dplayer/DPlayer.min.css']
         },
         simditor: {
             deps: [
