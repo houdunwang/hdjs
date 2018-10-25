@@ -54,6 +54,9 @@ config = {
         editormd: 'package/editor.md/editormd.amd',
     },
     shim: {
+        bootstrap: {
+            deps: 'jquery'
+        },
         hdjs: {
             deps: ['css!package/font-awesome-4.7.0/css/font-awesome.min.css']
         },
@@ -109,9 +112,9 @@ config = {
     },
     waitSeconds: 30
 };
-if(hdjs.requireJs){
-    config.paths = Object.assign(config.paths,hdjs.requireJs.paths);
-    config.shim = Object.assign(config.shim,hdjs.requireJs.shim);
+if (hdjs.requireJs) {
+    config.paths = Object.assign(config.paths, hdjs.requireJs.paths);
+    config.shim = Object.assign(config.shim, hdjs.requireJs.shim);
 }
 // console.log(config);
 require.config(config);
