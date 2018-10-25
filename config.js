@@ -3,7 +3,7 @@
  * @author 向军 <2300071698@qq.com>
  */
 config = {
-    urlArgs: 'version=1.2.106',
+    urlArgs: 'version=4.0.12',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'hdjs',
