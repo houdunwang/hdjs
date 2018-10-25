@@ -55,7 +55,7 @@ config = {
     },
     shim: {
         bootstrap: {
-            deps: 'jquery'
+            deps: ['jquery']
         },
         hdjs: {
             deps: ['css!package/font-awesome-4.7.0/css/font-awesome.min.css']
