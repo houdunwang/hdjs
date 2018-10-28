@@ -3,7 +3,7 @@
  * @author 向军 <2300071698@qq.com>
  */
 config = {
-    urlArgs: 'version=4.0.12',
+    urlArgs: 'version=4.0.13',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'hdjs',
@@ -52,8 +52,12 @@ config = {
         sequenceDiagram: 'package/editor.md/lib/sequence-diagram.min',
         katex: 'package/katex.min',
         editormd: 'package/editor.md/editormd.amd',
+        iziToast:'package/iziToast/iziToast.min'
     },
     shim: {
+        iziToast:{
+            deps: ['css!package/iziToast/iziToast.min.css']
+        },
         bootstrap: {
             deps: ['jquery']
         },
