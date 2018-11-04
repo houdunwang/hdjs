@@ -3,7 +3,7 @@
  * @author 向军 <2300071698@qq.com>
  */
 config = {
-    urlArgs: 'version=4.0.13',
+    urlArgs: 'version=4.0.16',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'hdjs',
@@ -83,7 +83,7 @@ config = {
             exports: 'plupload'
         },
         highlight: {
-            deps: ['css!package/css/androidstudio.min.css']
+            deps: ['css!https://cdn.bootcss.com/highlight.js/9.12.0/styles/atom-one-dark.min.css']
         },
         editormd: {
             deps: [

@@ -791,7 +791,7 @@ define([
             });
 
             uploader.onError = function (code) {
-                alert('上传错误,请检测文件类型与大小');
+                alert('文件过大 或 文件类型错误');
                 // alert('Eroor: ' + code);
             };
 
