@@ -52,9 +52,15 @@ config = {
         sequenceDiagram: 'package/editor.md/lib/sequence-diagram.min',
         katex: 'package/katex.min',
         editormd: 'package/editor.md/editormd.amd',
-        iziToast:'package/iziToast/iziToast.min'
+        iziToast:'package/iziToast/iziToast.min',
+        tuiEditor:'https://uicdn.toast.com/tui-editor/latest/tui-editor-Editor',
     },
     shim: {
+        tuiEditor:{
+          deps:[
+              '/bower_components/tui-code-snippet/dist/tui-code-snippet.js'
+          ]
+        },
         iziToast:{
             deps: ['css!package/iziToast/iziToast.min.css']
         },

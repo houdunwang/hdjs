@@ -39,6 +39,16 @@ define(['jquery', 'lodash'], function ($, _) {
                 editor.markdown(el, options);
             })
         },
+        simplemdeMarkdownEditor: (el,options,callback) => {
+            require(['component/simplemdeMarkdownEditor'], function (editormd) {
+                editormd.handle(el, options,callback);
+            })
+        },
+        tuiEditor: (el,options,callback) => {
+            require(['component/tuiEditor'], function (editormd) {
+                editormd.handle(el, options,callback);
+            })
+        },
         //Markdown编辑器前台转为HTML
         markdownToHTML: function (el, options) {
             require(['component/editormd'], function (editormd) {

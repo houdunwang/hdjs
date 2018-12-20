@@ -121,7 +121,7 @@ define(["hdjs", "jquery"], function (hdjs, $) {
                     options.callback(md);
                 }
                 /**
-                 * 咱贴上传图片
+                 * 粘贴上传图片
                  */
                 $("#" + elem).on('paste', function (ev) {
                     var data = ev.clipboardData;
