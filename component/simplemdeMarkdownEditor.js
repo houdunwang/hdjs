@@ -14,7 +14,7 @@ define([
                     uniqueId: "createTopic",
                     delay: 1000,
                 },
-                autofocus: true,
+                autofocus: false,
                 spellChecker: false,
                 placeholder:'请使用 Markdown 语法输入内容，支持拖放与粘贴上传图片',
                 showIcons: ["code", "table"],

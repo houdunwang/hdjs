@@ -3,7 +3,7 @@
  * @author 向军 <2300071698@qq.com>
  */
 config = {
-    urlArgs: 'version=4.0.17',
+    urlArgs: 'version=4.0.18',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'hdjs',
@@ -52,16 +52,26 @@ config = {
         sequenceDiagram: 'package/editor.md/lib/sequence-diagram.min',
         katex: 'package/katex.min',
         editormd: 'package/editor.md/editormd.amd',
-        iziToast:'package/iziToast/iziToast.min',
-        tuiEditor:'https://uicdn.toast.com/tui-editor/latest/tui-editor-Editor',
+        iziToast: 'package/iziToast/iziToast.min',
+        tuiEditor: 'https://uicdn.toast.com/tui-editor/latest/tui-editor-Editor',
+        //
+        bootstrapTable: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.2/locale/bootstrap-table-zh-CN.min'
     },
     shim: {
-        tuiEditor:{
-          deps:[
-              '/bower_components/tui-code-snippet/dist/tui-code-snippet.js'
-          ]
+        bootstrapTable: {
+            deps: [
+                'jquery',
+                'bootstrap',
+                'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.2/bootstrap-table.min.js',
+                'css!http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.2/bootstrap-table.min.css'
+            ]
         },
-        iziToast:{
+        tuiEditor: {
+            deps: [
+                '/bower_components/tui-code-snippet/dist/tui-code-snippet.js'
+            ]
+        },
+        iziToast: {
             deps: ['css!package/iziToast/iziToast.min.css']
         },
         bootstrap: {
